@@ -1,0 +1,10 @@
+{
+    "files.associations": {
+        "*.java": "java",
+        "list.h": "c",
+        "queue.h": "c",
+        "stack.h": "c",
+        "dfs.h": "c",
+        "bfs.h": "c"
+    }
+}

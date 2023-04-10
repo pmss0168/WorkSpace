@@ -1,0 +1,46 @@
+package QuanLyHoaDon;
+
+import java.util.Scanner;
+
+public class KhachHang {
+	private String mso, hten, dchi;
+	private boolean phai;
+	public KhachHang() {
+		mso = new String();
+		hten = new String();
+		dchi = new String();
+		phai = true;
+	}
+	public KhachHang(String maso, String hoten, String diachi, boolean gioitinh) {
+		mso = maso;
+		hten = hoten;
+		dchi = diachi;
+		phai = gioitinh;
+	}
+	public KhachHang(KhachHang kh) {
+		mso = new String(kh.mso);
+		hten = new String(kh.hten);
+		dchi = new String(kh.dchi);
+		phai = kh.phai;
+	}
+	public void nhap() {
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Nhap ma so khach hang: ");
+		mso = sc.nextLine();
+		System.out.println("Nhap ho ten khach hang: ");
+		hten = sc.nextLine();
+		System.out.println("Nhap dia chi khach hang: ");
+		dchi = sc.nextLine();
+		System.out.println("Nhap gioi tinh Nam (true), Nu (false)");
+		phai = sc.nextBoolean();
+	}
+	public void in() {
+		System.out.println("Ma so khach hang: "+mso);
+		System.out.println("Ho ten khach hang: "+hten);
+		System.out.println("Dia chi khach hang: "+dchi);
+		System.out.println("Gioi tinh khach hang: "+phai);
+	}
+	public String toString() {
+		return "(" +mso+ "; " +hten+ "; " +dchi+ "; " +phai+ ")";
+	}
+}

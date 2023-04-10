@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename type &apos;buoi1.bai2_max_and_sum&apos; to &apos;bai3_max_and_sum&apos;&#x0D;&#x0A;- Original project: &apos;LTHDT&apos;&#x0D;&#x0A;- Original element: &apos;buoi1.bai2_max_and_sum&apos;&#x0D;&#x0A;- Renamed element: &apos;buoi1.bai3_max_and_sum&apos;&#x0D;&#x0A;- Update references to refactored element&#x0D;&#x0A;- Update textual occurrences in comments and strings" description="Rename type &apos;bai2_max_and_sum&apos;" flags="589830" id="org.eclipse.jdt.ui.rename.type" input="/src&lt;buoi1{bai2_max_and_sum.java[bai2_max_and_sum" matchStrategy="1" name="bai3_max_and_sum" qualified="false" references="true" similarDeclarations="false" stamp="1661338919579" textual="false" version="1.0"/>
+</session>

@@ -1,0 +1,59 @@
+package quanlyhoadon;
+
+import java.util.Scanner;
+
+public class HoaDon {
+	private String tde, mso, hten;
+	private Date nglap;
+	private KhachHang kh;
+	private ChiTiet dsCT[];
+	public HoaDon() {
+		tde = new String();
+		mso = new String();
+		hten =new String();
+	}
+	public HoaDon(HoaDon d) {
+		tde = new String(d.tde);
+		mso = new String(d.mso);
+		hten = new String(d.hten);
+		nglap = new Date();
+		kh = new KhachHang(d.kh);
+		for (int i = 0; i < d.dsCT.length; ++i) {
+			dsCT[i] = new ChiTiet(d.dsCT[i]);
+		}
+	}
+	public void nhap() {
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Nhap tieu de hoa don: ");
+		tde = sc.nextLine();
+		System.out.println("Nhap ma so hoa don: ");
+		mso = sc.nextLine();
+		System.out.println("Ho ten nguoi lap hoa don: ");
+		hten = sc.nextLine();
+		System.out.println("Ngay xuat hoa don: ");
+		nglap.nhap();
+		System.out.println("Nhap khach hang: ");
+		kh.nhap();
+		System.out.println("Nhap chi tiet hoa don: ");
+		System.out.println("Nhap so luong hang hoa: ");
+		int n = sc.nextInt();
+		dsCT = new ChiTiet[n];
+		for (int i = 0; i < n; ++i) {
+			System.out.println("Nhap hang hoa thu "+(i+1)+" :");
+			dsCT[i] = new ChiTiet();
+			dsCT[i].nhap();
+		}
+	}
+	public void in() {
+		System.out.println("Tieu de: "+tde+"/nMa so: "+mso+"\nHo ten nguoi lap: "+hten);
+		System.out.println("Ngay xuat hoa don: ");
+		nglap.in();
+		System.out.println("Khach hang mua hang: ");
+		kh.in();
+		System.out.println("Danh sach hang hoa: ");
+		for (int i = 0; i < dsCT.length; ++i) {
+			System.out.println("Hang hoa thu "+(i+1)+" la: ");
+			dsCT[i].in();
+		}
+	}
+}

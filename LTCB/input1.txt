@@ -1,0 +1,15 @@
+S0001	Dac nhan tam	60	90
+TT001	Than dong DV	100	21
+S0005	Cha giau,cha ngheo	50	65
+S0003	Quang ganh lo di	40	80
+TN023	Lap trinh java	500	55
+TN246	Lap trinh di dong	300	65
+TN022	CTDL-ToanTK	200	40
+TT001	Con nha ngheo	20	40
+TN412	Lap Trinh .NET	1000	45
+CT103	Cau truc DL&GT	70	55
+TT010	Hoa Nang gio	10	25
+CC100	Chung Chi CNTT	80	68
+CT100	Ky nang hoc dai hoc CNTT	200	150
+CT567	Web 3D	150	69
+TN890	CSDL da phuong tien	25	125
