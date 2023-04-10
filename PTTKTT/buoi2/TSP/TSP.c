@@ -18,7 +18,7 @@ void bubbleSort(Canh a[], int n){
 	int i, j;
 	for(i = 0; i < n-1; i++){
 		for(j = n -1; j >= i+1; j--){
-			if(a[j].do_dai > a[j-1].do_dai)
+			if(a[j].do_dai < a[j-1].do_dai)
 				swap(&a[j], &a[j-1]);
 		}
 	}
@@ -26,28 +26,24 @@ void bubbleSort(Canh a[], int n){
 
 void read_file(Canh a[], int *n){
 	FILE *f = freopen("TSP.txt", "r", stdin);
-	int i, j, t, k = 0, temp;
-	if(f == NULL){
-		printf("Loi file!\n");
-	}
-	else{
-		fscanf(f, "%d", n);
-		for(i = 0; i < *n; i++){
-			for(j = i; j < *n; j++){
-				if(i == j){
-					for(t = 0; t <= j; t++)
-						fscanf(f, "%f", &temp);
-				}
-				else{
-					fscanf(f, "%f", &a[k].do_dai);
-					a[k].dau = i;
-					a[k].cuoi = j;
-					k++;
-				}
+	int i, j, t, k = 0;
+	float temp;
+	fscanf(f, "%d", n);
+	for(i = 0; i < *n; i++){
+		for(j = i; j < *n; j++){
+			if(i == j){
+				for(t = 0; t <= j; t++)
+					fscanf(f, "%f", &temp);
+			}
+			else{
+				fscanf(f, "%f ", &a[k].do_dai);
+				a[k].dau = i;
+				a[k].cuoi = j;
+				k++;
 			}
 		}
-		fclose(f);
 	}
+	fclose(f);
 }
 
 void print_file(Canh a[], int n, int la_PA){
@@ -62,18 +58,18 @@ void print_file(Canh a[], int n, int la_PA){
 		printf("Tong do dai cac canh: %5.2f", tong);
 }
 
-int dinh_cap3(Canh PA[], int k, Canh moi){
+int dinh_cap3(Canh PA[], int k, Canh new){
 	int i = 0, dem = 0;
 	//Kiem tra dinh dau cau canh moi co trung 2 lan
 	while(i < k && dem < 2){
-		if(moi.dau == PA[i].dau || moi.dau == PA[i].cuoi)
+		if(new.dau == PA[i].dau || new.dau == PA[i].cuoi)
 			dem++;
 		i++;
 	}
 	if(dem == 2) return 1;
 	i = 0; dem = 0;
 	while(i < k && dem < 2){
-		if(moi.cuoi == PA[i].dau || moi.cuoi == PA[i].cuoi)
+		if(new.cuoi == PA[i].dau || new.cuoi == PA[i].cuoi)
 			dem++;
 		i++;
 	}
@@ -129,11 +125,11 @@ void greedy(Canh list[], int n, Canh PA[]){
 int main(){
 	Canh list[MAX];
 	int n;
-	printf("\t\t\t---Bài toán Ðu?ng di ngu?i giao hàng (TSP)---\n");
+	printf("\t\t\t--- Bai toan duong di cua nguoi giao hang (TSP)---\n");
 	read_file(list,&n);
 	printf("Danh sach cac canh cua do thi\n");
 	print_file(list, n*(n-1)/2, 0);
-	bubbleSort(list, n);
+	bubbleSort(list, n*(n-1)/2);
 	printf("\nDanh sach cac canh cua do thi da sap xep\n");
 	print_file(list, n*(n-1)/2, 0);
 	Canh PA[n];
