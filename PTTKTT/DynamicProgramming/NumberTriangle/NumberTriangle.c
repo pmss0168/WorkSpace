@@ -31,7 +31,7 @@ void PrintFile(int A[][100], int F[][100], int PA[], int n){
     }
     printf("Phuong An:\n");
     for(i = 0; i < n; i++){
-        printf("%d ", PA[i]);
+        printf(" ==> %d", PA[i]);
         tong += PA[i];
     }
     printf("\nTong gia tri cac so: %d", tong);
@@ -50,7 +50,7 @@ int CS_Max(int F[][100], int i, int j){
     if (F[i - 1][j + 1] > F[i - 1][j] && F[i - 1][j + 1] > F[i - 1][j - 1])
         return j + 1;   
 }
-int CS_MAX_Tail(int F[], int j){
+int CS_Max_Dong_Cuoi(int F[], int j){
     int maxkey = F[0];
     int maxindex = 0;
     int k;
@@ -75,7 +75,7 @@ void Tao_Bang(int A[][100], int n, int F[][100]){
 }
 void Tra_Bang(int A[][100], int n, int F[][100], int PA[]){
     int i, j;
-    j = CS_MAX_Tail(F[n-1],n-1);
+    j = CS_Max_Dong_Cuoi(F[n-1],n-1);
     PA[n-1] = A[n-1][j];
     for(i = n; i >= 1; i--){
         j = CS_Max(F,i,j);
