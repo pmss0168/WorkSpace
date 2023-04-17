@@ -77,7 +77,7 @@ void PrintFile(Recordtype a[], int n){
 }
 
 int main(){
-	printf("---Thuat toan QuickSort---\n");
+	printf("---Thuat toan HeapSort---\n");
 	Recordtype a[MAX_ELEMENT];
 	int n;
 	ReadFile(a,&n);

@@ -21,7 +21,7 @@ void BubbleSort(Recordtype a[], int n){
 	for(i = 0; i < n-1; i++){
 		for(j = n -1; j >= i+1; j--){
 			if(a[j].key < a[j-1].key)
-				Swap(&a[j].key, &a[j-1].key);
+				Swap(&a[j], &a[j-1]);
 		}
 	}
 }
