@@ -62,7 +62,7 @@ void PrintFile(DoVat dsdv[], int n, int W){
     printf("Tong trong luong: %.2f\n", TTL);
     printf("Tong gia tri: %.2f", TGT);
 }
-void Tao_Nut_Goc(float W, float *TGT, float *CT, float *TLConLai, float *GLNTT, float DGLN){
+void Tao_Nut_Goc(float W, float* TGT, float *CT, float *TLConLai, float*GLNTT, float DGLN){
     *TGT = 0.0;
     *TLConLai = W;
     *CT = *TLConLai*DGLN;
@@ -72,18 +72,18 @@ void Cap_Nhat_PA_TNTT(float TGT, float *GLNTT, int x[], DoVat *dsdv, int n){
     int i;
     if(*GLNTT < TGT){
         *GLNTT = TGT;
-        for(i = 0; i < n ; i++){
+        for(i = 0; i < n; i++){
             dsdv[i].PA = x[i];
         }
     }
 }
-void Nhanh_Can(int i, float *TGT, float*CT, float *TLConLai,  float *GLNTT, int x[], DoVat *dsdv, int n){
+void Nhanh_Can(int i, float *TGT, float *CT, float *TLConLai, float *GLNTT, int x[], DoVat *dsdv, int n){
     int j;
     int select = *TLConLai/dsdv[i].TL;
     for(j = select; j >= 0; j--){
         *TGT += j*dsdv[i].GT;
         *TLConLai -= j*dsdv[i].TL;
-        *CT  = *TGT + *TLConLai*dsdv[i+1].DG;
+        *CT = *TGT+*TLConLai*dsdv[i+1].DG;
         if(*CT > *GLNTT){
             x[i] = j;
             if(i == n-1 || *TLConLai == 0.0)

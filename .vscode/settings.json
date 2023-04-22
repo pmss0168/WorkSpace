@@ -11,6 +11,7 @@
         "istream": "c",
         "sstream": "c",
         "type_traits": "c",
-        "tuple": "c"
+        "tuple": "c",
+        "stdio.h": "c"
     }
 }

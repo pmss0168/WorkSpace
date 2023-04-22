@@ -13,7 +13,7 @@ void Swap(DataType *a, DataType *b){
     *b = temp;
 }
 void SelectionSort(DataType a[], int n){
-    int i, j, lowindex, lowkey;
+    int i, j, lowkey, lowindex;
     for(i = 0; i < n-1; i++){
         lowkey = a[i].key;
         lowindex = i;

@@ -112,4 +112,5 @@ int main(){
     Tao_Nut_Goc(W,&TLConLai,&CT,&GLNTT,&TGT,dsdv[0].DG);
     Nhanh_Can(0,&TGT,&CT,&TLConLai,&GLNTT,x,dsdv,n);
     PrintFile(dsdv,n,W);
+    return 0;
 }
