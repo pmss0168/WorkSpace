@@ -13,12 +13,12 @@ void Swap(DataType *a, DataType *b){
     *b = temp;
 }
 void SelectionSort(DataType a[], int n){
-    int i, j, lowkey, lowindex;
+    int i, j, lowindex, lowkey;
     for(i = 0; i < n-1; i++){
         lowkey = a[i].key;
         lowindex = i;
         for(j = i+1; j < n; j++){
-            if(lowkey > a[j].key){
+            if(a[j].key < lowkey){
                 lowkey = a[j].key;
                 lowindex = j;
             }

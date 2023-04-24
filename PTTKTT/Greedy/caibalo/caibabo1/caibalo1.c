@@ -63,6 +63,7 @@ void Greedy(Do_Vat E[], int n, float W){
     int i;
     BubbleSort(E, n);
     for (i = 0; i < n; i++){
+		//Them min de thanh cai balo2, 3
         E[i].PA = W / E[i].TL;
         W -= E[i].TL*E[i].PA;
     }

@@ -64,7 +64,7 @@ void Greedy(DoVat dsdv[], int n, int W){
     int i;
     for(i = 0; i < n; i++){
         dsdv[i].PA = W/dsdv[i].TL;
-        W -= dsdv[i].PA*dsdv[i].TL;
+        W -= dsdv[i].TL*dsdv[i].PA;
     }
 }
 int main(){

@@ -16,12 +16,12 @@ int FindPivot(RecordType a[], int head, int tail){
 		k++;
 	if(k > tail) return -1;
 	if(a[k].key > firstkey) return k;
-	return head;
+	return head; 
 }
 int Partition(RecordType a[], int head, int tail, int pivot){
 	int L = head, R = tail;
 	while(L <= R){
-		while(a[L].key < pivot) L++;
+		while(a[L].key < pivot)	L++;
 		while(a[R].key >= pivot) R--;
 		if(L < R)
 			Swap(&a[L],&a[R]);
@@ -29,7 +29,7 @@ int Partition(RecordType a[], int head, int tail, int pivot){
 	return L;
 }
 void QuickSort(RecordType a[], int head, int tail){
-	int pivot, pivotindex, k;
+	int k, pivot, pivotindex;
 	pivotindex = FindPivot(a,head,tail);
 	if(pivotindex != -1){
 		pivot = a[pivotindex].key;

@@ -16,9 +16,8 @@ void BubbleSort(DataType a[], int n){
     int i, j;
     for(i = 0; i < n-1; i++){
         for(j = n-1; j >= i+1; j--){
-            if(a[j].key < a[j-1].key){
+            if(a[j].key < a[j-1].key)
                 Swap(&a[j],&a[j-1]);
-            }
         }
     }
 }
@@ -39,7 +38,7 @@ void ReadFile(DataType a[], int *n){
 void PrintFile(DataType a[], int n){
     int i;
     for(i = 0; i < n; i++){
-        printf("%3d  %-5.2f\n", a[i].key, a[i].other);
+        printf("%2d %3d  %-5.2f\n",i+1, a[i].key, a[i].other);
     }
 }
 int main(){

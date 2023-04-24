@@ -37,7 +37,7 @@ void HeapSort(RecordType a[], int n){
     int i;
     for(i = (n-1)/2; i >= 0; i--)
         PushDown(a,i,n-1);
-    for(i = n-1; i >= 2; i--){
+    for(i = n-1; i >=2; i--){
         Swap(&a[0],&a[i]);
         PushDown(a,0,i-1);
     }

@@ -6,24 +6,6 @@ typedef struct {
 }Do_Vat;
 typedef int Bang[100][100];
 
-/*Cac doc File khac*/
-// DoVat *ReadFromFile(int *W, int *n){
-//      FILE *f;
-//      f = fopen("QHD_CaiBalo.INP", "r");
-//      fscanf(f, "%d",W); // Xac dinh trong luong Ba lo
-// 	 DoVat *dsdvdv;
-// 	 dsdvdv=(DoVat*)malloc(sizeof(DoVat));
-// 	 int i=0;
-//  	 while (!feof(f)){
-// 	   fscanf(f, "%d%d%[^\n]",&dsdvdv[i].TL,&dsdvdv[i].GT,&dsdvdv[i].TenDV);
-// 	   dsdvdv[i].PA=0;
-// 	   i++;
-// 	   dsdvdv=(DoVat*)realloc(dsdvdv,sizeof(DoVat)*(i+1));  
-// 	 }
-// 	 *n=i;
-//      fclose(f);
-//      return dsdvdv;
-// }
 void ReadFile(Do_Vat dsdv[], int* n, int* W){
     FILE* f = freopen("caibalo1.txt", "r", stdin);
     int i = 0;
@@ -70,16 +52,13 @@ void PrintFile(Do_Vat dsdv[], int n, int W, Bang F, Bang X){
     printf("Tong gia tri: %d\n", TGT);
     printf("Tong trong luong: %d", TTL);
 }
-int max(int a, int b){
-    return a > b ? a : b;
-}
 //X so luong do vat k duoc chon
 //F tong gia tri k do vat da duoc chon
 void Tao_Bang(Do_Vat dsdv[], int n, int W, Bang F, Bang X){   
     int xk, yk, k, FMax, XMax, V;
 	// Dien dong dau tien cua hai bang
  	for(V= 0; V<=W; V++) {
- 		X[0][V] = V/dsdv[0].TL;
+ 		X[0][V] = V/dsdv[0].TL; //Them min de thanh cai balo2,3
  		F[0][V] = X[0][V] * dsdv[0].GT;
  	}
 	
@@ -88,7 +67,7 @@ void Tao_Bang(Do_Vat dsdv[], int n, int W, Bang F, Bang X){
 		 for(V=0; V<=W; V++) {
 			 FMax = F[k-1][V] ;
 			 XMax = 0;
-			 yk = V/dsdv[k].TL;
+			 yk = V/dsdv[k].TL; //Them min de thanh cai balo2,3
 			 for(xk = 1; xk<=yk; xk++)
 			 	if(F[k-1][V-xk*dsdv[k].TL]+xk*dsdv[k].GT>FMax){
 			 		FMax=F[k-1][V-xk*dsdv[k].TL]+xk*dsdv[k].GT;

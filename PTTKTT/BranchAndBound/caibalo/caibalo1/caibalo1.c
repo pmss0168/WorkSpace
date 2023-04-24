@@ -79,6 +79,7 @@ void Cap_Nhat_PA_TNTT(float TGT, float *GLNTT, int x[], DoVat *dsdv, int n){
 }
 void Nhanh_Can(int i, float *TGT, float*CT, float *TLConLai,  float *GLNTT, int x[], DoVat *dsdv, int n){
     int j;
+    //Them min de thanh cai balo2, 3
     int select = *TLConLai/dsdv[i].TL;
     for(j = select; j >= 0; j--){
         *TGT += j*dsdv[i].GT;
