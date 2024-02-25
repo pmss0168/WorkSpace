@@ -1,0 +1,318 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;1,100;1,300&display=swap');
+
+:root {
+    --primary-color: #000000;
+    --second-color: #a6adc4;
+    --bg-color: #e0e0e0;
+    --bg-btn: #0084ff;
+    --deeper-bg-btn: #36b6fd;
+}
+* {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+    text-decoration: none;
+    font-family: Roboto, sans-serif;
+}
+/* ---------- Chat Box ------------ */
+.mainContainer {
+    margin: 6rem auto;
+    width: 70%;
+    max-height: 510px;
+    display: flex;
+    justify-content: center;
+}
+.left {
+    display: flex;
+    flex-direction: column;
+    width: 15rem;
+    float: left;
+    /* text-wrap: nowrap; */
+    border: 1px solid #000;
+    border-right: none;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+}
+.left .userOnline {
+    text-align: center;
+    padding: 1rem 0.5rem;
+    height: 4.3rem;
+    font-weight: 700;
+    font-size: large;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0px 3px 3px 0px #e3e3e3;
+    z-index: 2;
+    border-radius: inherit;
+    background-color: #efefef;
+}
+.left #user {
+    /* padding: 1rem 0.5rem; */
+    margin-top: 0.2rem;
+    height: 28rem;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+.left #user .userName {
+    padding: 1rem;
+    /* margin-bottom: 0.5rem; */
+    border-bottom: 1px solid var(--second-color);
+    list-style: none;
+    cursor: pointer;
+}
+.left #chooseUser {
+    padding: 0.85rem;
+    font-size: medium;
+    box-shadow: 0px -3px 3px 0px #e3e3e3;
+    border: none;
+    border-bottom-left-radius: 10px;
+}
+.right {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    background: #fff;
+    border: 1px solid #000;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+.right .userInfo {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 0.5rem;
+    box-shadow: 0px 3px 3px 0px #e3e3e3;
+    z-index: 2;
+    border-radius: inherit;
+    background-color: #efefef;
+}
+.right .userInfo p {
+    font-weight: 700;
+    font-size: large;
+}
+.right .userInfo button {
+    width: 5rem;
+    height: 2rem;
+    border-radius: 25px;
+    border: none;
+    background-color: var(--bg-btn);
+    color: #fff;
+    cursor: pointer;
+}
+.right .userInfo button:hover {
+    background: var(--deeper-bg-btn);
+}
+#currentUser {
+    text-wrap: nowrap;
+}
+#chatFrame {
+    height: 25rem;
+    padding: 1rem 0.5rem;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    /* word-wrap: break-word; */
+}
+#chatFrame .chatContent.otherChat {
+    padding: 1rem;
+    border: none;
+    margin-bottom: 0.5rem;
+    border-radius: 25px 25px 25px 0px;
+    background-color: #303030;
+    color: #fff;
+    width: fit-content;
+    clear: both;
+    float: inline-start;
+    overflow-wrap: anywhere;
+}
+#chatFrame .chatContent.mineChat {
+    padding: 1rem;
+    border: none;
+    margin-bottom: 0.5rem;
+    border-radius: 25px 25px 0px 25px;
+    background-color: var(--bg-btn);
+    color: #fff;
+    width: fit-content;
+    clear: both;
+    float: inline-end;
+    overflow-wrap: anywhere;
+}
+.chatContent h5 {
+    margin-bottom: 0.4rem;
+}
+.chatContent span {
+    margin-top: 0.5rem;
+    font-size: xx-small;
+}
+.chatContent::-webkit-scrollbar {
+    background-color: transparent;
+    display: none;
+}
+#chatInput {
+    height: 3rem;
+    width: 100%;
+    position: relative;
+    padding: 0.3rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0px -3px 3px 0px #e3e3e3;
+}
+#messageInput {
+    border: 1px solid #000;
+    width: 95%;
+    padding: 0 0.5rem;
+    height: 2rem;
+    font-size: medium;
+    border-radius: 50px;
+}
+#sendBtn {
+    width: 3rem;
+    height: 2rem;
+    border: none;
+    text-align: center;
+    color: var(--bg-btn);
+    background: transparent;
+    font-size: large;
+    font-weight: 600;
+    cursor: pointer;
+}
+#sendBtn:hover {
+    background: #e0e0e0;
+    border-radius: 25px;
+}
+#typing {
+    position: absolute;
+    color: var(--primary-color);
+    background: #fff;
+    box-shadow: 0px 0px 3px 1px;
+    margin: 0 0.5rem;
+    padding: 0.5rem;
+    border-radius: 10px 10px 10px 0px;
+    width: fit-content;
+    font-size: small;
+    top: 32.5rem;
+    display: none;
+    transition: linear all 0.5s;
+}
+/* ---------- Login ------------ */
+.boxLogin {
+    width: 450px;
+    height: 450px;
+    margin: 10rem auto;
+    background-color: transparent;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    padding: 2rem;
+}
+.boxLogin .title {
+    padding: 0.5rem;
+    font-size: xx-large;
+    font-weight: bold;
+    display: flex;
+}
+.boxLogin form {
+    height: 100%;
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.boxLogin form div {
+    width: 100%;
+}
+.boxLogin form div input {
+    width: 100%;
+    margin: 1.5rem auto;
+    border: none;
+    border-bottom: 2px solid #000;
+    font-size: large;
+    outline: none;
+}
+
+.boxLogin form button {
+    padding: 1rem;
+    border: none;
+    border-radius: 25px;
+    color: #fff;
+    font-size: large;
+    background-color: var(--bg-btn);
+    cursor: pointer;
+}
+.boxLogin form button:hover {
+    background-color: var(--deeper-bg-btn);
+}
+.boxLogin form p {
+    padding: 0.5rem;
+    color: #000;
+    font-size: medium;
+    text-align: center;
+}
+.boxLogin form p a {
+    color: var(--bg-btn);
+}
+/* ---------- Register ------------ */
+.boxRegister {
+    width: 450px;
+    height: 500px;
+    margin: 10rem auto;
+    background-color: transparent;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    padding: 2rem;
+}
+.boxRegister .title {
+    height: 100%;
+    padding: 0.5rem;
+    font-size: xx-large;
+    font-weight: bold;
+    display: flex;
+}
+.boxRegister form {
+    height: 100%;
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.boxRegister form div {
+    width: 100%;
+}
+.boxRegister form div input {
+    width: 100%;
+    margin: 1.5rem auto;
+    border: none;
+    border-bottom: 2px solid #000;
+    font-size: large;
+    outline: none;
+}
+
+.boxRegister form button {
+    padding: 1rem;
+    border: none;
+    border-radius: 25px;
+    color: #fff;
+    font-size: large;
+    background-color: var(--bg-btn);
+    cursor: pointer;
+}
+.boxRegister form button:hover {
+    background-color: var(--deeper-bg-btn);
+}
+.boxRegister form p {
+    padding: 0.5rem;
+    color: #000;
+    font-size: medium;
+    text-align: center;
+}
+.boxRegister form a {
+    color: var(--bg-btn);
+}
