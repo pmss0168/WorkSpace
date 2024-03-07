@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="css/style.css" />
+        <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
+        <link rel="shortcut icon" href="images/icon.png" type="image/x-icon" />
+        <title>Web Chat</title>
+    </head>
+    <body>
+        <div class="mainContainer">
+            <div class="left">
+                <div class="userOnline"><i class="bx bxs-conversation"></i> Box Mess</div>
+                <div id="user">
+                    <div class="title">Chats</div>
+                    <hr style="margin: 0 40px 0 40px" />
+                    <div id="userName">
+                        <!-- <button class="userItem" value="all">
+                            <img src="images/user.png" alt="" style="width: 50px; height: 50px" />
+                            <p>Pham Minh Sang</p>
+                        </button>
+                        <div class="userItem">
+                            <img src="images/user.png" alt="" style="width: 50px; height: 50px" />
+                            <p>Ng Van Binh</p>
+                        </div>
+                        <div class="userItem">
+                            <img src="images/user.png" alt="" style="width: 50px; height: 50px" />
+                            <p>Lam Van Suu</p>
+                        </div>
+                        <div class="userItem">
+                            <img src="images/user.png" alt="" style="width: 50px; height: 50px" />
+                            <p>Huynh Minh Quang</p>
+                        </div>
+                        <div class="userItem">
+                            <img src="images/user.png" alt="" style="width: 50px; height: 50px" />
+                            <p>Pham Minh Sang</p>
+                        </div>
+                        <div class="userItem">
+                            <img src="images/user.png" alt="" style="width: 50px; height: 50px" />
+                            <p>Pham Minh Sang</p>
+                        </div>
+                        <div class="userItem">
+                            <img src="images/user.png" alt="" style="width: 50px; height: 50px" />
+                            <p>Pham Minh Sang</p>
+                        </div>
+                        <div class="userItem">
+                            <img src="images/user.png" alt="" style="width: 50px; height: 50px" />
+                            <p>Pham Minh Sang</p>
+                        </div> -->
+                    </div>
+                </div>
+            </div>
+            <div class="right">
+                <div class="userInfo">
+                    <p id="currentUser">Gửi tin nhắn đến</p>
+                    <button id="logoutBtn"><i class="bx bx-log-out"></i></button>
+                </div>
+                <div id="chatFrame">
+                    <!-- <div class="chatContent otherChat">
+                        <h5>Sang</h5>
+                        <div class="item">
+                            <p>Toi la Sang</p>
+                        </div>
+                        <p><span>08:11AM</span></p>
+                    </div>
+                    <div class="chatContent mineChat">
+                        <h5>Sang</h5>
+                        <div class="item">
+                            <p>lorem50</p>
+                        </div>
+                        <p>08:11AM</p>
+                    </div>
+                    <div class="chatContent otherChat">
+                        <h5>Sang ten thi dai vai ra lun</h5>
+                        <div class="item">
+                            <p>Toi la Sang</p>
+                        </div>
+                        <p><span>08:11AM</span></p>
+                    </div>
+                    <div class="chatContent mineChat">
+                        <h5>Day la mot cai ten cuc ki dai</h5>
+                        <div class="item">
+                            <p>Lorem ipsum,</p>
+                        </div>
+                        <p>08:11AM</p>
+                    </div>
+                    <div class="chatContent mineChat">
+                        <h5>Sang</h5>
+                        <div class="item">
+                            <p>
+                                lorem50 dolor sit amet consectetur adipisicing elit. Eveniet possimus voluptate ipsam
+                                mollitia. Aliquam eos doloribus similique perspiciatis, aperiam minus.
+                            </p>
+                        </div>
+                        <p>08:11AM</p>
+                    </div>
+                    <div class="chatContent mineChat">
+                        <h5>Sang</h5>
+                        <div class="item">
+                            <p>lorem50</p>
+                        </div>
+                        <p>08:11AM</p>
+                    </div>
+                    <div class="chatContent mineChat">
+                        <h5>Sang</h5>
+                        <div class="item">
+                            <p>lorem50</p>
+                        </div>
+                        <p>08:11AM</p>
+                    </div> -->
+                </div>
+                <div class="sendBox">
+                    <form id="chatInput" method="post">
+                        <input type="text" id="messageInput" placeholder="Nhập tin nhắn..." />
+                        <button type="submit" id="sendBtn"><i class="bx bxs-paper-plane"></i></button>
+                    </form>
+                    <div id="typing">User typing...</div>
+                </div>
+            </div>
+        </div>
+        <footer>&copy; Phạm Minh Sáng B2110976</footer>
+        <script src="js/jquery-3.7.1.min.js"></script>
+        <script src="/socket.io/socket.io.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.30.1/moment.min.js"></script>
+        <script>
+            <% if(user) {%>
+            let accountUser = { user: '<%-user%>' };
+            let json = JSON.stringify(accountUser);
+            sessionStorage.setItem('account', json);
+            <%}%>
+        </script>
+        <script src="js/main.js"></script>
+    </body>
+</html>
