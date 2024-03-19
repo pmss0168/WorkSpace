@@ -6,7 +6,6 @@ const path = require('path');
 const socketio = require('socket.io');
 const mysql = require('mysql');
 const moment = require('moment');
-const bcrypt = require('bcrypt');
 const crypto = require('crypto');
 
 const app = express();
@@ -15,7 +14,7 @@ const io = socketio(server);
 const db = mysql.createConnection({
     host: 'localhost',
     user: 'root',
-    password: '',
+    password: 'Vajl0nchjmen@',
     database: 'chatapp',
 });
 //De nguoi dung co the su dung toan bo nhung hinh anh, file, thu muc co trong ./public
@@ -46,7 +45,6 @@ app.get('/chat', function (req, res) {
     let user = req.session.username;
     // console.log(user);
     if (!userOnl.includes(user) || !user) {
-        // req.session.destroy();
         res.redirect('/');
     } else {
         if (userOnl.includes(user) && user) {
@@ -101,10 +99,6 @@ app.post('/register', function (req, res) {
                 db.query(sqlInsertUser, [username, hashPassword], function (error, result) {
                     if (error) throw error;
                 });
-                // let sqlInsertChannel = `insert into channels(name_channel) values(?)`;
-                // db.query(sqlInsertChannel, username, function (error, result) {
-                //     if (error) throw error;
-                // });
                 res.redirect('/');
             } else if (data.length > 0) {
                 res.redirect('/register');
@@ -142,18 +136,6 @@ chatNamespace.on('connection', function (socket) {
         }
     });
 
-    // socket.on('checkUser', function (user) {
-    //     let sql = `select username from users where username=?`;
-    //     db.query(sql, user, function (err, data) {
-    //         if (err) throw err;
-    //         if (data.length == 0) {
-    //             socket.emit('checkUser', false);
-    //         } else if (data.length > 0) {
-    //             socket.emit('checkUser', true);
-    //         }
-    //     });
-    // });
-
     //Xu ly su kien load message
     socket.on('loadMessage', async function (receiver, sender) {
         if (receiver == 'all') {
@@ -182,18 +164,20 @@ chatNamespace.on('connection', function (socket) {
 
     //Xu ly gui message gui tu client
     socket.on('sendMessage', function (msgObj) {
-        msgObj.time = moment().format('YYYY/MM/DD HH:mm:ss');
-        let sqlInsertMsg = `insert into messages(sender, receiver, created_time, message) values(?, ?, ?, ?)`;
-        db.query(sqlInsertMsg, [msgObj.sender, msgObj.receiver, msgObj.time, msgObj.message], function (err, data) {
-            if (err) throw err;
-        });
-        //Gui lai message cho toan bo nguoi dung dang online
-        if (msgObj.receiver == 'all') {
-            socket.emit('sendMessage', msgObj, true, false);
-            socket.broadcast.emit('sendMessage', msgObj, false, false);
-        } else {
-            socket.emit('sendMessage', msgObj, true, true);
-            socket.to(msgObj.receiver).emit('sendMessage', msgObj, false, true);
+        if (userOnl.includes(msgObj.sender)) {
+            msgObj.time = moment().format('YYYY/MM/DD HH:mm:ss');
+            let sqlInsertMsg = `insert into messages(sender, receiver, created_time, message) values(?, ?, ?, ?)`;
+            db.query(sqlInsertMsg, [msgObj.sender, msgObj.receiver, msgObj.time, msgObj.message], function (err, data) {
+                if (err) throw err;
+            });
+            //Gui lai message cho toan bo nguoi dung dang online
+            if (msgObj.receiver == 'all') {
+                socket.emit('sendMessage', msgObj);
+                socket.broadcast.emit('receiveMessage', msgObj);
+            } else {
+                socket.emit('sendMessage', msgObj);
+                socket.to(msgObj.receiver).emit('receiveMessage', msgObj);
+            }
         }
     });
 
@@ -201,11 +185,11 @@ chatNamespace.on('connection', function (socket) {
     chatNamespace.emit('showUser', userOnl);
 
     //Xu ly su kien go du lieu
-    socket.on('typingMsg', function (user, receiver) {
-        if (receiver == 'all') {
-            socket.broadcast.emit('typingMsg', user);
+    socket.on('typingMsg', function (Obj) {
+        if (Obj.receiver == 'all') {
+            socket.broadcast.emit('typingMsg', Obj);
         } else {
-            socket.to(receiver).emit('typingMsg', user);
+            socket.to(Obj.receiver).emit('typingMsg', Obj);
         }
     });
     socket.on('stopTyping', function () {

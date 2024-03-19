@@ -13,9 +13,7 @@ socket.on('checkUser', function (status) {
         window.location = '/';
     }
 });
-setInterval(function () {
-    socket.emit('checkUser', account.user);
-}, 1000);
+socket.emit('checkUser', account.user);
 
 //Join vào phòng của chính user đó khi đăng nhập thành công
 socket.emit('joinUserRoom', account.user);
@@ -29,53 +27,28 @@ let chatInput = document.getElementById('chatInput');
 //     minute: '2-digit',
 // });
 //Xu ly ham gui tin nhan len cho toan bo moi nguoi
-socket.on('sendMessage', function (msgObj, isMine, isPrivate) {
+socket.on('sendMessage', function (msgObj) {
     if (sessionStorage.getItem('account') && receiver !== '') {
-        //Them tin nhan vao chatFrame
-        let chatCell = document.createElement('div');
-        let div = document.createElement('div');
-        let userChat = document.createElement('h5');
-        let text = document.createElement('p');
-        let time = document.createElement('p');
-        if (isPrivate === false) {
-            if (isMine === false) {
-                chatCell.classList.add('chatContent', 'otherChat');
-                userChat.innerText = msgObj.sender;
-                userChat.style.color = '#40d47e';
-            } else {
-                chatCell.classList.add('chatContent', 'mineChat');
-                userChat.innerText = 'Bạn';
-                userChat.style.color = '#fa9560';
-            }
-        } else {
-            if (isMine === false) {
-                chatCell.classList.add('chatContent', 'otherChat');
-                userChat.innerText = msgObj.sender;
-            } else {
-                chatCell.classList.add('chatContent', 'mineChat');
-                userChat.innerText = 'Bạn';
-            }
-        }
-        text.textContent = msgObj.message;
-        time.classList.add('time');
-        time.textContent = moment(msgObj.time).format('hh:mm A DD MMM YYYY');
-        chatCell.appendChild(userChat);
-        div.appendChild(text);
-        div.classList.add('item');
-        chatCell.appendChild(div);
-        chatCell.appendChild(time);
-        chatFrame.appendChild(chatCell);
-        chatFrame.scrollTop = chatFrame.scrollHeight;
+        renderMessage(msgObj);
+    }
+});
+socket.on('receiveMessage', function (msgObj) {
+    if (
+        sessionStorage.getItem('account') &&
+        ((receiver != '' && receiver == msgObj.sender && msgObj.receiver == account.user) ||
+            (receiver != '' && receiver == 'all' && msgObj.receiver == 'all'))
+    ) {
+        renderMessage(msgObj);
     }
 });
 
 chatInput.addEventListener('submit', function (e) {
     e.preventDefault();
-    let checkSession = true;
+    let check = true;
     if (sessionStorage.getItem('account') === null || message.value.trim() === '') {
-        checkSession = false;
+        check = false;
     }
-    if (message.value && checkSession && receiver !== '') {
+    if (message.value && check && receiver !== '') {
         //Gui tin nhan len server lang nghe
         socket.emit('sendMessage', {
             message: message.value,
@@ -89,43 +62,48 @@ chatInput.addEventListener('submit', function (e) {
 socket.on('loadMessage', function (data) {
     $('#chatFrame').html('');
     data.forEach((element) => {
-        let chatCell = document.createElement('div');
-        let div = document.createElement('div');
-        let userChat = document.createElement('h5');
-        let text = document.createElement('p');
-        let time = document.createElement('p');
-        if (element.receiver === 'all') {
-            if (element.sender !== account.user) {
-                chatCell.classList.add('chatContent', 'otherChat');
-                userChat.innerText = element.sender;
-                userChat.style.color = '#40d47e';
-            } else {
-                chatCell.classList.add('chatContent', 'mineChat');
-                userChat.innerText = 'Bạn';
-                userChat.style.color = '#fa9560';
-            }
-        } else {
-            if (element.sender !== account.user) {
-                chatCell.classList.add('chatContent', 'otherChat');
-                userChat.innerText = element.sender;
-            } else {
-                chatCell.classList.add('chatContent', 'mineChat');
-                userChat.innerText = 'Bạn';
-            }
-        }
-        text.textContent = element.message;
-        time.classList.add('time');
-        time.textContent = moment(element.created_time).format('hh:mm A DD MMM YYYY');
-        chatCell.appendChild(userChat);
-        div.appendChild(text);
-        div.classList.add('item');
-        chatCell.appendChild(div);
-        chatCell.appendChild(time);
-        chatFrame.appendChild(chatCell);
-        chatFrame.scrollTop = chatFrame.scrollHeight;
+        renderMessage(element);
     });
 });
 
+//Ham render tin nhan
+function renderMessage(msgObj) {
+    //Them tin nhan vao chatFrame
+    let chatCell = document.createElement('div');
+    let div = document.createElement('div');
+    let userChat = document.createElement('h5');
+    let text = document.createElement('p');
+    let time = document.createElement('p');
+    if (msgObj.receiver === 'all') {
+        if (msgObj.sender !== account.user) {
+            chatCell.classList.add('chatContent', 'otherChat');
+            userChat.innerText = msgObj.sender;
+            userChat.style.color = '#40d47e';
+        } else {
+            chatCell.classList.add('chatContent', 'mineChat');
+            userChat.innerText = 'Bạn';
+            userChat.style.color = '#fa9560';
+        }
+    } else {
+        if (msgObj.sender !== account.user) {
+            chatCell.classList.add('chatContent', 'otherChat');
+            userChat.innerText = msgObj.sender;
+        } else {
+            chatCell.classList.add('chatContent', 'mineChat');
+            userChat.innerText = 'Bạn';
+        }
+    }
+    text.textContent = msgObj.message;
+    time.classList.add('time');
+    time.textContent = moment(msgObj.time).format('hh:mm A DD MMM YYYY');
+    chatCell.appendChild(userChat);
+    div.appendChild(text);
+    div.classList.add('item');
+    chatCell.appendChild(div);
+    chatCell.appendChild(time);
+    chatFrame.appendChild(chatCell);
+    chatFrame.scrollTop = chatFrame.scrollHeight;
+}
 //Ham lay nguoi nhan tin nhan
 function getReceiver(data) {
     receiver = data;
@@ -162,15 +140,18 @@ socket.on('showUser', function (userOnl) {
 });
 
 //----------------------Typing--------------------------
-socket.on('typingMsg', function (user) {
-    if (receiver !== '') {
+socket.on('typingMsg', function (Obj) {
+    if (
+        (receiver != '' && receiver == Obj.sender && Obj.receiver == account.user) ||
+        (receiver != '' && receiver == 'all' && Obj.receiver == 'all')
+    ) {
         let typing = document.getElementById('typing');
         typing.style.display = 'block';
-        typing.textContent = user + ' is typing...';
+        typing.textContent = Obj.sender + ' is typing...';
     }
 });
 message.addEventListener('focus', function () {
-    socket.emit('typingMsg', account.user, receiver);
+    socket.emit('typingMsg', { sender: account.user, receiver: receiver });
 });
 socket.on('stopTyping', function () {
     let typing = document.getElementById('typing');
