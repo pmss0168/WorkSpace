@@ -60,6 +60,27 @@
     text-align: center;
     color: var(--bg-btn);
 }
+.left #search {
+    display: flex;
+    padding: 0.5rem 0.3rem;
+    border-top: 1px solid rgba(0, 0, 0, 0.5);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.5);
+    margin-top: 0.5rem;
+}
+.left #search input {
+    border: none;
+    outline: none;
+    width: 85%;
+    background-color: transparent;
+    margin-left: 0.2rem;
+    font-size: medium;
+}
+.left #search button {
+    border: none;
+    width: 0.2rem;
+    height: 0.2rem;
+    font-size: large;
+}
 .left #user {
     height: 420px;
 }
@@ -72,7 +93,7 @@
     display: none;
 }
 .left #user #userName .userItem {
-    padding: 0.5rem 1rem;
+    padding: 0.6rem 1rem;
     display: flex;
     gap: 1rem;
     align-items: center;
@@ -81,9 +102,20 @@
     cursor: pointer;
     border: none;
     width: -webkit-fill-available;
+    position: relative;
 }
 .left #user #userName .userItem p {
     word-break: break-word;
+    min-width: 60px;
+}
+.left #user #userName .userItem span {
+    background-color: crimson;
+    border-radius: 50%;
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    left: 50px;
+    top: 6px;
 }
 .left #user #userName .userItem:hover {
     background-color: var(--second-color);
@@ -138,6 +170,53 @@
 }
 .right .userInfo button:hover {
     background: var(--second-color);
+}
+.right #addFriend {
+    height: 420px;
+}
+.right #addFriend .title {
+    padding: 0.5rem 35px;
+    font-size: large;
+    font-weight: bolder;
+    text-align: center;
+    color: var(--bg-btn);
+}
+.right #addFriend #listUser {
+    display: flex;
+    flex-direction: column;
+    height: 380px;
+    overflow-x: hidden;
+    overflow-y: scroll;
+}
+.right #addFriend #listUser .item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem;
+    height: 4rem;
+}
+.right #addFriend #listUser .item i {
+    color: var(--bg-btn);
+    font-size: x-large;
+}
+.right #addFriend #listUser .item p {
+    max-width: 1400px;
+    text-align: left;
+    word-break: break-word;
+}
+.right #addFriend #listUser .item button {
+    border-radius: 50%;
+    border: none;
+    width: 35px;
+    height: 35px;
+    background-color: var(--bg-btn);
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.right #addFriend #listUser .item button i {
+    color: #fff;
 }
 #currentUser {
     color: #fff;
@@ -221,7 +300,7 @@
     background-color: transparent;
     display: none;
 }
-.sendBox {
+#sendBox {
     position: relative;
 }
 #chatInput {

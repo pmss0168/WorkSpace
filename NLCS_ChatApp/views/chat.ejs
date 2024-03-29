@@ -13,6 +13,12 @@
             <div class="left">
                 <div class="userOnline"><i class="bx bxs-conversation"></i> VanouS Chat</div>
                 <div id="user">
+                    <!-- <form action="#" method="get">
+                        <div id="search">
+                            <input type="text" name="search" />
+                            <button type="submit"><i class="bx bx-search"></i></button>
+                        </div>
+                    </form> -->
                     <div class="title">Chats</div>
                     <hr style="margin: 0 40px 0 40px" />
                     <div id="userName">
@@ -23,38 +29,31 @@
                         <div class="userItem">
                             <img src="images/user.png" alt="" style="width: 50px; height: 50px" />
                             <p>Ng Van Binh</p>
-                        </div>
-                        <div class="userItem">
-                            <img src="images/user.png" alt="" style="width: 50px; height: 50px" />
-                            <p>Lam Van Suu</p>
-                        </div>
-                        <div class="userItem">
-                            <img src="images/user.png" alt="" style="width: 50px; height: 50px" />
-                            <p>Huynh Minh Quang</p>
-                        </div>
-                        <div class="userItem">
-                            <img src="images/user.png" alt="" style="width: 50px; height: 50px" />
-                            <p>Pham Minh Sang</p>
-                        </div>
-                        <div class="userItem">
-                            <img src="images/user.png" alt="" style="width: 50px; height: 50px" />
-                            <p>Pham Minh Sang</p>
-                        </div>
-                        <div class="userItem">
-                            <img src="images/user.png" alt="" style="width: 50px; height: 50px" />
-                            <p>Pham Minh Sang</p>
-                        </div>
-                        <div class="userItem">
-                            <img src="images/user.png" alt="" style="width: 50px; height: 50px" />
-                            <p>Pham Minh Sang</p>
-                        </div> -->
+                        </div>-->
                     </div>
                 </div>
             </div>
             <div class="right">
                 <div class="userInfo">
-                    <p id="currentUser">Gửi tin nhắn đến</p>
-                    <button id="logoutBtn"><i class="bx bx-log-out"></i></button>
+                    <p id="currentUser">Send to</p>
+                    <a href="/logout"
+                        ><button id="logoutBtn"><i class="bx bx-log-out"></i></button
+                    ></a>
+                </div>
+                <div id="addFriend">
+                    <div class="title">Add conversation</div>
+                    <div id="listUser">
+                        <!-- <div class="item">
+                            <i class="bx bx-chevron-right"></i>
+                            <p style="max-width: 150px; text-align: left">Huỳnh lê thùy vương</p>
+                            <button value="" onclick="addFriendChat();"><i class="bx bx-user-plus"></i></button>
+                        </div>
+                        <div class="item">
+                            <i class="bx bx-chevron-right"></i>
+                            <p style="max-width: 150px; text-align: left">Huỳnh lê</p>
+                            <button value="" onclick="addFriendChat();"><i class="bx bx-user-plus"></i></button>
+                        </div>-->
+                    </div>
                 </div>
                 <div id="chatFrame">
                     <!-- <div class="chatContent otherChat">
@@ -70,49 +69,12 @@
                             <p>lorem50</p>
                         </div>
                         <p>08:11AM</p>
-                    </div>
-                    <div class="chatContent otherChat">
-                        <h5>Sang ten thi dai vai ra lun</h5>
-                        <div class="item">
-                            <p>Toi la Sang</p>
-                        </div>
-                        <p><span>08:11AM</span></p>
-                    </div>
-                    <div class="chatContent mineChat">
-                        <h5>Day la mot cai ten cuc ki dai</h5>
-                        <div class="item">
-                            <p>Lorem ipsum,</p>
-                        </div>
-                        <p>08:11AM</p>
-                    </div>
-                    <div class="chatContent mineChat">
-                        <h5>Sang</h5>
-                        <div class="item">
-                            <p>
-                                lorem50 dolor sit amet consectetur adipisicing elit. Eveniet possimus voluptate ipsam
-                                mollitia. Aliquam eos doloribus similique perspiciatis, aperiam minus.
-                            </p>
-                        </div>
-                        <p>08:11AM</p>
-                    </div>
-                    <div class="chatContent mineChat">
-                        <h5>Sang</h5>
-                        <div class="item">
-                            <p>lorem50</p>
-                        </div>
-                        <p>08:11AM</p>
-                    </div>
-                    <div class="chatContent mineChat">
-                        <h5>Sang</h5>
-                        <div class="item">
-                            <p>lorem50</p>
-                        </div>
-                        <p>08:11AM</p>
-                    </div> -->
+                    </div>-->
                 </div>
-                <div class="sendBox">
+                <div id="sendBox">
                     <form id="chatInput" method="post">
                         <input type="text" id="messageInput" placeholder="Nhập tin nhắn..." />
+                        <input type="hidden" id="receiverMsg" />
                         <button type="submit" id="sendBtn"><i class="bx bxs-paper-plane"></i></button>
                     </form>
                     <div id="typing">User typing...</div>
@@ -123,13 +85,233 @@
         <script src="js/jquery-3.7.1.min.js"></script>
         <script src="/socket.io/socket.io.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.30.1/moment.min.js"></script>
+        <% if(user) {%>
         <script>
-            <% if(user) {%>
-            let accountUser = { user: '<%-user%>' };
-            let json = JSON.stringify(accountUser);
-            sessionStorage.setItem('account', json);
-            <%}%>
+            //Socketio lang nghe o server port 3000
+            const socket = io('http://localhost:3000/chat');
+
+            let message = document.getElementById('messageInput');
+            let chatFrame = document.getElementById('chatFrame');
+            let chatInput = document.getElementById('chatInput');
+            let addFriend = document.getElementById('addFriend');
+            const currentUser = document.getElementById('currentUser');
+            // let currentTime = new Date().toLocaleDateString([], {
+            //     hour: '2-digit',
+            //     minute: '2-digit',
+            // });
+            let accountUser = '<%=user%>';
+            let receiver = '';
+
+            //------------------------------Function---------------------------
+            //loadAddFriendPage
+            function loadAddFriendPage() {
+                socket.emit('loadAddFriendPage', accountUser);
+            }
+            function showListConversation() {
+                socket.emit('showUser', accountUser);
+            }
+            function loadNotification() {
+                socket.emit('loadNotification', accountUser);
+            }
+            //add friend chat
+            async function addConversation(friend) {
+                // console.log(friend);
+                await socket.emit('addConversation', friend, accountUser);
+                await socket.emit('loadAddFriendPage', accountUser);
+                await socket.emit('showUser', accountUser);
+                await socket.emit('loadNotification', accountUser);
+            }
+            //Ham lay nguoi nhan tin nhan
+            async function getReceiver(data) {
+                receiver = data;
+                currentUser.textContent = receiver;
+                await socket.emit('removeNotification', accountUser, receiver);
+                await socket.emit('loadMessage', receiver, accountUser);
+                $('#addFriend').hide();
+                $('#sendBox').show();
+                $('#chatFrame').show();
+            }
+
+            //Ham render tin nhan
+            function renderMessage(msgObj) {
+                //Them tin nhan vao chatFrame
+                let chatCell = document.createElement('div');
+                let div = document.createElement('div');
+                let userChat = document.createElement('h5');
+                let text = document.createElement('p');
+                let time = document.createElement('p');
+                if (msgObj.sender !== accountUser) {
+                    chatCell.classList.add('chatContent', 'otherChat');
+                    userChat.innerText = msgObj.sender;
+                } else {
+                    chatCell.classList.add('chatContent', 'mineChat');
+                    userChat.innerText = 'Bạn';
+                }
+                text.textContent = msgObj.message;
+                time.classList.add('time');
+                time.textContent = moment(msgObj.created_time).format('hh:mm A DD MMM YYYY');
+                chatCell.appendChild(userChat);
+                div.appendChild(text);
+                div.classList.add('item');
+                chatCell.appendChild(div);
+                chatCell.appendChild(time);
+                chatFrame.appendChild(chatCell);
+                chatFrame.scrollTop = chatFrame.scrollHeight;
+            }
+            //----------------------Main-------------------------------------------
+            $('#chatFrame').hide();
+            $('#sendBox').hide();
+            loadAddFriendPage();
+            showListConversation();
+            loadNotification();
+            //Kiểm tra user đã đăng nhập vào server hay chưa
+            socket.on('checkUser', function (status) {
+                if (!status) {
+                    socket.emit('logoutUser', accountUser);
+                    window.location = '/';
+                }
+            });
+            setInterval(function () {
+                socket.emit('checkUser', accountUser);
+            }, 1000);
+
+            //Join vào phòng của chính user đó khi đăng nhập thành công
+            socket.emit('joinUserRoom', accountUser);
+
+            //----------------------Chat--------------------------
+            //Xu ly ham gui tin nhan len cho toan bo moi nguoi
+            socket.on('sendMessage', function (msgObj) {
+                if (receiver !== '') {
+                    renderMessage(msgObj);
+                }
+            });
+            socket.on('receiveMessage', function (msgObj) {
+                if (receiver != '' && receiver == msgObj.sender && msgObj.receiver == accountUser) {
+                    renderMessage(msgObj);
+                }
+            });
+            socket.on('loadNotification', function (data) {
+                data.forEach((element) => {
+                    let temp = '.userItem #' + element.sender;
+                    // console.log(temp);
+                    let userTag = document.querySelector(temp);
+                    userTag.style.display = 'block';
+                });
+            });
+            socket.on('notificationMsg', function (senderPara, receiverPara) {
+                if (receiver != senderPara) {
+                    let temp = '.userItem #' + senderPara;
+                    // console.log(temp);
+                    let userTag = document.querySelector(temp);
+                    userTag.style.display = 'block';
+                }
+            });
+            socket.on('removeNotification', function (senderPara, receiverPara) {
+                let temp = '.userItem #' + receiverPara;
+                // console.log(temp);
+                let userTag = document.querySelector(temp);
+                userTag.style.display = 'none';
+            });
+            chatInput.addEventListener('submit', function (e) {
+                e.preventDefault();
+                if (message.value && message.value.trim() !== '' && receiver !== '') {
+                    //Gui tin nhan len server lang nghe
+                    socket.emit('sendMessage', {
+                        message: message.value,
+                        sender: accountUser,
+                        receiver: receiver,
+                    });
+                }
+                message.value = '';
+                socket.emit('notificationMsg', accountUser, receiver);
+            });
+            //-----------------Socket On of Function------------------
+            socket.on('loadMessage', function (data) {
+                chatFrame.innerHTML = '';
+                data.forEach((element) => {
+                    renderMessage(element);
+                });
+            });
+            socket.on('loadAddFriendPage', function (data) {
+                $('#chatFrame').hide();
+                $('#sendBox').hide();
+                $('#addFriend').show();
+                let listUser = document.getElementById('listUser');
+                listUser.innerHTML = '';
+                for (element of data) {
+                    let template = `
+                        <div class="item">
+                            <i class="bx bx-chevron-right"></i>
+                            <p>${element.username}</p>
+                            <button value="${element.username}" onclick="addConversation(this.value);"><i class='bx bx-message-rounded-add' ></i></button>
+                        </div>
+                        `;
+                    listUser.innerHTML += template;
+                }
+                // listUser.scrollTop = listUser.scrollHeight;
+            });
+            //Hien thi thong tin nguoi dung khi dang nhap onl tren server
+            socket.on('showUser', function (listConversation) {
+                let user = document.getElementById('userName');
+                user.innerHTML = '';
+                user.innerHTML += `
+                <button value="" class="userItem" onclick='loadAddFriendPage()'>
+                    <img src="images/home.png" alt="" style="width: 50px; height: 50px" />
+                    <p style='min-width: 60px;'>Home</p>
+                    <span style="display: none; background-color: crimson; border-radius: 50%; position: absolute; width: 20px; height: 20px; left: 50px; top: 6px;"></span>
+                </button>
+                `;
+                for (let element of listConversation) {
+                    let divUserName = `
+                        <button value="${element.friend_name}" class="userItem" onclick='getReceiver(this.value)'>
+                            <img src="images/user.png" alt="" style="width: 50px; height: 50px" />
+                            <p>${element.friend_name}</p>
+                            <span id='${element.friend_name}' style="display: none;"></span>
+                        </button>
+                        `;
+                    user.innerHTML += divUserName;
+                }
+            });
+
+            //----------------------Typing--------------------------
+            socket.on('typingMsg', function (Obj) {
+                if (receiver != '' && receiver == Obj.sender && Obj.receiver == accountUser) {
+                    let typing = document.getElementById('typing');
+                    typing.style.display = 'block';
+                    typing.textContent = Obj.sender + ' is typing...';
+                }
+            });
+            message.addEventListener('focus', function () {
+                socket.emit('typingMsg', { sender: accountUser, receiver: receiver });
+            });
+            socket.on('stopTyping', function (Obj) {
+                if (receiver != '' && receiver == Obj.sender && Obj.receiver == accountUser) {
+                    let typing = document.getElementById('typing');
+                    typing.style.display = 'none';
+                }
+            });
+            message.addEventListener('blur', function () {
+                socket.emit('stopTyping', { sender: accountUser, receiver: receiver });
+            });
+
+            //----------------------Logout--------------------------
+
+            // let logoutBtn = document.getElementById('logoutBtn');
+            // logoutBtn.addEventListener('click', function () {
+            //     socket.emit('logoutUser', accountUser);
+            //     window.location = '/';
+            // });
+
+            window.addEventListener('unload', function () {
+                socket.emit('logoutUser', accountUser);
+                accountUser = '';
+            });
         </script>
-        <script src="js/main.js"></script>
+        <%} else{%>
+        <script>
+            window.location = '/';
+        </script>
+        <%}%>
+        <!-- <script src="js/main.js"></script> -->
     </body>
 </html>

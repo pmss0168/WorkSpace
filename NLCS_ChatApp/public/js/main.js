@@ -1,6 +1,13 @@
 //Socketio lang nghe o server port 3000
 const socket = io('http://localhost:3000/chat');
 
+let message = document.getElementById('messageInput');
+let chatFrame = document.getElementById('chatFrame');
+let chatInput = document.getElementById('chatInput');
+// let currentTime = new Date().toLocaleDateString([], {
+//     hour: '2-digit',
+//     minute: '2-digit',
+// });
 const account = JSON.parse(sessionStorage.getItem('account').valueOf());
 const currentUser = document.getElementById('currentUser');
 let receiver = '';
@@ -13,19 +20,14 @@ socket.on('checkUser', function (status) {
         window.location = '/';
     }
 });
-socket.emit('checkUser', account.user);
+setInterval(function () {
+    socket.emit('checkUser', account.user);
+}, 1000);
 
 //Join vào phòng của chính user đó khi đăng nhập thành công
 socket.emit('joinUserRoom', account.user);
 
 //----------------------Chat--------------------------
-let message = document.getElementById('messageInput');
-let chatFrame = document.getElementById('chatFrame');
-let chatInput = document.getElementById('chatInput');
-// let currentTime = new Date().toLocaleDateString([], {
-//     hour: '2-digit',
-//     minute: '2-digit',
-// });
 //Xu ly ham gui tin nhan len cho toan bo moi nguoi
 socket.on('sendMessage', function (msgObj) {
     if (sessionStorage.getItem('account') && receiver !== '') {
@@ -35,8 +37,9 @@ socket.on('sendMessage', function (msgObj) {
 socket.on('receiveMessage', function (msgObj) {
     if (
         sessionStorage.getItem('account') &&
-        ((receiver != '' && receiver == msgObj.sender && msgObj.receiver == account.user) ||
-            (receiver != '' && receiver == 'all' && msgObj.receiver == 'all'))
+        receiver != '' &&
+        receiver == msgObj.sender &&
+        msgObj.receiver == account.user
     ) {
         renderMessage(msgObj);
     }
@@ -74,24 +77,12 @@ function renderMessage(msgObj) {
     let userChat = document.createElement('h5');
     let text = document.createElement('p');
     let time = document.createElement('p');
-    if (msgObj.receiver === 'all') {
-        if (msgObj.sender !== account.user) {
-            chatCell.classList.add('chatContent', 'otherChat');
-            userChat.innerText = msgObj.sender;
-            userChat.style.color = '#40d47e';
-        } else {
-            chatCell.classList.add('chatContent', 'mineChat');
-            userChat.innerText = 'Bạn';
-            userChat.style.color = '#fa9560';
-        }
+    if (msgObj.sender !== account.user) {
+        chatCell.classList.add('chatContent', 'otherChat');
+        userChat.innerText = msgObj.sender;
     } else {
-        if (msgObj.sender !== account.user) {
-            chatCell.classList.add('chatContent', 'otherChat');
-            userChat.innerText = msgObj.sender;
-        } else {
-            chatCell.classList.add('chatContent', 'mineChat');
-            userChat.innerText = 'Bạn';
-        }
+        chatCell.classList.add('chatContent', 'mineChat');
+        userChat.innerText = 'Bạn';
     }
     text.textContent = msgObj.message;
     time.classList.add('time');
@@ -119,12 +110,12 @@ function getReceiver(data) {
 socket.on('showUser', function (userOnl) {
     let user = document.getElementById('userName');
     $('#userName').html('');
-    user.innerHTML += `
-    <button value="all" class="userItem" onclick='getReceiver(this.value)'>
-        <img src="images/home.png" alt="" style="width: 50px; height: 50px" />
-        <p style='min-width=60px; test-align=center'>Tất cả</p>
-    </button>
-    `;
+    // user.innerHTML += `
+    // <button value="all" class="userItem" onclick='getReceiver(this.value)'>
+    //     <img src="images/home.png" alt="" style="width: 50px; height: 50px" />
+    //     <p style='min-width=60px; test-align=center'>Tất cả</p>
+    // </button>
+    // `;
     for (let e of userOnl) {
         if (e !== account.user) {
             let divUserName = `
@@ -141,10 +132,7 @@ socket.on('showUser', function (userOnl) {
 
 //----------------------Typing--------------------------
 socket.on('typingMsg', function (Obj) {
-    if (
-        (receiver != '' && receiver == Obj.sender && Obj.receiver == account.user) ||
-        (receiver != '' && receiver == 'all' && Obj.receiver == 'all')
-    ) {
+    if (receiver != '' && receiver == Obj.sender && Obj.receiver == account.user) {
         let typing = document.getElementById('typing');
         typing.style.display = 'block';
         typing.textContent = Obj.sender + ' is typing...';
@@ -163,12 +151,12 @@ message.addEventListener('blur', function () {
 
 //----------------------Logout--------------------------
 
-let logoutBtn = document.getElementById('logoutBtn');
-logoutBtn.addEventListener('click', function () {
-    socket.emit('logoutUser', account.user);
-    sessionStorage.removeItem('account');
-    window.location = '/';
-});
+// let logoutBtn = document.getElementById('logoutBtn');
+// logoutBtn.addEventListener('click', function () {
+//     socket.emit('logoutUser', account.user);
+//     sessionStorage.removeItem('account');
+//     window.location = '/';
+// });
 
 window.addEventListener('unload', function () {
     if (this.sessionStorage.getItem('account')) {
