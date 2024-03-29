@@ -165,7 +165,7 @@
                         <div class="item">
                             <i class="bx bx-chevron-right"></i>
                             <p>${element.username}</p>
-                            <button value="${element.username}" onclick="addFriendChat(this.value);"><i class='bx bx-message-rounded-add' ></i></button>
+                            <button value="${element.username}" onclick="addFriendChat(this.value);"><i class='bx bxs-user-plus' ></i></button>
                         </div>
                         `;
                         listUser.innerHTML += template;
@@ -184,7 +184,7 @@
                 let user = document.getElementById('userName');
                 user.innerHTML = '';
                 user.innerHTML += `
-                <button value="" class="userItem" onclick='loadAddFriendPage()'>
+                <button value="" class="userItem home" onclick='showAddFriendPage()'>
                     <img src="images/home.png" alt="" style="width: 50px; height: 50px" />
                     <p style='min-width: 60px;'>Home</p>
                     <span style="display: none; background-color: crimson; border-radius: 50%; position: absolute; width: 20px; height: 20px; left: 50px; top: 6px;"></span>
@@ -216,18 +216,29 @@
                 await showListConversation();
                 await loadNotification();
             }
-            function loadAcceptFriendPage() {
-                socket.emit('loadAcceptFriendPage', accountUser);
+            async function loadAcceptFriendPage() {
+                await socket.emit('loadAcceptFriendPage', accountUser);
+            }
+            async function showAddFriendPage() {
+                await socket.emit('loadAcceptFriendPage', accountUser);
+                receiver = '';
+                let userItemList = document.querySelectorAll('.userItem');
+                userItemList.forEach((element) => {
+                    element.style.backgroundColor = '#f0f0f0';
+                });
+                let temp = '.userItem.home';
+                let homeTag = document.querySelector(temp);
+                homeTag.style.backgroundColor = 'lightgray';
             }
             //loadAddFriendPage
-            function loadAddFriendPage() {
-                socket.emit('loadAddFriendPage', accountUser);
+            async function loadAddFriendPage() {
+                await socket.emit('loadAddFriendPage', accountUser);
             }
-            function showListConversation() {
-                socket.emit('showUser', accountUser);
+            async function showListConversation() {
+                await socket.emit('showUser', accountUser);
             }
-            function loadNotification() {
-                socket.emit('loadNotification', accountUser);
+            async function loadNotification() {
+                await socket.emit('loadNotification', accountUser);
             }
             //add friend chat
             async function addFriendChat(friend) {
@@ -245,6 +256,13 @@
                 // currentUser.textContent = receiver;
                 await socket.emit('removeNotification', accountUser, receiver);
                 await socket.emit('loadMessage', receiver, accountUser);
+                let userItemList = document.querySelectorAll('.userItem');
+                userItemList.forEach((element) => {
+                    element.style.backgroundColor = '#f0f0f0';
+                });
+                let temp = '.userItem.' + data;
+                let userTag = document.querySelector(temp);
+                userTag.style.backgroundColor = 'lightgray';
                 $('#addFriend').hide();
                 $('#sendBox').show();
                 $('#chatFrame').show();

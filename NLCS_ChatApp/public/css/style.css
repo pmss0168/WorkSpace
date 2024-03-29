@@ -208,6 +208,7 @@
 .right #addFriend #friendRequest .item button {
     border-radius: 50%;
     border: none;
+    min-width: 35px;
     width: 35px;
     height: 35px;
     background-color: var(--bg-btn);
@@ -245,6 +246,7 @@
 .right #addFriend #listUser .item button {
     border-radius: 50%;
     border: none;
+    min-width: 35px;
     width: 35px;
     height: 35px;
     background-color: var(--bg-btn);
