@@ -41,18 +41,29 @@
                     ></a>
                 </div>
                 <div id="addFriend">
-                    <div class="title">Add conversation</div>
-                    <div id="listUser">
-                        <!-- <div class="item">
-                            <i class="bx bx-chevron-right"></i>
-                            <p style="max-width: 150px; text-align: left">Huỳnh lê thùy vương</p>
-                            <button value="" onclick="addFriendChat();"><i class="bx bx-user-plus"></i></button>
+                    <div>
+                        <div class="title">Friend Request</div>
+                        <div id="friendRequest">
+                            <!-- <div class="item">
+                                <p style="width: 100%; text-align: center">No One</p>
+                            </div> -->
+                            <!-- <div class="item">
+                                <i class="bx bx-chevron-right"></i>
+                                <p style="max-width: 150px; text-align: left">Huỳnh lê</p>
+                                <button value="" onclick="acceptFriendChat();">
+                                    <i class="bx bx-check-double"></i>
+                                </button>
+                            </div> -->
                         </div>
-                        <div class="item">
-                            <i class="bx bx-chevron-right"></i>
-                            <p style="max-width: 150px; text-align: left">Huỳnh lê</p>
-                            <button value="" onclick="addFriendChat();"><i class="bx bx-user-plus"></i></button>
-                        </div>-->
+                    </div>
+                    <hr style="margin: 0px 3rem" />
+                    <div>
+                        <div class="title">Add conversation</div>
+                        <div id="listUser">
+                            <!-- <div class="item">
+                                <p style="width: 100%; text-align: center">No One</p>
+                            </div> -->
+                        </div>
                     </div>
                 </div>
                 <div id="chatFrame">
@@ -101,8 +112,113 @@
             // });
             let accountUser = '<%=user%>';
             let receiver = '';
-
+            currentUser.textContent = accountUser;
+            //-----------------Socket On of Function------------------
+            socket.on('loadMessage', function (data) {
+                chatFrame.innerHTML = '';
+                data.forEach((element) => {
+                    renderMessage(element);
+                });
+            });
+            socket.on('loadAcceptFriendPage', function (data) {
+                $('#chatFrame').hide();
+                $('#sendBox').hide();
+                $('#addFriend').show();
+                let friendRequest = document.getElementById('friendRequest');
+                if (data.length === 0) {
+                    friendRequest.innerHTML = `
+                        <div class="item">
+                            <p style="width: 100%; text-align: center">No One</p>
+                        </div>
+                    `;
+                } else {
+                    friendRequest.innerHTML = '';
+                    for (element of data) {
+                        let template = `
+                        <div class="item">
+                            <i class="bx bx-chevron-right"></i>
+                            <p style="max-width: 150px; text-align: left">${element.username}</p>
+                            <button value="${element.username}" onclick="acceptFriendChat(this.value);">
+                                <i class="bx bx-check-double"></i>
+                            </button>
+                        </div>
+                        `;
+                        friendRequest.innerHTML += template;
+                    }
+                }
+            });
+            socket.on('loadAddFriendPage', function (data) {
+                $('#chatFrame').hide();
+                $('#sendBox').hide();
+                $('#addFriend').show();
+                let listUser = document.getElementById('listUser');
+                if (data.length === 0) {
+                    listUser.innerHTML = `
+                        <div class="item">
+                            <p style="width: 100%; text-align: center">No One</p>
+                        </div>
+                    `;
+                } else {
+                    listUser.innerHTML = '';
+                    for (element of data) {
+                        let template = `
+                        <div class="item">
+                            <i class="bx bx-chevron-right"></i>
+                            <p>${element.username}</p>
+                            <button value="${element.username}" onclick="addFriendChat(this.value);"><i class='bx bx-message-rounded-add' ></i></button>
+                        </div>
+                        `;
+                        listUser.innerHTML += template;
+                    }
+                }
+                // listUser.scrollTop = listUser.scrollHeight;
+            });
+            socket.on('acceptFriendChat', function () {
+                loadPage();
+            });
+            socket.on('addFriendChat', function () {
+                loadPage();
+            });
+            //Hien thi thong tin nguoi dung khi dang nhap onl tren server
+            socket.on('showUser', function (listConversation) {
+                let user = document.getElementById('userName');
+                user.innerHTML = '';
+                user.innerHTML += `
+                <button value="" class="userItem" onclick='loadAddFriendPage()'>
+                    <img src="images/home.png" alt="" style="width: 50px; height: 50px" />
+                    <p style='min-width: 60px;'>Home</p>
+                    <span style="display: none; background-color: crimson; border-radius: 50%; position: absolute; width: 20px; height: 20px; left: 50px; top: 6px;"></span>
+                </button>
+                `;
+                for (let element of listConversation) {
+                    let divUserName = `
+                        <button value="${element.username}" class="userItem ${element.username}" onclick='getReceiver(this.value)'>
+                            <img src="images/user.png" alt="" style="width: 50px; height: 50px" />
+                            <p>${element.username}</p>
+                            <span class='${element.username}' style="display: none;"></span>
+                        </button>
+                        `;
+                    user.innerHTML += divUserName;
+                }
+            });
+            socket.on('loadNotification', function (data) {
+                data.forEach((element) => {
+                    let temp = '.userItem .' + element.sender;
+                    // console.log(temp);
+                    let userTag = document.querySelector(temp);
+                    userTag.style.display = 'block';
+                });
+            });
             //------------------------------Function---------------------------
+            async function loadPage() {
+                await loadAcceptFriendPage();
+                await loadAddFriendPage();
+                await showListConversation();
+                await loadNotification();
+            }
+            function loadAcceptFriendPage() {
+                socket.emit('loadAcceptFriendPage', accountUser);
+            }
             //loadAddFriendPage
             function loadAddFriendPage() {
                 socket.emit('loadAddFriendPage', accountUser);
@@ -114,17 +230,19 @@
                 socket.emit('loadNotification', accountUser);
             }
             //add friend chat
-            async function addConversation(friend) {
+            async function addFriendChat(friend) {
                 // console.log(friend);
-                await socket.emit('addConversation', friend, accountUser);
-                await socket.emit('loadAddFriendPage', accountUser);
-                await socket.emit('showUser', accountUser);
-                await socket.emit('loadNotification', accountUser);
+                await socket.emit('addFriendChat', friend, accountUser);
+                await loadPage();
+            }
+            async function acceptFriendChat(friend) {
+                await socket.emit('acceptFriendChat', friend, accountUser);
+                await loadPage();
             }
             //Ham lay nguoi nhan tin nhan
             async function getReceiver(data) {
                 receiver = data;
-                currentUser.textContent = receiver;
+                // currentUser.textContent = receiver;
                 await socket.emit('removeNotification', accountUser, receiver);
                 await socket.emit('loadMessage', receiver, accountUser);
                 $('#addFriend').hide();
@@ -161,9 +279,7 @@
             //----------------------Main-------------------------------------------
             $('#chatFrame').hide();
             $('#sendBox').hide();
-            loadAddFriendPage();
-            showListConversation();
-            loadNotification();
+            loadPage();
             //Kiểm tra user đã đăng nhập vào server hay chưa
             socket.on('checkUser', function (status) {
                 if (!status) {
@@ -190,24 +306,18 @@
                     renderMessage(msgObj);
                 }
             });
-            socket.on('loadNotification', function (data) {
-                data.forEach((element) => {
-                    let temp = '.userItem #' + element.sender;
-                    // console.log(temp);
-                    let userTag = document.querySelector(temp);
-                    userTag.style.display = 'block';
-                });
-            });
             socket.on('notificationMsg', function (senderPara, receiverPara) {
                 if (receiver != senderPara) {
-                    let temp = '.userItem #' + senderPara;
+                    let temp = '.userItem .' + senderPara;
                     // console.log(temp);
                     let userTag = document.querySelector(temp);
                     userTag.style.display = 'block';
+                } else {
+                    socket.emit('removeNotification', accountUser, receiver);
                 }
             });
             socket.on('removeNotification', function (senderPara, receiverPara) {
-                let temp = '.userItem #' + receiverPara;
+                let temp = '.userItem .' + receiverPara;
                 // console.log(temp);
                 let userTag = document.querySelector(temp);
                 userTag.style.display = 'none';
@@ -224,53 +334,6 @@
                 }
                 message.value = '';
                 socket.emit('notificationMsg', accountUser, receiver);
-            });
-            //-----------------Socket On of Function------------------
-            socket.on('loadMessage', function (data) {
-                chatFrame.innerHTML = '';
-                data.forEach((element) => {
-                    renderMessage(element);
-                });
-            });
-            socket.on('loadAddFriendPage', function (data) {
-                $('#chatFrame').hide();
-                $('#sendBox').hide();
-                $('#addFriend').show();
-                let listUser = document.getElementById('listUser');
-                listUser.innerHTML = '';
-                for (element of data) {
-                    let template = `
-                        <div class="item">
-                            <i class="bx bx-chevron-right"></i>
-                            <p>${element.username}</p>
-                            <button value="${element.username}" onclick="addConversation(this.value);"><i class='bx bx-message-rounded-add' ></i></button>
-                        </div>
-                        `;
-                    listUser.innerHTML += template;
-                }
-                // listUser.scrollTop = listUser.scrollHeight;
-            });
-            //Hien thi thong tin nguoi dung khi dang nhap onl tren server
-            socket.on('showUser', function (listConversation) {
-                let user = document.getElementById('userName');
-                user.innerHTML = '';
-                user.innerHTML += `
-                <button value="" class="userItem" onclick='loadAddFriendPage()'>
-                    <img src="images/home.png" alt="" style="width: 50px; height: 50px" />
-                    <p style='min-width: 60px;'>Home</p>
-                    <span style="display: none; background-color: crimson; border-radius: 50%; position: absolute; width: 20px; height: 20px; left: 50px; top: 6px;"></span>
-                </button>
-                `;
-                for (let element of listConversation) {
-                    let divUserName = `
-                        <button value="${element.friend_name}" class="userItem" onclick='getReceiver(this.value)'>
-                            <img src="images/user.png" alt="" style="width: 50px; height: 50px" />
-                            <p>${element.friend_name}</p>
-                            <span id='${element.friend_name}' style="display: none;"></span>
-                        </button>
-                        `;
-                    user.innerHTML += divUserName;
-                }
             });
 
             //----------------------Typing--------------------------

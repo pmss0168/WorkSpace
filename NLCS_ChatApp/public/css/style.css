@@ -173,6 +173,7 @@
 }
 .right #addFriend {
     height: 420px;
+    overflow-y: scroll;
 }
 .right #addFriend .title {
     padding: 0.5rem 35px;
@@ -181,12 +182,49 @@
     text-align: center;
     color: var(--bg-btn);
 }
+.right #addFriend #friendRequest {
+    display: flex;
+    flex-direction: column;
+    /* height: 210px;
+    overflow-x: hidden;
+    overflow-y: scroll; */
+}
+.right #addFriend #friendRequest .item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem;
+    height: 4rem;
+}
+.right #addFriend #friendRequest .item i {
+    color: var(--bg-btn);
+    font-size: x-large;
+}
+.right #addFriend #friendRequest .item p {
+    max-width: 1400px;
+    text-align: left;
+    word-break: break-word;
+}
+.right #addFriend #friendRequest .item button {
+    border-radius: 50%;
+    border: none;
+    width: 35px;
+    height: 35px;
+    background-color: var(--bg-btn);
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.right #addFriend #friendRequest .item button i {
+    color: #fff;
+}
 .right #addFriend #listUser {
     display: flex;
     flex-direction: column;
-    height: 380px;
+    /* height: 210px;
     overflow-x: hidden;
-    overflow-y: scroll;
+    overflow-y: scroll; */
 }
 .right #addFriend #listUser .item {
     display: flex;

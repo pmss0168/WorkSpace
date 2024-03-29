@@ -158,13 +158,13 @@ chatNamespace.on('connection', function (socket) {
     // console.log(socket.id + ' ket noi den server!!!');
     socket.on('disconnect', function () {
         // console.log('Server closed');
-        if (userOnl.includes(user)) {
-            userOnl.splice(userOnl.indexOf(user), 1);
-            console.log('Người dùng trong server:');
-            console.log(userOnl);
-            let isOnline = 0;
-            changeStatus(user, isOnline);
-        }
+        // if (userOnl.includes(user)) {
+        //     userOnl.splice(userOnl.indexOf(user), 1);
+        //     console.log('Người dùng trong server:');
+        //     console.log(userOnl);
+        //     let isOnline = 0;
+        //     changeStatus(user, isOnline);
+        // }
     });
 
     //Kiem tra nguoi dung trong server
@@ -178,7 +178,7 @@ chatNamespace.on('connection', function (socket) {
 
     //Xu ly su kien load message
     socket.on('loadMessage', async function (receiver, sender) {
-        let sqlLoadMessage = `select * from messages where (sender=? and receiver=?) or (sender=? and receiver=?)`;
+        let sqlLoadMessage = `select * from messages where (sender=? and receiver=?) or (sender=? and receiver=?) order by id_message asc`;
         db.query(
             sqlLoadMessage,
             [sender, receiver, receiver, sender],
@@ -188,6 +188,133 @@ chatNamespace.on('connection', function (socket) {
                 socket.emit('loadMessage', data);
             },
         );
+    });
+
+    //Su kien load trang accept
+    socket.on('loadAcceptFriendPage', async function (user) {
+        let sql = `
+        select username
+        from users
+        where username <> ? and (username  in(  
+            select friend_accept
+            from friends
+            where friend_request = ? and isAccept = 0
+        ));
+        `;
+        db.query(
+            sql,
+            [user, user],
+            await function (err, data) {
+                if (err) throw err;
+                // console.log(data);
+                socket.emit('loadAcceptFriendPage', data);
+            },
+        );
+    });
+
+    //Hien thi trang them cuoc tro chuyen
+    socket.on('loadAddFriendPage', async function (user) {
+        let sql = `
+        select username
+        from users
+        where username <> ? and (username not in(  
+            select friend_request
+            from friends
+            where friend_accept = ?
+        ) and username not in (
+            select friend_accept
+            from friends
+            where friend_request = ?
+        ));
+        `;
+        db.query(
+            sql,
+            [user, user, user],
+            await function (err, data) {
+                if (err) throw err;
+                // console.log(data);
+                socket.emit('loadAddFriendPage', data);
+            },
+        );
+    });
+
+    //Xu ly them cuoc cho chuyen moi
+    socket.on('acceptFriendChat', async function (friend, user) {
+        let sql = `UPDATE friends SET isAccept = 1 WHERE (friend_request = ?) and (friend_accept = ?);`;
+        db.query(
+            sql,
+            [user, friend],
+            await function (err, data) {
+                if (err) throw err;
+            },
+        );
+        socket.to(friend).emit('acceptFriendChat');
+    });
+
+    //Xu ly them cuoc cho chuyen moi
+    socket.on('addFriendChat', async function (friend, user) {
+        let sql = `INSERT INTO friends (friend_request, friend_accept) VALUES (?, ?);`;
+        db.query(
+            sql,
+            [friend, user],
+            await function (err, data) {
+                if (err) throw err;
+            },
+        );
+        socket.to(friend).emit('addFriendChat');
+    });
+
+    //Xu ly hien thi nguoi dung
+    socket.on('showUser', async function (user) {
+        let sql = `
+        select username
+        from users
+        where username <> ? and (username  in(  
+            select friend_request
+            from friends
+            where friend_accept = ? and isAccept = 1
+        ) or username  in (
+            select friend_accept
+            from friends
+            where friend_request = ? and isAccept = 1
+        ));
+        `;
+        db.query(
+            sql,
+            [user, user, user],
+            await function (err, data) {
+                if (err) throw err;
+                socket.emit('showUser', data);
+            },
+        );
+    });
+
+    //Su kien thong bao tin nhan moi
+    socket.on('loadNotification', async function (user) {
+        let sql = `select distinct sender from messages where receiver = ? and notification = 1;`;
+        db.query(
+            sql,
+            user,
+            await function (err, data) {
+                if (err) throw err;
+                // console.log(data);
+                socket.emit('loadNotification', data);
+            },
+        );
+    });
+    socket.on('notificationMsg', function (sender, receiver) {
+        socket.to(receiver).emit('notificationMsg', sender, receiver);
+    });
+    socket.on('removeNotification', async function (sender, receiver) {
+        let sql = `UPDATE messages SET notification = '0' WHERE (sender = ? and receiver = ?);`;
+        db.query(
+            sql,
+            [receiver, sender],
+            await function (err, data) {
+                if (err) throw err;
+            },
+        );
+        socket.emit('removeNotification', sender, receiver);
     });
 
     //Xu ly gui message gui tu client
@@ -213,74 +340,6 @@ chatNamespace.on('connection', function (socket) {
         }
     });
 
-    //Hien thi trang them cuoc tro chuyen
-    socket.on('loadAddFriendPage', async function (user) {
-        let sql = `
-        select username
-        from users
-        where username <> ? and username not in(  
-            select friend_name
-            from friends
-            where friend_of = ?
-        );`;
-        db.query(
-            sql,
-            [user, user],
-            await function (err, data) {
-                if (err) throw err;
-                socket.emit('loadAddFriendPage', data);
-            },
-        );
-    });
-
-    //Xu ly them cuoc cho chuyen moi
-    socket.on('addConversation', async function (friend, user) {
-        let sql = `INSERT INTO friends (friend_name, friend_of) VALUES (?, ?);`;
-        db.query(
-            sql,
-            [friend, user],
-            await function (err, data) {
-                if (err) throw err;
-            },
-        );
-    });
-    //Xu ly hien thi nguoi dung
-    socket.on('showUser', async function (user) {
-        let sql = `SELECT * FROM friends where friend_of = ?;`;
-        db.query(
-            sql,
-            user,
-            await function (err, data) {
-                if (err) throw err;
-                socket.emit('showUser', data);
-            },
-        );
-    });
-    //Su kien thong bao tin nhan moi
-    socket.on('loadNotification', async function (user) {
-        let sql = `select distinct sender from messages where receiver = ? and notification = 1;`;
-        db.query(
-            sql,
-            user,
-            await function (err, data) {
-                socket.emit('loadNotification', data);
-            },
-        );
-    });
-    socket.on('notificationMsg', function (sender, receiver) {
-        socket.to(receiver).emit('notificationMsg', sender, receiver);
-    });
-    socket.on('removeNotification', async function (sender, receiver) {
-        let sql = `UPDATE messages SET notification = '0' WHERE (sender = ? and receiver = ?);`;
-        db.query(
-            sql,
-            [receiver, sender],
-            await function (err, data) {
-                if (err) throw err;
-            },
-        );
-        socket.emit('removeNotification', sender, receiver);
-    });
     //Xu ly su kien go du lieu
     socket.on('typingMsg', function (Obj) {
         if (userOnl.includes(Obj.sender)) {
@@ -293,7 +352,7 @@ chatNamespace.on('connection', function (socket) {
         }
     });
 
-    //Xu ly dang xuat nguoi dung
+    //Xu ly nguoi dung thoat trang
     socket.on('logoutUser', function (account) {
         if (userOnl.includes(account)) {
             userOnl.splice(userOnl.indexOf(account), 1);
