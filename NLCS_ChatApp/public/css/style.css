@@ -15,9 +15,19 @@
     font-family: Roboto, sans-serif;
 }
 /* ---------- Chat Box ------------ */
+::-webkit-scrollbar {
+    display: none;
+}
+#chat {
+    overflow-y: scroll;
+    scroll-behavior: smooth;
+    background-color: gainsboro;
+}
 .mainContainer {
     margin: 5.8rem auto;
     width: 60%;
+    max-width: 1200px;
+    min-width: 375px;
     max-height: 500px;
     display: flex;
     justify-content: center;
@@ -54,7 +64,7 @@
     font-size: 43px;
 }
 .left .title {
-    padding: 0.5rem 35px;
+    padding: 3px 35px;
     font-size: large;
     font-weight: bolder;
     text-align: center;
@@ -87,10 +97,8 @@
 .left #user #userName {
     overflow-y: scroll;
     overflow-x: hidden;
-    height: 380px;
-}
-.left #user #userName::-webkit-scrollbar {
-    display: none;
+    height: 340px;
+    border-bottom-left-radius: 10px;
 }
 .left #user #userName .userItem {
     padding: 0.6rem 1rem;
@@ -170,10 +178,12 @@
 }
 .right .userInfo button:hover {
     background: var(--second-color);
+    transform: scale(110%);
 }
 .right #addFriend {
     height: 420px;
     overflow-y: scroll;
+    scroll-behavior: smooth;
 }
 .right #addFriend .title {
     padding: 0.5rem 35px;
@@ -216,6 +226,11 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    cursor: pointer;
+}
+.right #addFriend #friendRequest .item button:hover {
+    background-color: var(--deeper-bg-btn);
+    transform: scale(110%);
 }
 .right #addFriend #friendRequest .item button i {
     color: #fff;
@@ -254,6 +269,11 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    cursor: pointer;
+}
+.right #addFriend #listUser .item button:hover {
+    background-color: var(--deeper-bg-btn);
+    transform: scale(110%);
 }
 .right #addFriend #listUser .item button i {
     color: #fff;
@@ -271,7 +291,7 @@
 }
 #chatFrame .chatContent.otherChat {
     border: none;
-    margin-bottom: 0.5rem;
+    margin-bottom: 1rem;
     clear: both;
     float: inline-start;
     width: 70%;
@@ -280,12 +300,16 @@
 #chatFrame .chatContent.otherChat h5 {
     margin-left: 0.3rem;
     margin-bottom: 0.2rem;
+    color: dimgray;
 }
 #chatFrame .chatContent.otherChat p {
     text-align: left;
     margin-top: 0.3rem;
     margin-right: 0.2rem;
     font-size: xx-small;
+}
+#chatFrame .chatContent.otherChat .time {
+    color: dimgray;
 }
 #chatFrame .chatContent.otherChat .item {
     border-radius: 10px 10px 10px 0px;
@@ -302,7 +326,7 @@
 }
 #chatFrame .chatContent.mineChat {
     border: none;
-    margin-bottom: 0.5rem;
+    margin-bottom: 1rem;
     width: 70%;
     clear: both;
     float: inline-end;
@@ -315,12 +339,16 @@
     text-align: right;
     margin-right: 0.2rem;
     margin-bottom: 0.3rem;
+    color: dimgray;
 }
 #chatFrame .chatContent.mineChat p {
     text-align: right;
     margin-top: 0.3rem;
     margin-left: 0.2rem;
     font-size: xx-small;
+}
+#chatFrame .chatContent.mineChat .time {
+    color: dimgray;
 }
 #chatFrame .chatContent.mineChat .item {
     border-radius: 10px 10px 0px 10px;
@@ -335,10 +363,6 @@
     text-align: left;
     font-size: medium;
     color: #fff;
-}
-.chatContent::-webkit-scrollbar {
-    background-color: transparent;
-    display: none;
 }
 #sendBox {
     position: relative;
@@ -391,11 +415,17 @@
     transition: step-start all 0.3s;
 }
 /* ---------- Login ------------ */
+#login {
+    overflow-y: scroll;
+    scroll-behavior: smooth;
+    background-color: gainsboro;
+}
 .boxLogin {
-    width: 450px;
+    max-width: 450px;
+    min-width: 375px;
     height: 450px;
     margin: 7.3rem auto;
-    background-color: transparent;
+    background-color: white;
     box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
     display: flex;
     flex-direction: column;
@@ -451,11 +481,17 @@
     color: var(--bg-btn);
 }
 /* ---------- Register ------------ */
+#register {
+    overflow-y: scroll;
+    scroll-behavior: smooth;
+    background-color: gainsboro;
+}
 .boxRegister {
-    width: 450px;
+    max-width: 450px;
+    min-width: 375px;
     height: 500px;
     margin: 5.8rem auto;
-    background-color: transparent;
+    background-color: white;
     box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
     display: flex;
     flex-direction: column;

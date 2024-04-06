@@ -11,6 +11,7 @@ const crypto = require('crypto');
 const app = express();
 const server = http.createServer(app);
 const io = socketio(server);
+const PORT = 3000;
 const db = mysql.createConnection({
     host: 'localhost',
     user: 'root',
@@ -37,13 +38,12 @@ app.set('views', './views');
 //------------------------------Route--------------------------------------------
 
 const userOnl = [];
-let user;
 //Hien thi trang web chinh khi truy cap
 app.get('/', function (req, res) {
     res.render('index');
 });
 app.get('/chat', checkSession, function (req, res) {
-    user = req.session.username;
+    let user = req.session.username;
     // console.log(user);
     if (!userOnl.includes(user) || !user) {
         res.redirect('/');
@@ -69,9 +69,9 @@ app.post('/', function (req, res) {
             // console.log(data);
             let hashPassword = hash(pass);
             if (hashPassword == data[0].password) {
-                if (userOnl.includes(user)) {
+                if (userOnl.includes(user) && data[0].isOnline != 1) {
                     res.redirect('/');
-                } else {
+                } else if (!userOnl.includes(user)) {
                     userOnl.push(user);
                     console.log('Người dùng trong server:');
                     console.log(userOnl);
@@ -150,6 +150,8 @@ const chatNamespace = io.of('/chat');
 
 chatNamespace.on('connection', function (socket) {
     // console.log(socket.id + ' connect to server');
+    //Load lai trang cua nguoi dung khac khi co nguoi dang nhap vao
+    socket.broadcast.emit('loadOthersPage');
     //Vào phòng của chính user đó khi đăng nhập vào server
     socket.on('joinUserRoom', function (user) {
         socket.join(user);
@@ -290,17 +292,39 @@ chatNamespace.on('connection', function (socket) {
     });
 
     //Su kien thong bao tin nhan moi
-    socket.on('loadNotification', async function (user) {
-        let sql = `select distinct sender from messages where receiver = ? and notification = 1;`;
-        db.query(
-            sql,
-            user,
-            await function (err, data) {
-                if (err) throw err;
-                // console.log(data);
-                socket.emit('loadNotification', data);
-            },
-        );
+    socket.on('loadNotification', async function (user, listConversation) {
+        // console.log(listConversation);
+        if (listConversation == null) {
+            let sql = `select distinct sender from messages where receiver = ? and notification = 1;`;
+            db.query(
+                sql,
+                user,
+                await function (err, data) {
+                    if (err) throw err;
+                    // console.log(data);
+                    socket.emit('loadNotification', data);
+                },
+            );
+        } else if (listConversation != null) {
+            let dataResult = [];
+            let sql = `select distinct sender from messages where receiver = ? and notification = 1;`;
+            db.query(
+                sql,
+                user,
+                await function (err, data) {
+                    if (err) throw err;
+                    for (let element of listConversation) {
+                        for (let item of data) {
+                            if (element.username === item.sender) {
+                                dataResult.push(item);
+                            }
+                        }
+                    }
+                    // console.log(dataResult);
+                    socket.emit('loadNotification', dataResult);
+                },
+            );
+        }
     });
     socket.on('notificationMsg', function (sender, receiver) {
         socket.to(receiver).emit('notificationMsg', sender, receiver);
@@ -340,6 +364,41 @@ chatNamespace.on('connection', function (socket) {
         }
     });
 
+    //Xu ly tim kiem nguoi dung
+    socket.on('searchUser', async function (seeker, userSearch) {
+        // console.log(seeker + ',' + userSearch);
+        if (userOnl.includes(seeker)) {
+            let sql = `
+            select username
+            from users
+            where username <> ? and (username  in(  
+                select friend_request
+                from friends
+                where friend_accept = ? and friend_request like ? and isAccept = 1
+            ) or username  in (
+                select friend_accept
+                from friends
+                where friend_request = ? and friend_accept like ? and isAccept = 1
+            ));
+            `;
+            db.query(
+                sql,
+                [seeker, seeker, '%' + userSearch + '%', seeker, '%' + userSearch + '%'],
+                await function (err, data) {
+                    if (err) throw err;
+                    // console.log(data);
+                    if (data.length > 0) {
+                        socket.emit('showUser', data);
+                        socket.emit('searchUser', data);
+                    } else {
+                        let nobody = true;
+                        socket.emit('showUser', data, nobody);
+                    }
+                },
+            );
+        }
+    });
+
     //Xu ly su kien go du lieu
     socket.on('typingMsg', function (Obj) {
         if (userOnl.includes(Obj.sender)) {
@@ -364,8 +423,8 @@ chatNamespace.on('connection', function (socket) {
     });
 });
 
-server.listen(3000, async function () {
-    console.log('Server running at port 3000');
+server.listen(PORT, async function () {
+    console.log('Server running at port ' + PORT);
     let isOnline = 0;
     let sql = `UPDATE users SET isOnline = '?' ;`;
     db.query(

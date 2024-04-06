@@ -8,17 +8,17 @@
         <link rel="shortcut icon" href="images/icon.png" type="image/x-icon" />
         <title>VanouS Chat</title>
     </head>
-    <body>
+    <body id="chat">
         <div class="mainContainer">
             <div class="left">
                 <div class="userOnline"><i class="bx bxs-conversation"></i> VanouS Chat</div>
                 <div id="user">
-                    <!-- <form action="#" method="get">
+                    <form id="searchForm" method="post">
                         <div id="search">
-                            <input type="text" name="search" />
+                            <input type="text" name="searchInput" id="searchInput" />
                             <button type="submit"><i class="bx bx-search"></i></button>
                         </div>
-                    </form> -->
+                    </form>
                     <div class="title">Chats</div>
                     <hr style="margin: 0 40px 0 40px" />
                     <div id="userName">
@@ -35,9 +35,9 @@
             </div>
             <div class="right">
                 <div class="userInfo">
-                    <p id="currentUser">Send to</p>
+                    <p id="currentUser">Home</p>
                     <a href="/logout"
-                        ><button id="logoutBtn"><i class="bx bx-log-out"></i></button
+                        ><button id="logoutBtn"><i class="bx bx-log-out-circle"></i></button
                     ></a>
                 </div>
                 <div id="addFriend">
@@ -84,7 +84,7 @@
                 </div>
                 <div id="sendBox">
                     <form id="chatInput" method="post">
-                        <input type="text" id="messageInput" placeholder="Nhập tin nhắn..." />
+                        <input type="text" id="messageInput" placeholder="Nhập tin nhắn..." autocomplete="off" />
                         <input type="hidden" id="receiverMsg" />
                         <button type="submit" id="sendBtn"><i class="bx bxs-paper-plane"></i></button>
                     </form>
@@ -99,12 +99,17 @@
         <% if(user) {%>
         <script>
             //Socketio lang nghe o server port 3000
-            const socket = io('http://localhost:3000/chat');
+            const urlServer = 'http://localhost';
+            const portServer = 3000;
+            const urlChat = urlServer + ':' + portServer + '/chat';
+            const socket = io(urlChat);
 
             let message = document.getElementById('messageInput');
             let chatFrame = document.getElementById('chatFrame');
             let chatInput = document.getElementById('chatInput');
             let addFriend = document.getElementById('addFriend');
+            let searchForm = document.getElementById('searchForm');
+            let searchInput = document.getElementById('searchInput');
             const currentUser = document.getElementById('currentUser');
             // let currentTime = new Date().toLocaleDateString([], {
             //     hour: '2-digit',
@@ -112,8 +117,19 @@
             // });
             let accountUser = '<%=user%>';
             let receiver = '';
-            currentUser.textContent = accountUser;
+            // currentUser.textContent = accountUser;
             //-----------------Socket On of Function------------------
+            socket.on('loadOthersPage', function () {
+                loadPage();
+            });
+            //Kiểm tra user đã đăng nhập vào server hay chưa
+            socket.on('checkUser', function (status) {
+                if (!status) {
+                    socket.emit('logoutUser', accountUser);
+                    accountUser = '';
+                    window.location = '/';
+                }
+            });
             socket.on('loadMessage', function (data) {
                 chatFrame.innerHTML = '';
                 data.forEach((element) => {
@@ -180,27 +196,30 @@
                 loadPage();
             });
             //Hien thi thong tin nguoi dung khi dang nhap onl tren server
-            socket.on('showUser', function (listConversation) {
+            socket.on('showUser', function (listConversation, nobody) {
                 let user = document.getElementById('userName');
                 user.innerHTML = '';
                 user.innerHTML += `
-                <button value="" class="userItem home" onclick='showAddFriendPage()'>
+                <button value="" class="userItem home" onclick='showAddFriendPage()' style='background-color: #e0e0e0;'>
                     <img src="images/home.png" alt="" style="width: 50px; height: 50px" />
                     <p style='min-width: 60px;'>Home</p>
                     <span style="display: none; background-color: crimson; border-radius: 50%; position: absolute; width: 20px; height: 20px; left: 50px; top: 6px;"></span>
                 </button>
                 `;
-                for (let element of listConversation) {
-                    let divUserName = `
+                if (nobody != true) {
+                    for (let element of listConversation) {
+                        let divUserName = `
                         <button value="${element.username}" class="userItem ${element.username}" onclick='getReceiver(this.value)'>
                             <img src="images/user.png" alt="" style="width: 50px; height: 50px" />
                             <p>${element.username}</p>
                             <span class='${element.username}' style="display: none;"></span>
                         </button>
                         `;
-                    user.innerHTML += divUserName;
+                        user.innerHTML += divUserName;
+                    }
                 }
             });
+            //Xu tin hien thi tin nhan
             socket.on('loadNotification', function (data) {
                 data.forEach((element) => {
                     let temp = '.userItem .' + element.sender;
@@ -208,6 +227,53 @@
                     let userTag = document.querySelector(temp);
                     userTag.style.display = 'block';
                 });
+            });
+            socket.on('notificationMsg', function (senderPara, receiverPara) {
+                if (receiver != senderPara) {
+                    let temp = '.userItem .' + senderPara;
+                    // console.log(temp);
+                    let userTag = document.querySelector(temp);
+                    userTag.style.display = 'block';
+                } else {
+                    socket.emit('removeNotification', accountUser, receiver);
+                }
+            });
+            socket.on('removeNotification', function (senderPara, receiverPara) {
+                let temp = '.userItem .' + receiverPara;
+                // console.log(temp);
+                let userTag = document.querySelector(temp);
+                userTag.style.display = 'none';
+            });
+
+            //Xy ly hien thi dang nhan tin
+            socket.on('typingMsg', function (Obj) {
+                if (receiver != '' && receiver == Obj.sender && Obj.receiver == accountUser) {
+                    let typing = document.getElementById('typing');
+                    typing.style.display = 'block';
+                    typing.textContent = Obj.sender + ' is typing...';
+                }
+            });
+            socket.on('stopTyping', function (Obj) {
+                if (receiver != '' && receiver == Obj.sender && Obj.receiver == accountUser) {
+                    let typing = document.getElementById('typing');
+                    typing.style.display = 'none';
+                }
+            });
+
+            //Xu ly ham gui tin nhan len cho toan bo moi nguoi
+            socket.on('sendMessage', function (msgObj) {
+                if (receiver !== '') {
+                    renderMessage(msgObj);
+                }
+            });
+            socket.on('receiveMessage', function (msgObj) {
+                if (receiver != '' && receiver == msgObj.sender && msgObj.receiver == accountUser) {
+                    renderMessage(msgObj);
+                }
+            });
+
+            socket.on('searchUser', async function (listConversation) {
+                await loadNotification(listConversation);
             });
             //------------------------------Function---------------------------
             async function loadPage() {
@@ -222,14 +288,19 @@
             async function showAddFriendPage() {
                 await socket.emit('loadAcceptFriendPage', accountUser);
                 receiver = '';
+                currentUser.textContent = 'Home';
                 let userItemList = document.querySelectorAll('.userItem');
+                let hoverBg =
+                    '.left #user #userName .userItem:hover {background-color: var(--second-color);transform: scale(110%);transition: all ease-in-out 0.2s;}';
                 userItemList.forEach((element) => {
                     element.style.backgroundColor = '#f0f0f0';
+                    element.style.cssText = hoverBg;
                 });
                 let temp = '.userItem.home';
                 let homeTag = document.querySelector(temp);
-                homeTag.style.backgroundColor = 'lightgray';
+                homeTag.style.backgroundColor = '#e0e0e0';
             }
+
             //loadAddFriendPage
             async function loadAddFriendPage() {
                 await socket.emit('loadAddFriendPage', accountUser);
@@ -237,8 +308,8 @@
             async function showListConversation() {
                 await socket.emit('showUser', accountUser);
             }
-            async function loadNotification() {
-                await socket.emit('loadNotification', accountUser);
+            async function loadNotification(data) {
+                await socket.emit('loadNotification', accountUser, data);
             }
             //add friend chat
             async function addFriendChat(friend) {
@@ -250,19 +321,23 @@
                 await socket.emit('acceptFriendChat', friend, accountUser);
                 await loadPage();
             }
+
             //Ham lay nguoi nhan tin nhan
             async function getReceiver(data) {
                 receiver = data;
-                // currentUser.textContent = receiver;
+                currentUser.textContent = receiver;
                 await socket.emit('removeNotification', accountUser, receiver);
                 await socket.emit('loadMessage', receiver, accountUser);
                 let userItemList = document.querySelectorAll('.userItem');
+                let hoverBg =
+                    '.left #user #userName .userItem:hover {background-color: var(--second-color);transform: scale(110%);transition: all ease-in-out 0.2s;}';
                 userItemList.forEach((element) => {
                     element.style.backgroundColor = '#f0f0f0';
+                    element.style.cssText = hoverBg;
                 });
                 let temp = '.userItem.' + data;
                 let userTag = document.querySelector(temp);
-                userTag.style.backgroundColor = 'lightgray';
+                userTag.style.backgroundColor = '#e0e0e0';
                 $('#addFriend').hide();
                 $('#sendBox').show();
                 $('#chatFrame').show();
@@ -285,7 +360,11 @@
                 }
                 text.textContent = msgObj.message;
                 time.classList.add('time');
-                time.textContent = moment(msgObj.created_time).format('hh:mm A DD MMM YYYY');
+                // time.textContent = moment(msgObj.created_time).format('hh:mm A DD MMM YYYY');
+                // let date = new Date(msgObj.created_time);
+                // date = new Date(date.getTime() + date.getTimezoneOffset() * 60000);
+                // console.log(date.toLocaleString());
+                time.textContent = formatISODate(msgObj.created_time);
                 chatCell.appendChild(userChat);
                 div.appendChild(text);
                 div.classList.add('item');
@@ -294,17 +373,14 @@
                 chatFrame.appendChild(chatCell);
                 chatFrame.scrollTop = chatFrame.scrollHeight;
             }
+            function formatISODate(iso) {
+                let date = new Date(iso);
+                return date.toLocaleString().slice(0, -6).replace(/\//g, '-').replace(',', '');
+            }
             //----------------------Main-------------------------------------------
             $('#chatFrame').hide();
             $('#sendBox').hide();
             loadPage();
-            //Kiểm tra user đã đăng nhập vào server hay chưa
-            socket.on('checkUser', function (status) {
-                if (!status) {
-                    socket.emit('logoutUser', accountUser);
-                    window.location = '/';
-                }
-            });
             setInterval(function () {
                 socket.emit('checkUser', accountUser);
             }, 1000);
@@ -312,34 +388,7 @@
             //Join vào phòng của chính user đó khi đăng nhập thành công
             socket.emit('joinUserRoom', accountUser);
 
-            //----------------------Chat--------------------------
-            //Xu ly ham gui tin nhan len cho toan bo moi nguoi
-            socket.on('sendMessage', function (msgObj) {
-                if (receiver !== '') {
-                    renderMessage(msgObj);
-                }
-            });
-            socket.on('receiveMessage', function (msgObj) {
-                if (receiver != '' && receiver == msgObj.sender && msgObj.receiver == accountUser) {
-                    renderMessage(msgObj);
-                }
-            });
-            socket.on('notificationMsg', function (senderPara, receiverPara) {
-                if (receiver != senderPara) {
-                    let temp = '.userItem .' + senderPara;
-                    // console.log(temp);
-                    let userTag = document.querySelector(temp);
-                    userTag.style.display = 'block';
-                } else {
-                    socket.emit('removeNotification', accountUser, receiver);
-                }
-            });
-            socket.on('removeNotification', function (senderPara, receiverPara) {
-                let temp = '.userItem .' + receiverPara;
-                // console.log(temp);
-                let userTag = document.querySelector(temp);
-                userTag.style.display = 'none';
-            });
+            //--------------------Chat------------------------------
             chatInput.addEventListener('submit', function (e) {
                 e.preventDefault();
                 if (message.value && message.value.trim() !== '' && receiver !== '') {
@@ -354,35 +403,24 @@
                 socket.emit('notificationMsg', accountUser, receiver);
             });
 
-            //----------------------Typing--------------------------
-            socket.on('typingMsg', function (Obj) {
-                if (receiver != '' && receiver == Obj.sender && Obj.receiver == accountUser) {
-                    let typing = document.getElementById('typing');
-                    typing.style.display = 'block';
-                    typing.textContent = Obj.sender + ' is typing...';
+            //----------------------Search--------------------------
+            searchForm.addEventListener('submit', function (e) {
+                e.preventDefault();
+                if (!searchInput.value || searchInput.value.trim() == '') {
+                    loadPage();
+                } else if (searchInput.value && searchInput.value.trim() !== '') {
+                    socket.emit('searchUser', accountUser, searchInput.value);
                 }
             });
+            //----------------------Typing--------------------------
             message.addEventListener('focus', function () {
                 socket.emit('typingMsg', { sender: accountUser, receiver: receiver });
-            });
-            socket.on('stopTyping', function (Obj) {
-                if (receiver != '' && receiver == Obj.sender && Obj.receiver == accountUser) {
-                    let typing = document.getElementById('typing');
-                    typing.style.display = 'none';
-                }
             });
             message.addEventListener('blur', function () {
                 socket.emit('stopTyping', { sender: accountUser, receiver: receiver });
             });
 
             //----------------------Logout--------------------------
-
-            // let logoutBtn = document.getElementById('logoutBtn');
-            // logoutBtn.addEventListener('click', function () {
-            //     socket.emit('logoutUser', accountUser);
-            //     window.location = '/';
-            // });
-
             window.addEventListener('unload', function () {
                 socket.emit('logoutUser', accountUser);
                 accountUser = '';
