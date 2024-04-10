@@ -41,7 +41,7 @@
                     ></a>
                 </div>
                 <div id="addFriend">
-                    <div>
+                    <div id="acceptFriendFrame">
                         <div class="title">Friend Request</div>
                         <div id="friendRequest">
                             <!-- <div class="item">
@@ -57,8 +57,14 @@
                         </div>
                     </div>
                     <hr style="margin: 0px 3rem" />
-                    <div>
+                    <div id="addFriendFrame">
                         <div class="title">Add conversation</div>
+                        <form id="searchAddConversation" method="post">
+                            <div id="search">
+                                <input type="text" name="searchAddFriend" id="searchAddFriend" />
+                                <button type="submit"><i class="bx bx-search"></i></button>
+                            </div>
+                        </form>
                         <div id="listUser">
                             <!-- <div class="item">
                                 <p style="width: 100%; text-align: center">No One</p>
@@ -110,6 +116,8 @@
             let addFriend = document.getElementById('addFriend');
             let searchForm = document.getElementById('searchForm');
             let searchInput = document.getElementById('searchInput');
+            let searchAddConversation = document.getElementById('searchAddConversation');
+            let searchAddFriend = document.getElementById('searchAddFriend');
             const currentUser = document.getElementById('currentUser');
             // let currentTime = new Date().toLocaleDateString([], {
             //     hour: '2-digit',
@@ -119,9 +127,9 @@
             let receiver = '';
             // currentUser.textContent = accountUser;
             //-----------------Socket On of Function------------------
-            socket.on('loadOthersPage', function () {
-                loadPage();
-            });
+            // socket.on('loadOthersPage', function () {
+            //     loadPage();
+            // });
             //Kiểm tra user đã đăng nhập vào server hay chưa
             socket.on('checkUser', function (status) {
                 if (!status) {
@@ -141,13 +149,22 @@
                 $('#sendBox').hide();
                 $('#addFriend').show();
                 let friendRequest = document.getElementById('friendRequest');
+                let acceptFriendFrame = document.getElementById('acceptFriendFrame');
+                let addFriendFrame = document.getElementById('addFriendFrame');
+                let listUser = document.getElementById('listUser');
                 if (data.length === 0) {
-                    friendRequest.innerHTML = `
-                        <div class="item">
-                            <p style="width: 100%; text-align: center">No One</p>
-                        </div>
-                    `;
+                    acceptFriendFrame.style.display = 'none';
+                    addFriendFrame.style.height = '420px';
+                    listUser.style.height = '333px';
+                    // friendRequest.innerHTML = `
+                    //     <div class="item">
+                    //         <p style="width: 100%; text-align: center">No One</p>
+                    //     </div>
+                    // `;
                 } else {
+                    acceptFriendFrame.style.display = '';
+                    addFriendFrame.style.height = '';
+                    listUser.style.height = '';
                     friendRequest.innerHTML = '';
                     for (element of data) {
                         let template = `
@@ -196,7 +213,7 @@
                 loadPage();
             });
             //Hien thi thong tin nguoi dung khi dang nhap onl tren server
-            socket.on('showUser', function (listConversation, nobody) {
+            socket.on('showUser', function (listConversation) {
                 let user = document.getElementById('userName');
                 user.innerHTML = '';
                 user.innerHTML += `
@@ -206,7 +223,7 @@
                     <span style="display: none; background-color: crimson; border-radius: 50%; position: absolute; width: 20px; height: 20px; left: 50px; top: 6px;"></span>
                 </button>
                 `;
-                if (nobody != true) {
+                if (listConversation.length > 0) {
                     for (let element of listConversation) {
                         let divUserName = `
                         <button value="${element.username}" class="userItem ${element.username}" onclick='getReceiver(this.value)'>
@@ -375,7 +392,7 @@
             }
             function formatISODate(iso) {
                 let date = new Date(iso);
-                return date.toLocaleString().slice(0, -6).replace(/\//g, '-').replace(',', '');
+                return date.toLocaleString().replace(/\//g, '-').replace(',', '');
             }
             //----------------------Main-------------------------------------------
             $('#chatFrame').hide();
@@ -407,9 +424,17 @@
             searchForm.addEventListener('submit', function (e) {
                 e.preventDefault();
                 if (!searchInput.value || searchInput.value.trim() == '') {
-                    loadPage();
+                    showListConversation();
                 } else if (searchInput.value && searchInput.value.trim() !== '') {
                     socket.emit('searchUser', accountUser, searchInput.value);
+                }
+            });
+            searchAddConversation.addEventListener('submit', function (e) {
+                e.preventDefault();
+                if (!searchAddFriend.value || searchAddFriend.value.trim() == '') {
+                    loadAddFriendPage();
+                } else if (searchAddFriend.value && searchAddFriend.value.trim() !== '') {
+                    socket.emit('searchAddConversation', accountUser, searchAddFriend.value);
                 }
             });
             //----------------------Typing--------------------------

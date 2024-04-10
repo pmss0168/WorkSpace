@@ -71,6 +71,11 @@ app.post('/', function (req, res) {
             if (hashPassword == data[0].password) {
                 if (userOnl.includes(user) && data[0].isOnline != 1) {
                     res.redirect('/');
+                } else if (userOnl.includes(user) && data[0].isOnline == 1) {
+                    let isOnline = 1;
+                    changeStatus(user, isOnline);
+                    req.session.username = user;
+                    res.redirect('/chat');
                 } else if (!userOnl.includes(user)) {
                     userOnl.push(user);
                     console.log('Người dùng trong server:');
@@ -151,7 +156,7 @@ const chatNamespace = io.of('/chat');
 chatNamespace.on('connection', function (socket) {
     // console.log(socket.id + ' connect to server');
     //Load lai trang cua nguoi dung khac khi co nguoi dang nhap vao
-    socket.broadcast.emit('loadOthersPage');
+    // socket.broadcast.emit('loadOthersPage');
     //Vào phòng của chính user đó khi đăng nhập vào server
     socket.on('joinUserRoom', function (user) {
         socket.join(user);
@@ -198,9 +203,9 @@ chatNamespace.on('connection', function (socket) {
         select username
         from users
         where username <> ? and (username  in(  
-            select friend_accept
+            select friend_request
             from friends
-            where friend_request = ? and isAccept = 0
+            where friend_accept = ? and isAccept = 0
         ));
         `;
         db.query(
@@ -245,7 +250,7 @@ chatNamespace.on('connection', function (socket) {
         let sql = `UPDATE friends SET isAccept = 1 WHERE (friend_request = ?) and (friend_accept = ?);`;
         db.query(
             sql,
-            [user, friend],
+            [friend, user],
             await function (err, data) {
                 if (err) throw err;
             },
@@ -258,7 +263,7 @@ chatNamespace.on('connection', function (socket) {
         let sql = `INSERT INTO friends (friend_request, friend_accept) VALUES (?, ?);`;
         db.query(
             sql,
-            [friend, user],
+            [user, friend],
             await function (err, data) {
                 if (err) throw err;
             },
@@ -387,13 +392,35 @@ chatNamespace.on('connection', function (socket) {
                 await function (err, data) {
                     if (err) throw err;
                     // console.log(data);
-                    if (data.length > 0) {
-                        socket.emit('showUser', data);
-                        socket.emit('searchUser', data);
-                    } else {
-                        let nobody = true;
-                        socket.emit('showUser', data, nobody);
-                    }
+                    socket.emit('showUser', data);
+                    socket.emit('searchUser', data);
+                },
+            );
+        }
+    });
+
+    socket.on('searchAddConversation', async function (seeker, userSearch) {
+        if (userOnl.includes(seeker)) {
+            let sql = `
+            select username
+            from users
+            where username like ? and username <> ? and (username not in(  
+                select friend_request
+                from friends
+                where friend_accept = ?
+            ) and username not in (
+                select friend_accept
+                from friends
+                where friend_request = ?
+            ));
+            `;
+            db.query(
+                sql,
+                ['%' + userSearch + '%', seeker, seeker, seeker],
+                await function (err, data) {
+                    if (err) throw err;
+                    // console.log(data);
+                    socket.emit('loadAddFriendPage', data);
                 },
             );
         }

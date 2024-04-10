@@ -70,14 +70,14 @@
     text-align: center;
     color: var(--bg-btn);
 }
-.left #search {
-    display: flex;
+#search {
+    /* display: flex; */
     padding: 0.5rem 0.3rem;
     border-top: 1px solid rgba(0, 0, 0, 0.5);
     border-bottom: 1px solid rgba(0, 0, 0, 0.5);
     margin-top: 0.5rem;
 }
-.left #search input {
+#search input {
     border: none;
     outline: none;
     width: 85%;
@@ -85,11 +85,16 @@
     margin-left: 0.2rem;
     font-size: medium;
 }
-.left #search button {
+#search button {
     border: none;
-    width: 0.2rem;
-    height: 0.2rem;
+    width: 10%;
+    /* height: 35px; */
     font-size: large;
+    background-color: transparent;
+}
+#addFriend #search {
+    display: flex;
+    justify-content: space-between;
 }
 .left #user {
     height: 420px;
@@ -182,8 +187,8 @@
 }
 .right #addFriend {
     height: 420px;
-    overflow-y: scroll;
-    scroll-behavior: smooth;
+    /* overflow-y: scroll;
+    scroll-behavior: smooth; */
 }
 .right #addFriend .title {
     padding: 0.5rem 35px;
@@ -195,16 +200,16 @@
 .right #addFriend #friendRequest {
     display: flex;
     flex-direction: column;
-    /* height: 210px;
-    overflow-x: hidden;
-    overflow-y: scroll; */
+    height: 120px;
+    overflow-y: scroll;
+    scroll-behavior: smooth;
 }
 .right #addFriend #friendRequest .item {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 0.5rem;
-    height: 4rem;
+    height: 51px;
 }
 .right #addFriend #friendRequest .item i {
     color: var(--bg-btn);
@@ -238,16 +243,16 @@
 .right #addFriend #listUser {
     display: flex;
     flex-direction: column;
-    /* height: 210px;
-    overflow-x: hidden;
-    overflow-y: scroll; */
+    height: 175px;
+    overflow-y: scroll;
+    scroll-behavior: smooth;
 }
 .right #addFriend #listUser .item {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 0.5rem;
-    height: 4rem;
+    height: 51px;
 }
 .right #addFriend #listUser .item i {
     color: var(--bg-btn);
