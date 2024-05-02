@@ -398,9 +398,6 @@
             $('#chatFrame').hide();
             $('#sendBox').hide();
             loadPage();
-            setInterval(function () {
-                socket.emit('checkUser', accountUser);
-            }, 1000);
 
             //Join vào phòng của chính user đó khi đăng nhập thành công
             socket.emit('joinUserRoom', accountUser);
@@ -446,10 +443,6 @@
             });
 
             //----------------------Logout--------------------------
-            window.addEventListener('unload', function () {
-                socket.emit('logoutUser', accountUser);
-                accountUser = '';
-            });
         </script>
         <%} else{%>
         <script>
