@@ -8,6 +8,26 @@
         <title>Login</title>
     </head>
     <body id="login">
+        <%if(notify.length > 0){%>
+        <div
+            id="notify"
+            style="
+                width: 450px;
+                height: 50px;
+                background-color: rgb(253, 108, 108);
+                border: 1px solid red;
+                border-radius: 10px;
+                margin: 10px auto;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                padding: 10px 20px;
+                text-align: center;
+            "
+        >
+            <p><%=notify%></p>
+        </div>
+        <%}%>
         <div class="boxLogin">
             <div class="title">Đăng nhập</div>
             <form id="loginSubmit" action="" method="post" enctype="application/x-www-form-urlencoded" onsubmit="">
@@ -40,10 +60,7 @@
                 <p>Bạn chưa có tài khoản? <a href="register">Đăng ký</a></p>
             </form>
         </div>
-        <footer>&copy; Phạm Minh Sáng B2110976</footer>
-        <script>
-            sessionStorage.clear();
-        </script>
+        <footer style="position: absolute; bottom: 0px">&copy; Phạm Minh Sáng B2110976</footer>
         <!-- <script
             src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
             integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="

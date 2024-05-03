@@ -98,7 +98,7 @@
                 </div>
             </div>
         </div>
-        <footer>&copy; Phạm Minh Sáng B2110976</footer>
+        <footer style="position: absolute; bottom: 0px">&copy; Phạm Minh Sáng B2110976</footer>
         <script src="js/jquery-3.7.1.min.js"></script>
         <script src="/socket.io/socket.io.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.30.1/moment.min.js"></script>
@@ -119,25 +119,18 @@
             let searchAddConversation = document.getElementById('searchAddConversation');
             let searchAddFriend = document.getElementById('searchAddFriend');
             const currentUser = document.getElementById('currentUser');
-            // let currentTime = new Date().toLocaleDateString([], {
-            //     hour: '2-digit',
-            //     minute: '2-digit',
-            // });
             let accountUser = '<%=user%>';
             let receiver = '';
-            // currentUser.textContent = accountUser;
+
             //-----------------Socket On of Function------------------
-            // socket.on('loadOthersPage', function () {
-            //     loadPage();
-            // });
             //Kiểm tra user đã đăng nhập vào server hay chưa
-            socket.on('checkUser', function (status) {
-                if (!status) {
-                    socket.emit('logoutUser', accountUser);
-                    accountUser = '';
-                    window.location = '/';
-                }
-            });
+            // socket.on('checkUser', function (status) {
+            //     if (!status) {
+            //         socket.emit('logoutUser', accountUser);
+            //         accountUser = '';
+            //         window.location = '/';
+            //     }
+            // });
             socket.on('loadMessage', function (data) {
                 chatFrame.innerHTML = '';
                 data.forEach((element) => {
@@ -155,7 +148,7 @@
                 if (data.length === 0) {
                     acceptFriendFrame.style.display = 'none';
                     addFriendFrame.style.height = '420px';
-                    listUser.style.height = '333px';
+                    listUser.style.height = '330px';
                     // friendRequest.innerHTML = `
                     //     <div class="item">
                     //         <p style="width: 100%; text-align: center">No One</p>
@@ -434,6 +427,7 @@
                     socket.emit('searchAddConversation', accountUser, searchAddFriend.value);
                 }
             });
+
             //----------------------Typing--------------------------
             message.addEventListener('focus', function () {
                 socket.emit('typingMsg', { sender: accountUser, receiver: receiver });
@@ -441,8 +435,6 @@
             message.addEventListener('blur', function () {
                 socket.emit('stopTyping', { sender: accountUser, receiver: receiver });
             });
-
-            //----------------------Logout--------------------------
         </script>
         <%} else{%>
         <script>

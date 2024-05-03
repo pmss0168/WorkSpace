@@ -3,7 +3,7 @@
 :root {
     --primary-color: #000000;
     --second-color: #e0e0e0;
-    --bg-color: #f5f6f8;
+    --bg-color: #fff;
     --bg-btn: #3598db;
     --deeper-bg-btn: #36b6fd;
 }
@@ -21,10 +21,9 @@
 #chat {
     overflow-y: scroll;
     scroll-behavior: smooth;
-    background-color: gainsboro;
 }
 .mainContainer {
-    margin: 5.8rem auto;
+    margin: 5rem auto;
     width: 60%;
     max-width: 1200px;
     min-width: 375px;
@@ -75,7 +74,7 @@
     padding: 0.5rem 0.3rem;
     border-top: 1px solid rgba(0, 0, 0, 0.5);
     border-bottom: 1px solid rgba(0, 0, 0, 0.5);
-    margin-top: 0.5rem;
+    margin-top: 10px;
 }
 #search input {
     border: none;
@@ -116,6 +115,7 @@
     border: none;
     width: -webkit-fill-available;
     position: relative;
+    background-color: #fbfbfb;
 }
 .left #user #userName .userItem p {
     word-break: break-word;
@@ -200,7 +200,7 @@
 .right #addFriend #friendRequest {
     display: flex;
     flex-direction: column;
-    height: 120px;
+    height: 118px;
     overflow-y: scroll;
     scroll-behavior: smooth;
 }
@@ -423,13 +423,12 @@
 #login {
     overflow-y: scroll;
     scroll-behavior: smooth;
-    background-color: gainsboro;
 }
 .boxLogin {
     max-width: 450px;
     min-width: 375px;
     height: 450px;
-    margin: 7.3rem auto;
+    margin: 5rem auto;
     background-color: white;
     box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
     display: flex;
@@ -489,13 +488,12 @@
 #register {
     overflow-y: scroll;
     scroll-behavior: smooth;
-    background-color: gainsboro;
 }
 .boxRegister {
     max-width: 450px;
     min-width: 375px;
     height: 500px;
-    margin: 5.8rem auto;
+    margin: 4rem auto;
     background-color: white;
     box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
     display: flex;

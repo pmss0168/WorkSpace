@@ -7,11 +7,12 @@ const socketio = require('socket.io');
 const mysql = require('mysql');
 const moment = require('moment');
 const crypto = require('crypto');
+const flash = require('connect-flash');
 
 const app = express();
 const server = http.createServer(app);
 const io = socketio(server);
-const PORT = 3000;
+const port = process.env.PORT || 3000;
 const db = mysql.createConnection({
     host: 'localhost',
     user: 'root',
@@ -34,6 +35,7 @@ app.use(
         cookie: { secure: false },
     }),
 );
+app.use(flash());
 
 //Hien thi trang web chinh khi truy cap
 app.set('view engine', 'ejs');
@@ -43,14 +45,16 @@ app.set('views', './views');
 
 //Hien thi trang web chinh khi truy cap
 app.get('/', function (req, res) {
-    res.render('index');
+    const notify = req.flash('error');
+    res.render('index', { notify: notify });
 });
 app.get('/chat', util.checkSession, function (req, res) {
     let user = req.session.username;
     res.render('chat', { user: user });
 });
 app.get('/register', function (req, res) {
-    res.render('register');
+    const notify = req.flash('error');
+    res.render('register', { notify: notify });
 });
 app.post('/', function (req, res) {
     let user = req.body.user;
@@ -59,6 +63,7 @@ app.post('/', function (req, res) {
     db.query(sql, user, function (err, data) {
         if (err) throw err;
         if (data.length == 0) {
+            req.flash('error', 'Tài khoản hoặc mật khẩu không chính xác');
             res.redirect('/');
         } else if (data.length > 0) {
             let hashPassword = util.hash(pass);
@@ -66,6 +71,7 @@ app.post('/', function (req, res) {
                 req.session.username = user;
                 res.redirect('/chat');
             } else {
+                req.flash('error', 'Tài khoản hoặc mật khẩu không chính xác');
                 res.redirect('/');
             }
         }
@@ -77,7 +83,8 @@ app.post('/register', function (req, res) {
     let passwordCheck = req.body.passwordCheck;
     // console.log(username, password, passwordCheck);
     if (password !== passwordCheck) {
-        res.redirect('register');
+        req.flash('error', 'Mật khẩu không trùng khớp');
+        res.redirect('/register');
     } else {
         let sql = `select username, password from users where username=?`;
         db.query(sql, username, function (err, data) {
@@ -87,6 +94,7 @@ app.post('/register', function (req, res) {
                 util.addUser(username, hashPassword);
                 res.redirect('/');
             } else if (data.length > 0) {
+                req.flash('error', 'Tài khoản đã tồn tại');
                 res.redirect('/register');
             }
         });
@@ -346,6 +354,6 @@ chatNamespace.on('connection', function (socket) {
     });
 });
 
-server.listen(PORT, async function () {
-    console.log('Server running at port ' + PORT);
+server.listen(port, async function () {
+    console.log('Server running at port ' + port);
 });
