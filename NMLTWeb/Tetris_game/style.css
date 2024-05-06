@@ -1,0 +1,12 @@
+body{
+    /* background: #202028; */
+    background-image: radial-gradient( circle farthest-corner at 10% 20%,  rgba(100,43,115,1) 0%, rgba(4,0,4,1) 90% );
+    color: #fff;
+    font-family: sans-serif;
+    font-size: 2em;
+    text-align: center;
+}
+canvas{
+    border: 0.2em #fff solid;
+    height: 90vh;
+}

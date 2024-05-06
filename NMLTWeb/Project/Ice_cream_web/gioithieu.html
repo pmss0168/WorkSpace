@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+        />
+        <link
+            rel="stylesheet"
+            href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"
+        />
+        <link rel="stylesheet" href="index.css" />
+        <title>Giới Thiệu</title>
+        <link rel="shortcut icon" href="images/favicon.ico" type="image/vnd.microsoft.icon" />
+    </head>
+    <body>
+        <header>
+            <a href="trangchu.html"><img src="images/logo.png" alt="logo" id="logo" /></a>
+            <img src="images/header-img1.png" alt="" id="h_img1" />
+            <img src="images/header-img2.png" alt="" id="h_img2" />
+            <img src="images/header-img3.png" alt="" id="h_img3" />
+            <nav>
+                <a href="trangchu.html">Trang Chủ</a>
+                <a href="gioithieu.html">Giới Thiệu</a>
+                <a href="sanpham.html">Sản Phẩm</a>
+                <a href="tintuc.html">Tin Tức</a>
+                <a href="dangnhap.html">Đăng Nhập</a>
+                <a href="dangky.html">Đăng Ký</a>
+                <a href="lienhe.html">Liên Hệ</a>
+                <form method="get" action="timkiem.html" onsubmit="return checkKeyPress(this);">
+                    <div class="search">
+                        <input
+                            class="box search-input"
+                            id="input-box"
+                            type="text"
+                            placeholder="Nhập nội dung cần tìm.."
+                            onkeypress="checkKeyPress(event)"
+                        />
+                        <i class="fa fa-search" id="search-box" onclick="sendSearchData()"></i>
+                        <i class="fa fa-shopping-cart" onclick="gotoDonHang()"></i>
+                    </div>
+                </form>
+            </nav>
+        </header>
+        <main class="two_col_left">
+            <article>
+                <img width="100%" src="images/gioithieu/bg-header-about.jpg" alt="" />
+                <section>
+                    <h1 class="underline">Giới Thiệu</h1>
+                    <p>
+                        Khi dự án "Sữa chua trận châu" được đặt lên bàn, có rất nhiều câu hỏi bủa vây lấy chúng tôi: Làm
+                        sao để nhân bản một món ăn “đặc sản” nhưng vẫn đảm bảo chất lượng cho từng sản phẩm? Liệu rằng
+                        đây có phải mô hình phát triển bền vững hay chỉ là “cơn sốt" hạ nhiệt theo thời gian? Làm thế
+                        nào để tạo tính khác biệt giữa rất nhiều thương hiệu? Có muôn vàn khó khăn, thử thách khi xây
+                        dựng thương hiệu để khiến chúng tôi chùn bước. Nhưng chỉ cần một lý do đủ mạnh để tiếp tục, lý
+                        do mà chúng tôi bắt đầu.
+                    </p>
+                </section>
+                <section>
+                    <h1 class="underline">Câu Chuyện Thương Hiệu</h1>
+                    <p>
+                        Anh Phạm Tuấn, được sinh ra trong gia đình có truyền thống làm sữa chua trân châu từ những năm
+                        1990. Món ăn thơm ngon này đã nuôi dưỡng tuổi thơ anh và trở thành niềm nhớ thân thương mỗi khi
+                        anh xa nhà. Không chỉ đối với riêng anh Tuấn, sữa chua trân châu đã len lôi vào từng ngõ ngách
+                        thành phố, trở thành món ăn vặt thân thuộc trong tiềm thức của người dân nơi đây. Đã từ lâu, anh
+                        luôn ước mơ nhân bản món ăn này, không chỉ dừng lại ở dải đất chữ S, mà còn vươn ra thị trường
+                        quốc tế để giới thiệu với bạn bè năm châu về tinh hoa ẩm thực quê hương. Nhưng ước mơ ấy chỉ
+                        thật sự bắt đầu khi anh gặp hai người bạn đồng hành thân thiết sau này. Anh Lê Thanh và anh
+                        Nguyễn Minh là hai người bạn thuở thiếu thời. Vào một ngày mùa hè, hai anh có dịp ghé thăm anh
+                        Tuấn, thưởng thức sữa chua trân châu . Cuộc gặp gỡ tình cờ này là khởi nguồn ý tưởng của hệ
+                        thống Sữa chua trân châu, mà cho tới giờ hay gọi vui với nhau là cuộc gặp gỡ ngàn tỷ" Ba chàng
+                        trai trẻ năm ấy, dù mới chỉ gặp mà tưởng như đã thân quen từ lâu. Họ cùng chung lý tưởng sống,
+                        cùng "phải lòng" với sữa chua trận châu, cùng một ước mơ biến món ăn địa phương này trở thành
+                        niềm tự hào dân tộc.
+                    </p>
+                </section>
+                <section>
+                    <h1 class="underline">Thực Hiện Ước Mơ</h1>
+                    <p>
+                        Khác với nhiều thương hiệu F&B có khởi đầu không mấy dễ dàng, Sữa chua trận châu lại được khách
+                        hàng đón nhận và ủng hộ ngay từ khi ra mắt cửa hàng đầu tiên. Chỉ sau hơn 3 tháng phát triển,
+                        thương hiệu Sữa chua trân châu đã có trên 30 cửa hàng trên khắp thủ đô và cho đến nay là 250 cửa
+                        hàng trên khắp cả nước. Điều gì đã làm nên sự thành công của thương hiệu? Không phải may mắn.
+                        Mọi mô hình phát triển bền vững đều xuất phát từ sản phẩm. Chúng tôi chọn sữa chua trâu châu,
+                        không đơn thuần vì đây là một món ăn truyền thống của gia đình, mà còn bởi sức tiềm năng của sản
+                        phẩm đã được người dân đón nhận qua hàng chục năm. Bên cạnh đó, đề chuẩn hoá và nhân bản một sản
+                        phẩm mắt rất nhiều thời gian, nguồn lực và chi phí. Một sai sót nhỏ trong công thức món ăn hay
+                        quy trình sản xuất cũng có thể phải “đập đi xây lại" từ đầu. Chỉ khi giữ được nguyên bàn hương
+                        vị, đồng thời, làm giàu hàm lượng dinh dưỡng trong từng sản phẩm, chúng tôi mới đủ tự tin để
+                        giới thiệu đến khách khách hàng. Có lẽ vì thế, thương hiệu Sữa chua trân châu đã chinh phục được
+                        tất cả các khách hàng, từ em bé đến phụ huynh, từ các bạn trẻ đến câu những người lớn tuổi.
+                    </p>
+                </section>
+            </article>
+            <aside class="right_side">
+                <h1 class="underline">Hãy Đăng Ký Thành Viên Ngay Hôm Nay</h1>
+                <p>
+                    Thành viên được hưởng nhiều ưu đãi; tham gia khoá học miễn phí, tham gia các cuộc thi, nhận tài liệu
+                    môn mới
+                </p>
+            </aside>
+        </main>
+        <footer>
+            <p>
+                &copy 2021 Bản quyền thuộc về FreeezeVN:
+                <a href="https://www.facebook.com" class="fa fa-facebook"></a>
+                <a href="https://www.twitter.com" class="fa fa-twitter"></a>
+                <a href="https://www.pinterest.com" class="fa fa-pinterest"></a>
+                <a href="#logo" class="top"></a>
+            </p>
+        </footer>
+        <script async src="js/main.js"></script>
+        <script src="https://kit.fontawesome.com/78e61fa28b.js" crossorigin="anonymous"></script>
+    </body>
+</html>

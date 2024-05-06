@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+        />
+        <link
+            rel="stylesheet"
+            href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"
+        />
+        <link rel="stylesheet" href="index.css" />
+        <title>Tin Tức</title>
+        <link rel="shortcut icon" href="images/favicon.ico" type="image/vnd.microsoft.icon" />
+    </head>
+    <body>
+        <header>
+            <a href="trangchu.html"><img src="images/logo.png" alt="logo" id="logo" /></a>
+            <img src="images/header-img1.png" alt="" id="h_img1" />
+            <img src="images/header-img2.png" alt="" id="h_img2" />
+            <img src="images/header-img3.png" alt="" id="h_img3" />
+            <nav>
+                <a href="trangchu.html">Trang Chủ</a>
+                <a href="gioithieu.html">Giới Thiệu</a>
+                <a href="sanpham.html">Sản Phẩm</a>
+                <a href="tintuc.html">Tin Tức</a>
+                <a href="dangnhap.html">Đăng Nhập</a>
+                <a href="dangky.html">Đăng Ký</a>
+                <a href="lienhe.html">Liên Hệ</a>
+                <form method="get" action="timkiem.html" onsubmit="return checkKeyPress(this);">
+                    <div class="search">
+                        <input
+                            class="box search-input"
+                            id="input-box"
+                            type="text"
+                            placeholder="Nhập nội dung cần tìm.."
+                            onkeypress="checkKeyPress(event)"
+                        />
+                        <i class="fa fa-search" id="search-box" onclick="sendSearchData()"></i>
+                        <i class="fa fa-shopping-cart" onclick="gotoDonHang()"></i>
+                    </div>
+                </form>
+            </nav>
+        </header>
+        <main class="two_col_right">
+            <article>
+                <h1 class="underline">TIN TỨC</h1>
+                <div class="example_right">
+                    <h2>Lộ Diện Siêu Năng Lực Từ Trái Xoài</h2>
+                    <img src="images/tintuc/news1.jpg" alt="" width="400" />
+                    <p>
+                        Xoài là một trong những trái cây chủ lực của ĐBSCL, chiếm khoảng 48% tổng diện tích xoài cả
+                        nước. Trong đó, tỉnh Đồng Tháp hiện có diện tích trồng xoài khoảng 12.171ha - lớn nhất vùng
+                        ĐBSCL với sản lượng hàng năm gần 124 ngàn tấn. <a href="">Xem chi tiết</a>
+                    </p>
+                </div>
+                <div class="example_right">
+                    <h2>Sữa Các Loại Hạt Món Ngon Cho Mẹ Miễn Dịch Khỏe</h2>
+                    <img src="images/tintuc/news2.jpg" alt="" width="400" />
+                    <p>
+                        Các loại sữa hạt càng ngày trở nên quen thuộc với mọi người, bởi hàm lượng dinh dưỡng cao và
+                        lành tính. Với thị trường sữa hạt đa dạng phong phú, hôm nay chúng ta cùng điểm qua xem có các
+                        loại sữa hạt nào và loại nào là bổ dưỡng nhất cho sức khoẻ?
+                        <a href="">Xem chi tiết</a>
+                    </p>
+                </div>
+                <div class="example_right">
+                    <h2>Sữa Chua Kiwi - Món Quà Cho Sức Khoẻ</h2>
+                    <img src="images/tintuc/news3.jpg" alt="" width="400" />
+                    <p>
+                        Kiwi thành phần dinh dưỡng rất cao so với các loại hoa quả khác. Hàm lượng vitamin C cao cho hệ
+                        miễn dịch khoẻ mạnh cùng nguồn chất xơ hỗ trợ tiêu hoá. Siêu quả Kiwi cho cả nhà siêu khoẻ, 100%
+                        vitamin C cần thiết mỗi ngày. <a href="">Xem chi tiết</a>
+                    </p>
+                </div>
+                <div class="example_right">
+                    <h2>Ra Mắt App Sữa Chua Freeeze Trên Nền Tảng IOS</h2>
+                    <img src="images/tintuc/news4.jpg" alt="" width="400" />
+                    <p>
+                        Nhằm mang đến cho tất cả khách hàng những trải nghiệm thú vị nhất Công ty Sữa Chua Freeeze giới
+                        thiệu app đặt hàng độc đáo, giúp khách hàng mua sắm được mọi lúc mọi nơi với nhiều tiện ích.
+                        <a href="">Xem chi tiết</a>
+                    </p>
+                </div>
+                <div class="example_right">
+                    <h2>Đăng Ký Thành Viên - Nhận Ngay Ưu Đãi</h2>
+                    <img src="images/tintuc/news5.jpg" alt="" width="400" />
+                    <p>
+                        Công ty sữa chua hân hạnh mang đến chương trình "Đăng Ký Thành Viên" với nhiều ưu đãi độc đáo.
+                        Member Card - thẻ thành viên nhà Sữa Chua Freeeze dành cho tất cả khách hàng đăng ký tài khoản
+                        và phát sinh đơn hàng. <a href="">Xem chi tiết</a>
+                    </p>
+                </div>
+                <div class="example_right">
+                    <h2>Tuyển Giám Sát Chuỗi Cửa Hàng</h2>
+                    <img src="images/tintuc/news6.jpg" alt="" width="400" />
+                    <p>
+                        Tuyển Giám Sát chuỗi cửa hàng: - tại khu vực TP Hải Phòng & các tỉnh lân cận - <br />
+                        Số lượng: 01 Mô tả: Giám sát hoạt động kinh doanh các cửa hàng; kiểm tra lịch làm việc của các
+                        cửa hàng. <a href="">Xem chi tiết</a>
+                    </p>
+                </div>
+            </article>
+            <aside class="left_side">
+                <h1 class="underline">ĐƯỢC QUAN TÂM</h1>
+                <img src="images/tintuc/hotnews.jpg" alt="" width="100%" />
+                <h2>Khai Trương Hân Hoan - Ưu Đãi Ngập Tràn</h2>
+                <p>
+                    Khai trương hân hoan - ưu đãi ngập tràn 🌈 🥰 Thêm một ngôi nhà mới của Sữa Chua Freeeze được khai
+                    trương. <a href="">Xem chi tiết</a>
+                </p>
+            </aside>
+        </main>
+        <footer>
+            <p>
+                &copy 2021 Bản quyền thuộc về FreeezeVN:
+                <a href="https://www.facebook.com" class="fa fa-facebook"></a>
+                <a href="https://www.twitter.com" class="fa fa-twitter"></a>
+                <a href="https://www.pinterest.com" class="fa fa-pinterest"></a>
+                <a href="#logo" class="top"></a>
+            </p>
+        </footer>
+        <script async src="js/main.js"></script>
+        <script src="https://kit.fontawesome.com/78e61fa28b.js" crossorigin="anonymous"></script>
+    </body>
+</html>

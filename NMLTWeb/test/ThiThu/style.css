@@ -1,0 +1,112 @@
+* {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+    list-style: none;
+    text-decoration: none;
+}
+
+#logo {
+    width: 10rem;
+}
+.nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 6rem;
+    background-color: rgb(255, 255, 255);
+}
+.menu {
+    display: flex;
+}
+.menu .menu_item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.menu .menu_item > li {
+    margin: 0 1.5rem;
+}
+.menu .menu_item li a {
+    color: black;
+    position: relative;
+}
+.search {
+    display: flex;
+    gap: 1rem;
+}
+.search .search_item {
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+}
+.search .search_item input {
+    width: 300px;
+}
+.btn {
+    border: none;
+    padding: 1rem 1.5rem;
+    background-color: rgb(35, 169, 23);
+    font-weight: 700;
+    color: aliceblue;
+    text-wrap: nowrap;
+}
+.drop_list_1,
+.drop_list_2 {
+    display: none;
+}
+.menu .menu_item li:hover .drop_list_1 {
+    display: block;
+    background-color: rgb(255, 255, 255);
+    padding: 0.5rem 0;
+    position: absolute;
+    border: 1px solid #000;
+}
+.menu .menu_item li:hover .drop_list_1 li {
+    /* margin: 0.5rem 0.3rem; */
+    padding: 0.5rem;
+}
+.menu .menu_item li:hover .drop_list_1 .border_bottom {
+    border-bottom: 1px solid #000;
+}
+.menu .menu_item li .drop_list_1 li:hover .drop_list_2 {
+    display: block;
+    width: 10rem;
+    background-color: rgb(255, 255, 255);
+    padding: 0.5rem 0;
+    position: absolute;
+    bottom: 0;
+    left: 100%;
+    border: 1px solid #000;
+}
+main {
+    background-image: url('bg.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    width: 100%;
+    height: 30rem;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+}
+.container {
+    margin: 0 2rem;
+}
+.container h1,
+.container p {
+    margin: 0.5rem 0;
+}
+.container input {
+    height: 3rem;
+    width: 15rem;
+}
+footer {
+    background-color: black;
+    color: aliceblue;
+    padding: 2rem 0;
+}
+footer p {
+    padding: 0 2rem;
+}

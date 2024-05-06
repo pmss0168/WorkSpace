@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="style.css" />
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+            integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+            crossorigin="anonymous"
+            referrerpolicy="no-referrer"
+        />
+        <title>Thi cuoi ki</title>
+    </head>
+    <body>
+        <header>
+            <nav class="nav">
+                <div class="menu">
+                    <img src="logo.png" id="logo" />
+                    <ul class="menu_item">
+                        <li>
+                            <a href="#">Hàng hóa <i class="fa-solid fa-caret-down"></i></a>
+                            <div class="drop_list_1">
+                                <ul>
+                                    <div class="border_bottom">
+                                        <li><a href="#">Trang trí nội thất</a></li>
+                                    </div>
+                                    <div class="border_bottom">
+                                        <li><a href="#">Điện tử</a></li>
+                                        <li><a href="#">Điện lạnh</a></li>
+                                    </div>
+                                    <div class="border_bottom">
+                                        <li><a href="#">Thực phẩm sống</a></li>
+                                        <li><a href="#">Thực phẩm ăn liền</a></li>
+                                    </div>
+                                    <li>
+                                        <a href="#">Nguyên liệu <i class="fa-solid fa-caret-right"></i></a>
+                                        <div class="drop_list_2">
+                                            <ul>
+                                                <li><a href="">Bột</a></li>
+                                                <li><a href="">Gia vị</a></li>
+                                                <li><a href="">Màu thực phẩm</a></li>
+                                            </ul>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li>
+                            <a href="#">Khuyến mãi <i class="fa-solid fa-caret-down"></i></a>
+                        </li>
+                    </ul>
+                </div>
+                <form action="timkiem.html" method="" onsubmit="setInfo()">
+                    <div class="search">
+                        <div class="search_item">
+                            <p>Nhập tên mặt hàng</p>
+                            <input id="info" type="text" placeholder="Nhập từ khóa cần tìm" />
+                        </div>
+                        <button class="btn" type="submit">Tìm kiếm trong cửa hàng</button>
+                    </div>
+                </form>
+            </nav>
+        </header>
+        <main>
+            <div class="container">
+                <h1>To search ...</h1>
+                <p>Hãy gõ địa chỉ email của khách hàng cần tìm</p>
+                <div class="search_email">
+                    <form action="email.html" method="" onsubmit="setEmail()">
+                        <input id="email" type="email" placeholder="Nhập email cần tìm" required />
+                        <button class="btn" type="submit">Tìm kiếm email</button>
+                    </form>
+                </div>
+            </div>
+        </main>
+        <footer>
+            <p>&copy Copyright by B2110976 Pham Minh Sang</p>
+        </footer>
+        <script src="main.js"></script>
+    </body>
+</html>

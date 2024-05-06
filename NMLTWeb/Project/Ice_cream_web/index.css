@@ -1,0 +1,493 @@
+/* --------------------Trang Chu-------------------- */
+/* --------------------Body-------------------- */
+:root {
+    --text-color-main: #ed4190;
+}
+body {
+    max-width: 1024px;
+    font-family: Helvetica, Arial, sans-serif;
+    display: grid;
+    top: 0px;
+    margin: 0px auto;
+    border: 1px;
+    padding: 0px 5px;
+    min-width: 1024px;
+    font-size: 1.2em;
+    grid-template-areas:
+        'header-cell'
+        'nav-cell'
+        'main-cell'
+        'footer-cell';
+}
+/* --------------------Header-------------------- */
+header {
+    grid-area: header-cell;
+    border: 1px #ccc7c8;
+    border-radius: 5px;
+    padding: 0px 5px;
+    height: 100px;
+    background-image: url('images/header.png');
+}
+#h_img1 {
+    height: 100px;
+    position: absolute;
+    top: -30px;
+    /* animation: h_img1 3s linear infinite alternate; */
+    animation-name: h_img1; /*Tên chuyển động*/
+    animation-duration: 3s; /*Thời gian chuyển động*/
+    animation-timing-function: linear; /*Phương thức chuyển động theo thời gian*/
+    animation-iteration-count: infinite; /*Số lần lặp lại chuyển động*/
+    animation-direction: alternate; /*Đường đi chuyển động*/
+}
+@keyframes h_img1 {
+    from {
+        left: 80%;
+    }
+    to {
+        left: 30%;
+    }
+}
+#h_img2 {
+    height: 70px;
+    position: absolute;
+    top: -5px;
+    animation: h_img2 3s linear infinite alternate;
+}
+@keyframes h_img2 {
+    from {
+        left: 80%;
+    }
+    to {
+        left: 45%;
+    }
+}
+#h_img3 {
+    height: 80px;
+    position: absolute;
+    top: 0px;
+    animation: h_img3 3s linear infinite alternate;
+}
+@keyframes h_img3 {
+    from {
+        left: 80%;
+    }
+    to {
+        left: 63%;
+    }
+}
+/* --------------------NAV-------------------- */
+nav {
+    grid-area: nav-cell;
+    margin-top: 20px;
+}
+nav a {
+    margin: 3px;
+    top: 0px;
+    border: 1px #fff solid;
+    border-radius: 5px;
+    padding: 2px 4px;
+    height: 20px;
+    text-align: center;
+    color: #ed4190;
+    background-color: #ffffff80;
+    font-size: 17px;
+    text-decoration: none;
+    box-shadow: 0 0 3px 0 #00000066, 0 0 2px 0 #0000004d;
+    float: left;
+}
+nav a:hover {
+    color: #fff;
+    background-color: #ed4190;
+}
+.search {
+    display: flex;
+    gap: 5px;
+    float: right;
+    padding-top: 3px;
+    padding: 3px;
+}
+.box,
+table td input,
+span button {
+    padding: 4px;
+    min-width: 30px;
+    border: 1px #000 solid;
+    border-radius: 5px;
+    resize: none;
+}
+.search .fa {
+    padding: 4px;
+    min-width: 30px;
+    border-radius: 5px;
+    text-align: center;
+    color: #fff;
+    background-color: #cddc39;
+    cursor: pointer;
+}
+.search .fa-shopping-cart {
+    color: #ed4190;
+}
+/* --------------------Main-------------------- */
+main {
+    display: grid;
+    grid-area: main-cell;
+    border: 1px #ccc7c8 solid;
+    border-radius: 5px;
+    padding: 0px 5px;
+    background-color: #fff;
+    text-align: justify;
+}
+/*
+    Mô phỏng cách thức tạo grid
+    a   a   a
+    b   b   b
+    c   c   c 
+            
+        
+==> One Column
+    L   L   L
+    A   A   A
+    R   R   R       
+    
+    
+==> Two Column Right
+    A   A   A   R
+    A   A   A   R
+    A   A   A   R
+*/
+
+main.one_col {
+    grid-template-areas:
+        'left-cell'
+        'article-cell'
+        'right-cell';
+}
+main.two_col_left {
+    grid-template-areas: 'article-cell right-cell';
+    grid-template-columns: 3fr 1fr;
+}
+main.two_col_right {
+    grid-template-areas: 'left-cell article-cell';
+    grid-template-columns: 1fr 3fr;
+}
+main.two_col_left h1.underline::after,
+main.two_col_right h1.underline::after {
+    left: 42%;
+}
+main.three_col {
+    grid-template-areas: 'left-cell article-cell right-cell';
+    grid-template-columns: 1fr 3fr 1fr;
+}
+/* --------------------Aside-------------------- */
+aside {
+    margin: 2px;
+    padding: 5px;
+    text-align: justify;
+    color: #000;
+}
+aside.left_side {
+    grid-area: left-cell;
+    border-right: 2px #ccc7c8 solid;
+}
+aside.right_side {
+    grid-area: right-cell;
+    border-left: 2px #ccc7c8 solid;
+}
+aside.left_side h1.underline::after,
+aside.right_side h1.underline::after {
+    left: 25%;
+}
+/* --------------------Article-------------------- */
+article {
+    display: grid;
+    grid-area: article-cell;
+    grid-template-rows: auto;
+}
+h1,
+legend {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 300;
+    line-height: 34px;
+    margin-top: 12px;
+    margin-bottom: 16px;
+    text-transform: uppercase;
+    text-align: center;
+    color: #f90b6d;
+    font-size: 28px;
+}
+h1.underline::after {
+    display: block;
+    position: relative;
+    content: '';
+    width: 200px;
+    height: 3px;
+    left: 44%;
+    transform: skewX(-12deg) translateX(-20%);
+    background: radial-gradient(#cddc39, #fff);
+}
+h2 {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 300;
+    line-height: 28px;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    color: #f90b6d;
+    font-size: 24px;
+}
+h3 {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 300;
+    line-height: 24px;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    color: #f90b6d;
+    font-size: 20px;
+}
+.example_left img,
+.example_left video {
+    width: 30%;
+    float: left;
+}
+.example_left p {
+    width: 69%;
+    float: right;
+}
+.example_right img,
+.example_right video {
+    width: 30%;
+    float: right;
+}
+.example_right p {
+    width: 69%;
+    float: left;
+}
+.content {
+    margin-bottom: 5px;
+    padding-left: 5px;
+    padding-top: 5px;
+    color: #000;
+}
+.div_col {
+    column-count: 2;
+}
+.div_col h3 {
+    break-before: column;
+}
+div.order {
+    margin-bottom: 5px;
+    width: 100%;
+    text-align: center;
+}
+.order div {
+    display: inline-block;
+    border: 1px #ed4190 solid;
+    border-radius: 5px;
+    padding-top: 5px;
+    min-width: 24%;
+}
+/* --------------------Footer-------------------- */
+footer {
+    grid-area: footer-cell;
+    margin-top: 2px;
+    border: 1px #ccc7c8 solid;
+    border-radius: 5px;
+    padding: 0px 5px;
+    text-align: center;
+    color: #000;
+}
+footer .fa {
+    color: #ed4190;
+    text-decoration: none;
+}
+footer .top {
+    right: 10px;
+    bottom: 5px;
+    position: fixed;
+    padding: 10px;
+    color: #ed4190;
+    background-image: url(images/top.png);
+    z-index: 100;
+    background-size: 100%;
+    width: 40px;
+    height: 40px;
+}
+/* --------------------San Pham-------------------- */
+.one_col h1 ~ section {
+    display: flex;
+    margin: 3px;
+    flex: 1;
+    text-align: center;
+}
+h1 ~ section p {
+    text-align: justify;
+}
+.one_col h1 ~ section .sanpham {
+    display: table-column;
+    margin: 4px;
+    padding: 3px;
+    border: 1px solid #dbd7d9;
+    border-radius: 5px;
+    width: 32%;
+    background: linear-gradient(to top, #cddc39 0%, transparent 10%);
+}
+h1 ~ section span {
+    display: block;
+    margin: 4px;
+    padding: 3px;
+    color: #000;
+    text-align: center;
+    min-width: 100%;
+    line-height: 2;
+}
+/* --------------------Lien He-------------------- */
+.one_col img#address {
+    width: 12px;
+    background-color: #cddc39;
+    padding: 4px 14px;
+    border-radius: 5px;
+    text-align: center;
+    transform: translateY(15%);
+}
+/* .one_col p#address_line{
+    font-style: bold;
+    display: block;
+    font-weight: 600;
+    transform: translate(3%, -190%);
+} */
+legend::after {
+    display: block;
+    position: relative;
+    content: '';
+    width: 200px;
+    height: 3px;
+    transform: skewX(-12deg);
+    background: radial-gradient(#cddc39, #fff);
+}
+.set_table .task .top-align {
+    vertical-align: top;
+}
+/* --------------------Dieu Chinh Table-------------------- */
+.task .fa {
+    padding: 4px;
+    min-width: 30px;
+    border-radius: 5px;
+    text-align: center;
+    color: #fff;
+    background-color: #cddc39;
+}
+fieldset {
+    display: flex;
+    justify-content: center;
+    border: 1px #ccc7c8;
+    border-radius: 5px;
+}
+.set_table {
+    width: 512px;
+    table-layout: auto;
+    bottom: auto;
+}
+table td.set_col {
+    width: 40px;
+}
+img,
+video {
+    border-radius: 5px;
+}
+/* --------------------Đơn Hàng-------------------- */
+.donhang {
+    /* border: 1; */
+    width: 100%;
+    margin-bottom: 5%;
+}
+.donhang thead tr {
+    margin: 0 auto;
+    text-align: center;
+    font-weight: bold;
+}
+.donhang .cart-body tr td {
+    border: 1px solid #000;
+}
+.donhang .cart-foot .create-cell td {
+    /* border: 1px solid #000; */
+    margin: 0 auto;
+    font-size: 16px;
+}
+.td-right {
+    text-align: right;
+    justify-content: right;
+}
+td.trash a {
+    display: flex;
+    justify-content: center;
+    text-decoration: none;
+}
+.icon-pink {
+    color: #ed4190;
+    padding: 4px;
+    min-width: 30px;
+    border-radius: 5px;
+    text-align: center;
+    background-color: #cddc39;
+    cursor: pointer;
+}
+.center {
+    text-align: center;
+}
+td.th_right {
+    text-align: right;
+}
+/* --------------------Ads-------------------- */
+.container {
+    position: fixed;
+    border: 1px solid red;
+    border-radius: 5px;
+    padding: 0 5px;
+    overflow: hidden;
+    background-color: white;
+    box-shadow: 0 0 5px 0 #00000066, 0 0 5px 0 #0000004d;
+}
+.adsvercontainer {
+    left: 0;
+    top: 10px;
+    height: 300px;
+}
+.adsvertext {
+    white-space: wrap;
+}
+.adstext {
+    position: absolute;
+    left: 5px;
+}
+.adshorcontainer {
+    bottom: 50px;
+    height: 50px;
+}
+.adshortext {
+    white-space: nowrap;
+}
+/* --------------------Headline-------------------- */
+#headline {
+    position: relative;
+    margin: 55px auto;
+    padding: 10px;
+    width: 1035px;
+    height: 300px;
+}
+#headline div {
+    position: relative;
+    margin: 0 auto;
+}
+#headline div img {
+    margin: 0 auto;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+}
+#headline div span {
+    position: absolute;
+    left: 10px;
+    bottom: 10px;
+    padding: 0 5px;
+    border: 1px solid red;
+    border-radius: 3px;
+    background-color: white;
+    z-index: 10;
+}

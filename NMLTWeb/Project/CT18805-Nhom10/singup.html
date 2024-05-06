@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="./assets/img/html5_favicon.png">
+
+    <!-- link css -->
+    <link rel="stylesheet" href="./assets/css/login-singup.css">
+
+    <!-- link icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <title>Signup</title>
+</head>
+<body>
+    <div class="container">
+        <div class="box register">
+            <div class="content">
+                <h3 class="title">
+                    Signup
+                </h3>
+    
+                <span class="details">
+                    Signup to have experiences with TDS Sneaker.
+                </span>
+    
+                <form action="#" id="form">
+                    <div class="form-group">
+                        <input type="text" name="" id="name" required>
+                        <label for="name">Username</label>
+                        <span class="form-message"></span>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" name="" id="email" required>
+                        <label for="email">Email</label>
+                        <span class="form-message"></span>
+                    </div>
+                    <div class="form-group">
+                        <input type="password" name="" id="password" required>
+                        <label for="password">Password</label>
+                        <span class="form-message"></span>
+                    </div>
+
+                    <button class="btn submit form-submit">
+                        Signup
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <div class="box navigation">
+            <div class="content">
+                <div class="nav navigation_signIn">
+                    <p>
+                        If you already have an account login here and have fun
+                    </p>
+                    <a href="./Login.html" class="menu-li__item">           
+                        <i class="fa-regular fa-user"></i>
+                        Login
+                    </a>
+                </div>
+        <div class="marks">
+        </div>
+    </div>
+    <!-- link javascript -->
+    <script src="./assets/js/validation.js"></script>
+    <script>
+
+        document.addEventListener('DOMContentLoaded', function () {
+            // Mong muốn của chúng ta
+            Validator({
+                form: '#form',
+                formGroupSelector: '.form-group',
+                errorSelector: '.form-message',
+                rules: [
+                    Validator.isRequired('#name', 'Vui lòng nhập tên đầy đủ của bạn'),
+                    Validator.isRequired('#email', 'Vui lòng nhập email'),
+
+                    Validator.isEmail('#email','Vui lòng kiểm tra lại email'),
+                    Validator.minLength('#password', 6),
+
+
+                ],
+                onSubmit: function (data) {
+                }
+            });
+           
+
+
+        });
+
+    </script>
+</body>
+</html>

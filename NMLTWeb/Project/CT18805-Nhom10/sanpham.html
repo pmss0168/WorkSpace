@@ -1,0 +1,1014 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" href="./assets/img/html5_favicon.png">
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sản Phẩm</title>
+    <link rel="stylesheet" href="./assets/font-awesome/css/font-awesome.css">
+    <link rel="stylesheet" href="./assets/css/sanpham.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+</head>
+
+<body>
+    <header class="header">
+
+        <div class="header-head">
+            <div class="header-head__logo hidden-resp">
+                <img src="./assets/img/coollogo_com-1043104.png" alt="" class="header-head__img">
+
+            </div>
+            <div class="header-head__search">
+                <form action="" class="header-head__searchBar">
+                    <button class="search__button">
+                        <i class="fa-solid fa-magnifying-glass search__button--icon"></i>
+                    </button>
+                    <input type="text" class="search__input" placeholder="Tìm kiếm sản phẩm">
+                </form>
+            </div>
+            <div class="header-head__cart">
+                <a href="./showcart.html">
+                    <i class="fa-solid fa-cart-shopping cart__icon"></i>
+
+                </a>
+            </div>
+        </div>
+
+        <div class="header-foot">
+            <nav class="header-foot__menu">
+                <ul class="foot-menu__left">
+                    <li class="foot-menu__li">
+                        <a href="./trangchu.html" class="menu-li__item"><i class="fa-solid fa-house"></i>Trang Chủ</a>
+                    </li>
+                    <li class="foot-menu__li">
+                        <a href="./sanpham.html" class="menu-li__item">Sản Phẩm</a>
+                    </li>
+                    <li class="foot-menu__li">
+                        <a href="./bogs-bootstrap5.html" class="menu-li__item">Blogs</a>
+                    </li>
+                    <li class="foot-menu__li">
+                        <a href="#" class="menu-li__item">Giới Thiệu</a>
+                    </li>
+                </ul>
+                <ul class="foot-menu__right">
+                    <li class="foot-menu__li">
+                        <a href="./singup.html" class="menu-li__item">
+                            <i class="fa-regular fa-user"></i>
+                            Đăng Ký/Đăng Nhập
+                        </a>
+                    </li>
+                    <li class="foot-menu__li">
+                        <a href="" class="menu-li__item"></a>
+                    </li>
+                </ul>
+
+            </nav>
+        </div>
+        <!-- Phần sidebar bên phải -->
+
+
+    </header>
+    <!--end header-->
+    <section class="home" id="home">
+        <div class="slide-container active">
+            <div class="slide">
+                <div class="content">
+                    <span>Giày Thể Thao Nike</span>
+                    <h3>Giày Nike Air Jordan High Zoom cmft Paris</h3>
+                    <p>
+                        Là đôi giày có thiết kế đặc sắc, các đường nét tỉ mỉ, đường may chắc chắn.
+                        Phần đế thiết kế êm ái, chính vì vậy bạn có thể thoải mái hoạt động cả ngày mà không cảm thấy
+                        khó chịu.
+                        Đôi jordan 1 psg rep 1 1 này sẽ là thiết kế mà bất kỳ ai cũng nên sở hữu cho bộ sưu tập mẫu giày
+                        Nike mới nhất 2023.
+                    </p>
+                </div>
+                <div class="image">
+                    <img src="assets/img/sanphamimg/slide/1.png" class="shoe">
+                </div>
+            </div>
+        </div>
+        <div class="slide-container">
+            <div class="slide">
+                <div class="content">
+                    <span>Chăm sóc giày</span>
+                    <h3>Chai xịt phủ nano chống thấm nước cho giày</h3>
+                    <p>
+                        Bình xịt bảo vệ giày nano Eykosi giúp cho những đôi giày của bạn khỏi nước mưa, bùn đất hoặc
+                        những vết bẩn khác.
+                        Với công nghệ thông minh, chống thấm nước giúp bảo vệ đôi giày của bạn.
+                        Ngoài ra bình xịt này còn sử dụng được cho các sản phẩm khác như áo khoác, mũ, balo,..rất tiện
+                        lợi đúng không nào.
+                    </p>
+                </div>
+                <div class="image">
+                    <img src="assets/img/sanphamimg/slide/2.png" class="shoe">
+                </div>
+            </div>
+        </div>
+
+        <div id="prev" class="fa fa-angle-left" onclick="prev();"></div>
+        <div id="next" class="fa fa-angle-right" onclick="next();"></div>
+    </section>
+    <!--end home-->
+    <section class="product" id="product">
+        <h1 class="heading"> <span>Sản phẩm giày</span> nổi bật</h1>
+        <div class="box-container">
+            <div class="box">
+                <div class="icons">
+                    <a href="#" class="fa fa-heart"></a>
+                    <a href="#" class="fa fa-share"></a>
+                    <a href="#" class="fa fa-eye"></a>
+                </div>
+                <div class="content">
+                    <div class="info">
+                        <span class="id-item" hidden>sp01</span>
+                        <img src="assets/img/sanphamimg/product4/1.jpg" alt="">
+                        <h3>Giày sneaker nam phong cách thể thao</h3>
+                        <div class="price">
+                            <span class="new-price">2500000</span>
+                            <span class="odd-price">3510000</span>
+                        </div>
+                        <div class="stars">
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                        </div>
+                        <input type="number" class="input-quanlity" name="quanlity" id="" min="1"
+                            placeholder="Số lượng sản phẩm">
+                    </div>
+                    <i class="fa-solid fa-cart-shopping add-cart cart-icon"></i>
+                </div>
+            </div>
+            <div class="box">
+                <div class="icons">
+                    <a href="#" class="fa fa-heart"></a>
+                    <a href="#" class="fa fa-share"></a>
+                    <a href="#" class="fa fa-eye"></a>
+                </div>
+                <div class="content">
+                    <div class="info">
+                        <span class="id-item" hidden>sp02</span>
+                        <img src="assets/img/sanphamimg/product4/2.jpg" alt="">
+                        <h3>Giày Sneaker Nam vải dệt thoáng khí, đế đàn hồi tốt</h3>
+                        <div class="price">
+                            <span class="new-price">1200000</span>
+                            <span class="odd-price">850000</span>
+                        </div>
+                        <div class="stars">
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                        </div>
+                        <input type="number" class="input-quanlity" name="quanlity" id="" min="1"
+                            placeholder="Số lượng sản phẩm">
+                    </div>
+                    <i class="fa-solid fa-cart-shopping add-cart cart-icon"></i>
+                </div>
+            </div>
+            <div class="box">
+                <div class="icons">
+                    <a href="#" class="fa fa-heart"></a>
+                    <a href="#" class="fa fa-share"></a>
+                    <a href="#" class="fa fa-eye"></a>
+                </div>
+                <div class="content">
+                    <div class="info">
+                        <span class="id-item" hidden>sp03</span>
+                        <img src="assets/img/sanphamimg/product4/3.jpg" alt="">
+                        <h3>Giày thể thao nam cổ cao, bốt nam mẫu mới tạo phong cách cá tính</h3>
+                        <div class="price">
+                            <span class="new-price">2200000</span>
+                            <span class="odd-price">1850000</span>
+                        </div>
+                        <div class="stars">
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                        </div>
+                        <input type="number" class="input-quanlity" name="quanlity" id="" min="1"
+                            placeholder="Số lượng sản phẩm">
+                    </div>
+                    <i class="fa-solid fa-cart-shopping add-cart cart-icon"></i>
+                </div>
+            </div>
+            <div class="box">
+                <div class="icons">
+                    <a href="#" class="fa fa-heart"></a>
+                    <a href="#" class="fa fa-share"></a>
+                    <a href="#" class="fa fa-eye"></a>
+                </div>
+                <div class="content">
+                    <div class="info">
+                        <span class="id-item" hidden>sp04</span>
+                        <img src="assets/img/sanphamimg/product4/4.jpg" alt="">
+                        <h3>Giày Thể Thao Unisex New Balance Shifted 90/60</h3>
+                        <div class="price">
+                            <span class="new-price">850000</span>
+                            <span class="odd-price">600000</span>
+                        </div>
+                        <div class="stars">
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                        </div>
+                        <input type="number" class="input-quanlity" name="quanlity" id="" min="1"
+                            placeholder="Số lượng sản phẩm">
+                    </div>
+                    <i class="fa-solid fa-cart-shopping add-cart cart-icon"></i>
+                </div>
+            </div>
+            <div class="box">
+                <div class="icons">
+                    <a href="#" class="fa fa-heart"></a>
+                    <a href="#" class="fa fa-share"></a>
+                    <a href="#" class="fa fa-eye"></a>
+                </div>
+                <div class="content">
+                    <div class="info">
+                        <span class="id-item" hidden>sp05</span>
+                        <img src="assets/img/sanphamimg/product4/7.png" alt="">
+                        <h3>Giày Thể Thao Nam Nike Air Force Màu xanh lục</h3>
+                        <div class="price">
+                            <span class="new-price">400000</span>
+                            <span class="odd-price">378000</span>
+                        </div>
+                        <div class="stars">
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                        </div>
+                        <input type="number" class="input-quanlity" name="quanlity" id="" min="1"
+                            placeholder="Số lượng sản phẩm">
+                    </div>
+                    <i class="fa-solid fa-cart-shopping add-cart cart-icon"></i>
+                </div>
+            </div>
+            <div class="box">
+                <div class="icons">
+                    <a href="#" class="fa fa-heart"></a>
+                    <a href="#" class="fa fa-share"></a>
+                    <a href="#" class="fa fa-eye"></a>
+                </div>
+                <div class="content">
+                    <div class="info">
+                        <span class="id-item" hidden>sp06</span>
+                        <img src="assets/img/sanphamimg/product4/8.png" alt="">
+                        <h3>Giày Thể Thao Nam Nike Air Force Màu đỏ</h3>
+                        <div class="price">
+                            <span class="new-price">400000</span>
+                            <span class="odd-price">378000</span>
+                        </div>
+                        <div class="stars">
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                        </div>
+                        <input type="number" class="input-quanlity" name="quanlity" id="" min="1"
+                            placeholder="Số lượng sản phẩm">
+                    </div>
+                    <i class="fa-solid fa-cart-shopping add-cart cart-icon"></i>
+                </div>
+            </div>
+            <div class="box">
+                <div class="icons">
+                    <a href="#" class="fa fa-heart"></a>
+                    <a href="#" class="fa fa-share"></a>
+                    <a href="#" class="fa fa-eye"></a>
+                </div>
+                <div class="content">
+                    <div class="info">
+                        <span class="id-item" hidden>sp07</span>
+                        <img src="assets/img/sanphamimg/product4/G1.jpg" alt="">
+                        <h3>Giày thể thao nam loang màu siêu đẹp</h3>
+                        <div class="price">
+                            <span class="new-price">259000</span>
+                            <span class="odd-price">148000</span>
+                        </div>
+                        <div class="stars">
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                        </div>
+                        <input type="number" class="input-quanlity" name="quanlity" id="" min="1"
+                            placeholder="Số lượng sản phẩm">
+                    </div>
+                    <i class="fa-solid fa-cart-shopping add-cart cart-icon"></i>
+                </div>
+            </div>
+            <div class="box">
+                <div class="icons">
+                    <a href="#" class="fa fa-heart"></a>
+                    <a href="#" class="fa fa-share"></a>
+                    <a href="#" class="fa fa-eye"></a>
+                </div>
+                <div class="content">
+                    <div class="info">
+                        <span class="id-item" hidden>sp08</span>
+                        <img src="assets/img/sanphamimg/product4/G2.jpg" alt="">
+                        <h3>Giày thể thao nam loang màu siêu đẹp</h3>
+                        <div class="price">
+                            <span class="new-price">359000</span>
+                            <span class="odd-price">248000</span>
+                        </div>
+                        <div class="stars">
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                        </div>
+                        <input type="number" class="input-quanlity" name="quanlity" id="" min="1"
+                            placeholder="Số lượng sản phẩm">
+                    </div>
+                    <i class="fa-solid fa-cart-shopping add-cart cart-icon"></i>
+                </div>
+            </div>
+            <div class="box">
+                <div class="icons">
+                    <a href="#" class="fa fa-heart"></a>
+                    <a href="#" class="fa fa-share"></a>
+                    <a href="#" class="fa fa-eye"></a>
+                </div>
+                <div class="content">
+                    <div class="info">
+                        <span class="id-item" hidden>sp09</span>
+                        <img src="assets/img/sanphamimg/product4/G3.jpg" alt="">
+                        <h3>Giày bốt nam nữ thời trang, vải siêu tốt</h3>
+                        <div class="price">
+                            <span class="new-price">359000</span>
+                            <span class="odd-price">248000</span>
+                        </div>
+                        <div class="stars">
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                        </div>
+                        <input type="number" class="input-quanlity" name="quanlity" id="" min="1"
+                            placeholder="Số lượng sản phẩm">
+                    </div>
+                    <i class="fa-solid fa-cart-shopping add-cart cart-icon"></i>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!--end san pham giay-->
+    <section class="product" id="product">
+        <h1 class="heading"> Phụ kiện<span> chăm sóc giày</span> nổi bật</h1>
+        <div class="box-container">
+            <div class="box">
+                <div class="icons">
+                    <a href="#" class="fa fa-heart"></a>
+                    <a href="#" class="fa fa-share"></a>
+                    <a href="#" class="fa fa-eye"></a>
+                </div>
+                <div class="content">
+                    <div class="info">
+                        <span class="id-item" hidden>sp010</span>
+                        <img src="assets/img/sanphamimg/product4/cs1.jpg" alt="">
+                        <h3>Cục tẩy da lộn</h3>
+                        <div class="price">
+                            <span class="new-price">100000</span>
+                            <span class="odd-price">78000</span>
+                        </div>
+                        <div class="stars">
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                        </div>
+                        <input type="number" class="input-quanlity" name="quanlity" id="" min="1"
+                            placeholder="Số lượng sản phẩm">
+                    </div>
+                    <i class="fa-solid fa-cart-shopping add-cart cart-icon"></i>
+                </div>
+            </div>
+            <div class="box">
+                <div class="icons">
+                    <a href="#" class="fa fa-heart"></a>
+                    <a href="#" class="fa fa-share"></a>
+                    <a href="#" class="fa fa-eye"></a>
+                </div>
+                <div class="content">
+                    <div class="info">
+                        <span class="id-item" hidden>sp011</span>
+                        <img src="assets/img/sanphamimg/product4/cs2.jpg" alt="">
+                        <h3>Gel dung dịch vệ sinh giày</h3>
+                        <div class="price">
+                            <span class="new-price">125000</span>
+                            <span class="odd-price">101000</span>
+                        </div>
+                        <div class="stars">
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                        </div>
+                        <input type="number" class="input-quanlity" name="quanlity" id="" min="1"
+                            placeholder="Số lượng sản phẩm">
+                    </div>
+                    <i class="fa-solid fa-cart-shopping add-cart cart-icon"></i>
+                </div>
+            </div>
+            <div class="box">
+                <div class="icons">
+                    <a href="#" class="fa fa-heart"></a>
+                    <a href="#" class="fa fa-share"></a>
+                    <a href="#" class="fa fa-eye"></a>
+                </div>
+                <div class="content">
+                    <div class="info">
+                        <span class="id-item" hidden>sp012</span>
+                        <img src="assets/img/sanphamimg/product4/cs3.jpg" alt="">
+                        <h3>Bình xịt khử mùi giày Nhật Bản</h3>
+                        <div class="price">
+                            <span class="new-price">250000</span>
+                            <span class="odd-price">149000</span>
+                        </div>
+                        <div class="stars">
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                        </div>
+                        <input type="number" class="input-quanlity" name="quanlity" id="" min="1"
+                            placeholder="Số lượng sản phẩm">
+                    </div>
+                    <i class="fa-solid fa-cart-shopping add-cart cart-icon"></i>
+                </div>
+            </div>
+            <div class="box">
+                <div class="icons">
+                    <a href="#" class="fa fa-heart"></a>
+                    <a href="#" class="fa fa-share"></a>
+                    <a href="#" class="fa fa-eye"></a>
+                </div>
+                <div class="content">
+                    <div class="info">
+                        <span class="id-item" hidden>sp013</span>
+                        <img src="assets/img/sanphamimg/product4/cs4.jpg" alt="">
+                        <h3>xi kem đánh giày</h3>
+                        <div class="price">
+                            <span class="new-price">150000</span>
+                            <span class="odd-price">139000</span>
+                        </div>
+                        <div class="stars">
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                        </div>
+                        <input type="number" class="input-quanlity" name="quanlity" id="" min="1"
+                            placeholder="Số lượng sản phẩm">
+                    </div>
+                    <i class="fa-solid fa-cart-shopping add-cart cart-icon"></i>
+                </div>
+            </div>
+            <div class="box">
+                <div class="icons">
+                    <a href="#" class="fa fa-heart"></a>
+                    <a href="#" class="fa fa-share"></a>
+                    <a href="#" class="fa fa-eye"></a>
+                </div>
+                <div class="content">
+                    <div class="info">
+                        <span class="id-item" hidden>sp014</span>
+                        <img src="assets/img/sanphamimg/product4/cs5.jpg" alt="">
+                        <h3>Keo dán giày</h3>
+                        <div class="price">
+                            <span class="new-price">69000</span>
+                            <span class="odd-price">39000</span>
+                        </div>
+                        <div class="stars">
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                        </div>
+                        <input type="number" class="input-quanlity" name="quanlity" id="" min="1"
+                            placeholder="Số lượng sản phẩm">
+                    </div>
+                    <i class="fa-solid fa-cart-shopping add-cart cart-icon"></i>
+                </div>
+            </div>
+            <div class="box">
+                <div class="icons">
+                    <a href="#" class="fa fa-heart"></a>
+                    <a href="#" class="fa fa-share"></a>
+                    <a href="#" class="fa fa-eye"></a>
+                </div>
+                <div class="content">
+                    <div class="info">
+                        <span class="id-item" hidden>sp015</span>
+                        <img src="assets/img/sanphamimg/product4/cs6.jpg" alt="">
+                        <h3>Bình xịt nano chống nước và bụi bẩn</h3>
+                        <div class="price">
+                            <span class="new-price">106000</span>
+                            <span class="odd-price">74000</span>
+                        </div>
+                        <div class="stars">
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                        </div>
+                        <input type="number" class="input-quanlity" name="quanlity" id="" min="1"
+                            placeholder="Số lượng sản phẩm">
+                    </div>
+                    <i class="fa-solid fa-cart-shopping add-cart cart-icon"></i>
+                </div>
+            </div>
+            <div class="box">
+                <div class="icons">
+                    <a href="#" class="fa fa-heart"></a>
+                    <a href="#" class="fa fa-share"></a>
+                    <a href="#" class="fa fa-eye"></a>
+                </div>
+                <div class="content">
+                    <div class="info">
+                        <span class="id-item" hidden>sp016</span>
+                        <img src="assets/img/sanphamimg/product4/cs7.jpg" alt="">
+                        <h3>Chai đánh bóng giày</h3>
+                        <div class="price">
+                            <span class="new-price">120000</span>
+                            <span class="odd-price">84000</span>
+                        </div>
+                        <div class="stars">
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                        </div>
+                        <input type="number" class="input-quanlity" name="quanlity" id="" min="1"
+                            placeholder="Số lượng sản phẩm">
+                    </div>
+                    <i class="fa-solid fa-cart-shopping add-cart cart-icon"></i>
+                </div>
+            </div>
+            <div class="box">
+                <div class="icons">
+                    <a href="#" class="fa fa-heart"></a>
+                    <a href="#" class="fa fa-share"></a>
+                    <a href="#" class="fa fa-eye"></a>
+                </div>
+                <div class="content">
+                    <div class="info">
+                        <span class="id-item" hidden>sp017</span>
+                        <img src="assets/img/sanphamimg/product4/cs8.jpg" alt="">
+                        <h3>Xi kem đánh giày cao cấp Tarrago</h3>
+                        <div class="price">
+                            <span class="new-price">159000</span>
+                            <span class="odd-price">130000</span>
+                        </div>
+                        <div class="stars">
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                        </div>
+                        <input type="number" class="input-quanlity" name="quanlity" id="" min="1"
+                            placeholder="Số lượng sản phẩm">
+                    </div>
+                    <i class="fa-solid fa-cart-shopping add-cart cart-icon"></i>
+                </div>
+            </div>
+            <div class="box">
+                <div class="icons">
+                    <a href="#" class="fa fa-heart"></a>
+                    <a href="#" class="fa fa-share"></a>
+                    <a href="#" class="fa fa-eye"></a>
+                </div>
+                <div class="content">
+                    <div class="info">
+                        <span class="id-item" hidden>sp018</span>
+                        <img src="assets/img/sanphamimg/product4/cs9.jpg" alt="">
+                        <h3>Chai vệ sinh giày dép - 100ml</h3>
+                        <div class="price">
+                            <span class="new-price">28000</span>
+                            <span class="odd-price">15000</span>
+                        </div>
+                        <div class="stars">
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                        </div>
+                        <input type="number" class="input-quanlity" name="quanlity" id="" min="1"
+                            placeholder="Số lượng sản phẩm">
+                    </div>
+                    <i class="fa-solid fa-cart-shopping add-cart cart-icon"></i>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--end phu kien giay-->
+    <section class="product" id="product">
+        <h1 class="heading"> <span>Phụ kiện giày</span> nổi bật</h1>
+        <div class="box-container">
+            <div class="box">
+                <div class="icons">
+                    <a href="#" class="fa fa-heart"></a>
+                    <a href="#" class="fa fa-share"></a>
+                    <a href="#" class="fa fa-eye"></a>
+                </div>
+                <div class="content">
+                    <div class="info">
+                        <span class="id-item" hidden>sp019</span>
+                        <img src="assets/img/sanphamimg/product4/pk1.png" alt="">
+                        <h3>Dây giày Oval chính hãng</h3>
+                        <div class="price">
+                            <span class="new-price">28000</span>
+                            <span class="odd-price">15000</span>
+                        </div>
+                        <div class="stars">
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                        </div>
+                        <input type="number" class="input-quanlity" name="quanlity" id="" min="1"
+                            placeholder="Số lượng sản phẩm">
+                    </div>
+                    <i class="fa-solid fa-cart-shopping add-cart cart-icon"></i>
+                </div>
+            </div>
+            <div class="box">
+                <div class="icons">
+                    <a href="#" class="fa fa-heart"></a>
+                    <a href="#" class="fa fa-share"></a>
+                    <a href="#" class="fa fa-eye"></a>
+                </div>
+                <div class="content">
+                    <div class="info">
+                        <span class="id-item" hidden>sp020</span>
+                        <img src="assets/img/sanphamimg/product4/pk2.png" alt="">
+                        <h3>Miếng lót giày nam nữ cực êm, khử mùi hiệu quả</h3>
+                        <div class="price">
+                            <span class="new-price">75000</span>
+                            <span class="odd-price">70000</span>
+                        </div>
+                        <div class="stars">
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                        </div>
+                        <input type="number" class="input-quanlity" name="quanlity" id="" min="1"
+                            placeholder="Số lượng sản phẩm">
+                    </div>
+                    <i class="fa-solid fa-cart-shopping add-cart cart-icon"></i>
+                </div>
+            </div>
+            <div class="box">
+                <div class="icons">
+                    <a href="#" class="fa fa-heart"></a>
+                    <a href="#" class="fa fa-share"></a>
+                    <a href="#" class="fa fa-eye"></a>
+                </div>
+                <div class="content">
+                    <div class="info">
+                        <span class="id-item" hidden>sp021</span>
+                        <img src="assets/img/sanphamimg/product4/pk3.png" alt="">
+                        <h3>Tất giày cao cấp - chống nấm chân</h3>
+                        <div class="price">
+                            <span class="new-price">39000</span>
+                            <span class="odd-price">29000</span>
+                        </div>
+                        <div class="stars">
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                        </div>
+                        <input type="number" class="input-quanlity" name="quanlity" id="" min="1"
+                            placeholder="Số lượng sản phẩm">
+                    </div>
+                    <i class="fa-solid fa-cart-shopping add-cart cart-icon"></i>
+                </div>
+            </div>
+            <div class="box">
+                <div class="icons">
+                    <a href="#" class="fa fa-heart"></a>
+                    <a href="#" class="fa fa-share"></a>
+                    <a href="#" class="fa fa-eye"></a>
+                </div>
+                <div class="content">
+                    <div class="info">
+                        <span class="id-item" hidden>sp022</span>
+                        <img src="assets/img/sanphamimg/product4/pk4.jpg" alt="">
+                        <h3>Miếng lót giày cao cấp, thoáng khí</h3>
+                        <div class="price">
+                            <span class="new-price">45000</span>
+                            <span class="odd-price">39000</span>
+                        </div>
+                        <div class="stars">
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                        </div>
+                        <input type="number" class="input-quanlity" name="quanlity" id="" min="1"
+                            placeholder="Số lượng sản phẩm">
+                    </div>
+                    <i class="fa-solid fa-cart-shopping add-cart cart-icon"></i>
+                </div>
+            </div>
+            <div class="box">
+                <div class="icons">
+                    <a href="#" class="fa fa-heart"></a>
+                    <a href="#" class="fa fa-share"></a>
+                    <a href="#" class="fa fa-eye"></a>
+                </div>
+                <div class="content">
+                    <div class="info">
+                        <span class="id-item" hidden>sp023</span>
+                        <img src="assets/img/sanphamimg/product4/pk5.jpg" alt="">
+                        <h3>Nước hoa giày hương bạc hà</h3>
+                        <div class="price">
+                            <span class="new-price">200000</span>
+                            <span class="odd-price">148000</span>
+                        </div>
+                        <div class="stars">
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                        </div>
+                        <input type="number" class="input-quanlity" name="quanlity" id="" min="1"
+                            placeholder="Số lượng sản phẩm">
+                    </div>
+                    <i class="fa-solid fa-cart-shopping add-cart cart-icon"></i>
+                </div>
+            </div>
+            <div class="box">
+                <div class="icons">
+                    <a href="#" class="fa fa-heart"></a>
+                    <a href="#" class="fa fa-share"></a>
+                    <a href="#" class="fa fa-eye"></a>
+                </div>
+                <div class="content">
+                    <div class="info">
+                        <span class="id-item" hidden>sp024</span>
+                        <img src="assets/img/sanphamimg/product4/pk6.png" alt="">
+                        <h3>Tất giày xinh xắn, tông xanh, họa tiết đẹp</h3>
+                        <div class="price">
+                            <span class="new-price">28000</span>
+                            <span class="odd-price">17000</span>
+                        </div>
+                        <div class="stars">
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                        </div>
+                        <input type="number" class="input-quanlity" name="quanlity" id="" min="1"
+                            placeholder="Số lượng sản phẩm">
+                    </div>
+                    <i class="fa-solid fa-cart-shopping add-cart cart-icon"></i>
+                </div>
+            </div>
+            <div class="box">
+                <div class="icons">
+                    <a href="#" class="fa fa-heart"></a>
+                    <a href="#" class="fa fa-share"></a>
+                    <a href="#" class="fa fa-eye"></a>
+                </div>
+                <div class="content">
+                    <div class="info">
+                        <span class="id-item" hidden>sp025</span>
+                        <img src="assets/img/sanphamimg/product4/pk7.png" alt="">
+                        <h3>Dây giày màu hường bánh bèo</h3>
+                        <div class="price">
+                            <span class="new-price">18000</span>
+                            <span class="odd-price">12000</span>
+                        </div>
+                        <div class="stars">
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                        </div>
+                        <input type="number" class="input-quanlity" name="quanlity" id="" min="1"
+                            placeholder="Số lượng sản phẩm">
+                    </div>
+                    <i class="fa-solid fa-cart-shopping add-cart cart-icon"></i>
+                </div>
+            </div>
+            <div class="box">
+                <div class="icons">
+                    <a href="#" class="fa fa-heart"></a>
+                    <a href="#" class="fa fa-share"></a>
+                    <a href="#" class="fa fa-eye"></a>
+                </div>
+                <div class="content">
+                    <div class="info">
+                        <span class="id-item" hidden>sp026</span>
+                        <img src="assets/img/sanphamimg/product4/pk8.jpg" alt="">
+                        <h3>Phụ kiện trang trí giày siêu cute</h3>
+                        <div class="price">
+                            <span class="new-price">35000</span>
+                            <span class="odd-price">28000</span>
+                        </div>
+                        <div class="stars">
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                        </div>
+                        <input type="number" class="input-quanlity" name="quanlity" id="" min="1"
+                            placeholder="Số lượng sản phẩm">
+                    </div>
+                    <i class="fa-solid fa-cart-shopping add-cart cart-icon"></i>
+                </div>
+            </div>
+            <div class="box">
+                <div class="icons">
+                    <a href="#" class="fa fa-heart"></a>
+                    <a href="#" class="fa fa-share"></a>
+                    <a href="#" class="fa fa-eye"></a>
+                </div>
+                <div class="content">
+                    <div class="info">
+                        <span class="id-item" hidden>sp027</span>
+                        <img src="assets/img/sanphamimg/product4/pk9.jpg" alt="">
+                        <h3>Dây giày Rainbow cao cấp</h3>
+                        <div class="price">
+                            <span class="new-price">38000</span>
+                            <span class="odd-price">28000</span>
+                        </div>
+                        <div class="stars">
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                        </div>
+                        <input type="number" class="input-quanlity" name="quanlity" id="" min="1"
+                            placeholder="Số lượng sản phẩm">
+                    </div>
+                    <i class="fa-solid fa-cart-shopping add-cart cart-icon"></i>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--end cham soc giay-->
+    
+    <!--end featured-->
+    <section class="blog" id="blog">
+        <h1 class="heading">Hãy <span>chọn đôi giày bạn muốn</span></h1>
+        <div class="box-container">
+            <div class="box">
+                <img src="assets/img/sanphamimg/team/1.png" alt="">
+                <h3>Đặt hàng</h3>
+                <p>
+                    Chỉ với một lần nhấp chuột.
+                </p>
+            </div>
+            <div class="box">
+                <img src="assets/img/sanphamimg/team/2.png" alt="">
+                <h3>Giao hàng</h3>
+                <p>
+                    Những chuyến xe mang đôi giày siêu ngầu hoặc xinh xắn này đến tận tay bạn.
+                </p>
+            </div>
+            <div class="box">
+                <img src="assets/img/sanphamimg/team/3.png" alt="">
+                <h3>Tận hưởng</h3>
+                <p>
+                    Tận hưởng đôi giày bạn mơ ước, phối đồ và đến những nơi tuyệt vời đi nào!
+                </p>
+            </div>
+        </div>
+    </section>
+    <!--end blog-->
+    <section class="news" id="news">
+        <div class="content">
+            <h3>Nhận các thông báo về các sản phẩm mới nhất?</h3>
+            <p>
+                Không muốn bỏ lỡ những mẫu giày mới nhất, đẹp nhất và sang chảnh nhất? Hãy cung cấp email cho chúng tôi.
+                Chúng tôi sẽ gửi cho bạn các thông tin mới nhất.
+            </p>
+            <form action="">
+                <input type="email" placeholder="Nhập email của bạn ở đây" class="email">
+                <input type="submit" value="save" class="btn">
+            </form>
+        </div>
+    </section>
+    <footer class="footer">
+        <div class="footer-wrap">
+            <div class="footer-info">
+                <div class="footer-info__page">
+                    <figure class="info-page__detail">
+                        <img src="./assets/img/coollogo_com-1369222.png" alt="" class="info-page-detail__logo">
+                        <figcaption class="info-page-detail__content">
+                            TDS - Nền tảng cung cấp giải pháp mua hàng quốc tế phục vụ nhu cầu cao cấp,
+                            dịch vụ nhanh chóng & tin cậy, nhằm mang đến cho bạn những sự lựa chọn thời
+                            thượng
+                            & độc đáo nhất. Tại đây, quý khách hàng có thể lựa chọn không giới hạn với nhiều sản
+                            phẩm chất lượng chính hãng...
+                        </figcaption>
+                    </figure>
+                </div>
+                <div class="footer-info__services">
+                    <div class="info-item__title">
+                        Hỗ Trợ Khách Hàng
+                    </div>
+                    <div class="info-item__list">
+                        <a href="" class="item-list__detail">Bảo vệ quyền lợi người mua</a>
+                        <a href="" class="item-list__detail">Hướng dẫn mua hàng</a>
+                        <a href="" class="item-list__detail">Phương thức thanh toán</a>
+                        <a href="" class="item-list__detail">Chính sách đổi trả hàng</a>
+                        <a href="" class="item-list__detail">Chính sách bảo mật</a>
+                        <a href="" class="item-list__detail">Chính sách đổi trả hàng</a>
+                    </div>
+                </div>
+                <div class="footer-info__catalog">
+                    <div class="info-item__title">
+                        Về TDS
+                    </div>
+                    <div class="info-item__list">
+                        <a href="" class="item-list__detail">Giới thiệu TDS</a>
+                        <a href="" class="item-list__detail">Giày</a>
+                        <a href="#XC" class="item-list__detail">Sản Phẩm Chăm Sóc Giày</a>
+                        <a href="" class="item-list__detail">Phụ Kiện Giày</a>
+                    </div>
+                </div>
+                <div class="footer-info__contact">
+                    <div class="info-item__title contact-title">
+                        Liên Hệ
+                    </div>
+                    <div class="info-list__social">
+                        <div class="item-social">
+                            <i class="fa-brands fa-facebook social-icon"></i>
+                        </div>
+                        <div class="item-social">
+                            <i class="fa-brands fa-instagram social-icon "></i>
+                        </div>
+                        <div class="item-social">
+                            <i class="fa-brands fa-youtube social-icon"></i>
+                        </div>
+                        <div class="item-social">
+                            <i class="fa-brands fa-tiktok social-icon"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-copyright">
+                © Bản Quyên Thuộc Về Nhóm 10 - CT18805
+            </div>
+        </div>
+    </footer>
+    </div>
+    <script src="./cart-sp.js"></script>
+    <script>
+        const prices = document.querySelectorAll('item__price--price');
+        prices.forEach(item => {
+            item.innerText = Number(item.innerText).toLocaleString('de-DE',
+                {
+                    style: 'currency', currency: 'VND'
+                });
+        });
+        window.addEventListener('load', loadShopingCart, false);
+    /*window.onload = loadShopingCart; */
+    </script>
+</body>
+
+</html>

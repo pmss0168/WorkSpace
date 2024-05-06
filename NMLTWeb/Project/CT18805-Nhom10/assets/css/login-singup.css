@@ -1,0 +1,236 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@200;300;400;500;600;700;800&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    position: relative; 
+    width: 100%;
+    min-height: 100vh;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    background-image: url('https://i.pinimg.com/originals/0a/38/f7/0a38f76c325bc04c5ce5247a7c28796b.gif');
+    background-position: center;
+    background-repeat: no-repeat;
+    overflow: hidden;
+    background-size: cover;
+}
+
+@keyframes Show {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+.container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    min-height: 100vh;
+    width: 100%;
+    transition: all 1.8s;
+}
+
+.container.active {
+    transform: translateX(-50%);
+}
+
+.container .box {
+    min-width: 50%;
+}
+
+.box {
+    display: flex;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+}
+
+.box .content {
+    width: 360px;
+    text-align: center;
+}
+
+.box .content .title {
+    color: #000000;
+    font-size: 60px;
+    margin-bottom: 15px;
+}
+
+.box .content .details {
+    display: inline-block;
+    color: rgb(3, 3, 3);
+    font-size: 17px;
+    margin-bottom: 20px;
+    font-weight: 500;
+}
+
+#form .form-group,
+#form1 .form-group{
+    position: relative;
+    border-bottom: 2.5px solid #000000;
+    border-radius: 2px;
+    margin: 30px 0;
+    height: 45px;
+    width: 360px;
+    background: transparent;
+}
+
+#form .form-group input,
+#form1 .form-group input {
+    width: 100%;
+    border: none;
+    background-color: transparent;
+    outline: none;
+    height: 100%;
+    padding: 0 5px;
+    color: #000000;
+    font-size: 18px;
+}
+
+#form .form-group label,
+#form1 .form-group label {
+    position: absolute;
+    left: 5px;
+    top: 10px;
+    color: rgb(7, 7, 7);
+    transition: all 0.35s;
+    pointer-events: none;
+    font-size: 17px;
+    font-weight: 700;
+}
+
+#form .form-group input:focus ~ label,
+#form .form-group input:valid ~ label,
+#form1 .form-group input:focus ~ label,
+#form1 .form-group input:valid ~ label
+ {
+    top: -7px;
+    font-size: 13px;
+}
+
+.btn {
+    text-align: center;
+    width: 190px;
+    border: none;
+    outline: none;
+    padding: 10px 34px;
+    border-radius: 25px;
+    font-weight: 500;
+    font-size: 18px;
+    margin-top: 15px;
+    cursor: pointer;
+    background-color: #ed2c01;
+    color: #ffffff;
+    overflow: hidden;
+}
+
+.btn.layer {
+    background-color:#ed2c01(0, 0, 0, 0.259);
+    border: 2px solid #000000;
+    color:  #ffffff;
+    transition: all 0.35s;
+    box-shadow: 5px 3px 9px #ed2c01(212, 162, 10, 0.52), -5px 4px 16px rgb(203 202 200 / 48%);
+    transition: all 0.3s;
+}
+
+.btn.log::after {
+    transition: all 0.3s;
+}
+
+.btn.out::before {
+    transition: all 0.3s;
+}
+
+.btn.log:hover::after {
+    content: "\f061";
+    display: inline-block;
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    animation: Show 0.25s linear;
+    overflow: visible;
+}
+
+.btn.out:hover::before {
+    content: "\f060";
+    display: inline-block;
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    animation: Show 0.25s linear;
+    overflow: visible;
+}
+
+.btn.layer:hover {
+    background-color:  #030303(110, 86, 11, 0.556);
+    color: #c9c5c5;
+}
+
+.btn.submit {
+    /* transition: all 0.3s; */
+}
+
+.btn.submit:hover {
+    outline: 2px solid #080808;
+    outline-offset: 3px;
+}
+
+.content {
+    position: relative;
+}
+
+.nav {
+    position: absolute;
+    top: 0;
+    height: 100%;
+    left: 0;
+    width: 100%;
+    transition: 1s;
+}
+a.menu-li__item{
+    border: none;
+    outline: none;
+    padding: 10px;
+    border-radius: 25px;
+    margin-top: 10px;
+    cursor: pointer;
+    background-color: #ed2c01;
+    color: #ffffff;
+    overflow: hidden;
+    text-decoration: none;
+
+}
+.container .navigation_signIn {
+    opacity: 1;
+    z-index: 5;
+}
+
+.container .navigation_signUp {
+    z-index: 2;
+    opacity: 0;
+}
+
+.container.active .box .content .navigation_signIn {
+    opacity: 0;
+    z-index: 1;
+}
+
+.container.active .box .content .navigation_signUp {
+    opacity: 1;
+    z-index: 2;
+}
+
+.nav p {
+    color: #000000;
+    font-size: 17px;
+    font-weight: 800;
+    padding-bottom: 15px;
+}
+
+.invalid {
+    color: red;
+}

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="./assets/img/html5_favicon.png">
+
+    <!-- link css -->
+    <link rel="stylesheet" href="./assets/css/login-singup.css">
+
+
+    <!-- link icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <title>Login</title>
+</head>
+<body>
+    <div class="container">
+        <div class="box register">
+            <div class="content">
+                <h3 class="title">
+                    Login
+                </h3>
+    
+                <span class="details">
+                    Light up your feet with our Shoes.
+                </span>
+                <form action="#" id="form">
+                    <div class="form-group">
+                        <input type="text" name="" id="name" required>
+                        <label for="name">Username</label>
+                        <span class="form-message"></span>
+                    </div>
+                    <div class="form-group">
+                        <input type="password" name="" id="password" required>
+                        <label for="password">Password</label>
+                        <span class="form-message"></span>
+                    </div>
+
+                    <button class="btn submit form-submit">
+                        Login
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <div class="box navigation">
+            <div class="content">
+                <div class="nav navigation_signIn">
+                    <p>
+                        If you don't have an account yet, join us and start your journey
+                    </p>
+                            <a href="./singup.html" class="menu-li__item">
+                                <i class="fa-regular fa-user"></i>
+                                Signup
+                            </a>
+                </div>
+            </div>
+        </div>
+    <!-- link javascript -->
+    <script src="./assets/js/validation.js"></script>
+    <script>
+
+        document.addEventListener('DOMContentLoaded', function () {
+            // Mong muốn của chúng ta
+            Validator({
+                form: '#form',
+                formGroupSelector: '.form-group',
+                errorSelector: '.form-message',
+                rules: [
+                    Validator.isRequired('#name', 'Vui lòng nhập tên đầy đủ của bạn'),
+                    Validator.minLength('#password', 6),
+                ],
+                onSubmit: function (data) {
+                }
+            });
+        });
+
+    </script>  
+</body>
+</html>

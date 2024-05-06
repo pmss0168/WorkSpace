@@ -1,0 +1,100 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.navbar-brand {
+    font-size: 2em;
+    color: black;
+    font-family: 'Roboto', sans-serif;
+}
+
+.navbar-brand:hover {
+    color: black;
+}
+
+.nav-link  {
+    margin-right: 10px;
+    margin-left: 10px;
+    color: black;
+    font-family: 'Rubik', sans-serif;
+    text-transform: uppercase;
+}
+
+.nav-link:hover {
+    color: black;
+}
+
+.search{
+    height: 40px;
+    width: 80%;
+    border-radius: 60px;
+    outline: none;
+    font-family: 'Rubik', sans-serif;
+
+    margin-right: -35px;
+    border: 2px solid rgb(248, 26, 92);
+}
+.btn1{
+    height: 40px;
+    width: 40%;
+    outline: none;
+    border: none;
+    background-color: rgb(248, 26, 92);
+    color: white;
+    border-radius: 60px;
+
+    font-weight: 700;
+}
+
+.banner {
+    background: url('/assets/img/bog/banner-white-sneakers-orange-background-there-room-text-198246157.jpg') no-repeat;
+    background-size: cover;
+    background-position: 50% 50%;
+    width: 100%;
+    height: 70vh;
+}
+
+.banner-title {
+    font-size: 4rem;
+    font-weight: 700;
+}
+
+.banner-btn2 {
+    height: 45px;
+    width: 35%;
+    border: none;
+    outline: none;
+    background-color: rgb(248, 26, 92);
+    color: wheat;
+    border-radius: 60px;
+    font-weight: 700;
+}
+
+.tags-item {
+    display: inline-block;
+    font-size: 16px;
+    margin-bottom: 13px;
+    font-weight: 400;
+    border: 1px solid #1045B1;
+    border-radius: 30px;
+    padding: 4px 10px 3px;
+    margin-right: 3.5px!important;
+    color: #1045B1;
+    cursor: pointer;
+}
+
+.card-title-p {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3; /* start showing ellipsis when 3rd line is reached */
+}
+
+.footer {
+    background-color: black;
+    color: white;
+}
