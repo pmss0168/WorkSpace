@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="2df47d39-0a22-472b-9b2b-8b28825f3c0f" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/../baitaptrenlop/MulticastFileClient.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../baitaptrenlop/MulticastFileServer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../.vscode/settings.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../.vscode/settings.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../J2EE/NhaNghi1/build.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../J2EE/NhaNghi1/hs_err_pid14044.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../J2EE/NhaNghi1/hs_err_pid18052.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../J2EE/NhaNghi1/hs_err_pid7052.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../J2EE/NhaNghi1/hs_err_pid7644.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../J2EE/NhaNghi1/nbproject/ant-deploy.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../J2EE/NhaNghi1/nbproject/build-impl.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../J2EE/NhaNghi1/nbproject/genfiles.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../J2EE/NhaNghi1/nbproject/project.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../J2EE/NhaNghi1/nbproject/project.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../J2EE/NhaNghi1/src/conf/MANIFEST.MF" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../J2EE/NhaNghi1/src/java/controllers/bookingController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../J2EE/NhaNghi1/src/java/controllers/cancelBill.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../J2EE/NhaNghi1/src/java/controllers/loginController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../J2EE/NhaNghi1/src/java/controllers/logoutController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../J2EE/NhaNghi1/src/java/controllers/management/booking/confirmBooking.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../J2EE/NhaNghi1/src/java/controllers/management/booking/confirmSuccess.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../J2EE/NhaNghi1/src/java/controllers/management/booking/declineBooking.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../J2EE/NhaNghi1/src/java/controllers/management/category/addCategory.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../J2EE/NhaNghi1/src/java/controllers/management/category/editCategory.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../J2EE/NhaNghi1/src/java/controllers/management/category/removeCategory.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../J2EE/NhaNghi1/src/java/controllers/management/room/addRoom.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../J2EE/NhaNghi1/src/java/controllers/management/room/editRoom.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../J2EE/NhaNghi1/src/java/controllers/management/room/removeRoom.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../J2EE/NhaNghi1/src/java/controllers/management/user/addAdmin.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../J2EE/NhaNghi1/src/java/controllers/management/user/addStaff.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../J2EE/NhaNghi1/src/java/controllers/management/user/removeAdmin.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../J2EE/NhaNghi1/src/java/controllers/management/user/removeStaff.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../J2EE/NhaNghi1/src/java/controllers/registerController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../J2EE/NhaNghi1/src/java/database/DBO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../J2EE/NhaNghi1/src/java/database/dao/DAO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../J2EE/NhaNghi1/src/java/database/dao/DaoInterface.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../J2EE/NhaNghi1/src/java/database/dao/booking/BookingDao.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../J2EE/NhaNghi1/src/java/database/dao/category/CategoryDao.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../J2EE/NhaNghi1/src/java/database/dao/room/RoomDao.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../J2EE/NhaNghi1/src/java/database/dao/user/UserDao.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../J2EE/NhaNghi1/src/java/entity/Booking.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../J2EE/NhaNghi1/src/java/entity/Category.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../J2EE/NhaNghi1/src/java/entity/Room.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../J2EE/NhaNghi1/src/java/entity/RoomCategory.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../J2EE/NhaNghi1/src/java/entity/Users.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../J2EE/NhaNghi1/src/java/entity/Util.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../J2EE/NhaNghi1/web/WEB-INF/glassfish-web.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../J2EE/NhaNghi1/web/admin/booking_management.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../J2EE/NhaNghi1/web/admin/category_management.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../J2EE/NhaNghi1/web/admin/management.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../J2EE/NhaNghi1/web/admin/prevent_user_access.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../J2EE/NhaNghi1/web/admin/room_management.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../J2EE/NhaNghi1/web/admin/user_management.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../J2EE/NhaNghi1/web/asset/css/login.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../J2EE/NhaNghi1/web/asset/css/register.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../J2EE/NhaNghi1/web/asset/images/h1_hero.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../J2EE/NhaNghi1/web/asset/images/logo.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../J2EE/NhaNghi1/web/asset/images/man.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../J2EE/NhaNghi1/web/bill.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../J2EE/NhaNghi1/web/booking.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../J2EE/NhaNghi1/web/footer.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../J2EE/NhaNghi1/web/header.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../J2EE/NhaNghi1/web/home.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../J2EE/NhaNghi1/web/index.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../J2EE/NhaNghi1/web/info.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../J2EE/NhaNghi1/web/pagination.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../J2EE/NhaNghi1/web/pagination_table.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../J2EE/NhaNghi1/web/prevent_access.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../J2EE/NhaNghi1/web/register.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../J2EE/Project_J2EE/nbproject/build-impl.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../J2EE/Project_J2EE/nbproject/build-impl.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../J2EE/Project_J2EE/nbproject/genfiles.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../../J2EE/Project_J2EE/nbproject/genfiles.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../J2EE/Project_J2EE/nbproject/project.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../../J2EE/Project_J2EE/nbproject/project.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../J2EE/Project_J2EE/nbproject/project.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../J2EE/Project_J2EE/nbproject/project.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../J2EE/Project_J2EE/src/java/database/DBO.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../J2EE/Project_J2EE/src/java/database/DBO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../LTHDT/.metadata/.log" beforeDir="false" afterPath="$PROJECT_DIR$/../../LTHDT/.metadata/.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../LTHDT/.metadata/.plugins/org.eclipse.core.resources/.projects/.org.eclipse.egit.core.cmp/.location" beforeDir="false" afterPath="$PROJECT_DIR$/../../LTHDT/.metadata/.plugins/org.eclipse.core.resources/.projects/.org.eclipse.egit.core.cmp/.location" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../LTHDT/.metadata/.plugins/org.eclipse.core.resources/.root/.indexes/properties.index" beforeDir="false" afterPath="$PROJECT_DIR$/../../LTHDT/.metadata/.plugins/org.eclipse.core.resources/.root/.indexes/properties.index" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../LTHDT/.metadata/.plugins/org.eclipse.core.resources/.root/31.tree" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../LTHDT/.metadata/.plugins/org.eclipse.core.resources/.safetable/org.eclipse.core.resources" beforeDir="false" afterPath="$PROJECT_DIR$/../../LTHDT/.metadata/.plugins/org.eclipse.core.resources/.safetable/org.eclipse.core.resources" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../LTHDT/.metadata/.plugins/org.eclipse.core.runtime/.settings/org.eclipse.ui.ide.prefs" beforeDir="false" afterPath="$PROJECT_DIR$/../../LTHDT/.metadata/.plugins/org.eclipse.core.runtime/.settings/org.eclipse.ui.ide.prefs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../LTHDT/.metadata/.plugins/org.eclipse.e4.workbench/workbench.xmi" beforeDir="false" afterPath="$PROJECT_DIR$/../../LTHDT/.metadata/.plugins/org.eclipse.e4.workbench/workbench.xmi" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../LTHDT/.metadata/.plugins/org.eclipse.jdt.core/savedIndexNames.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../../LTHDT/.metadata/.plugins/org.eclipse.jdt.core/savedIndexNames.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../LTHDT/.metadata/.plugins/org.eclipse.m2e.logback.configuration/0.log" beforeDir="false" afterPath="$PROJECT_DIR$/../../LTHDT/.metadata/.plugins/org.eclipse.m2e.logback.configuration/0.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../LTHDT/.metadata/version.ini" beforeDir="false" afterPath="$PROJECT_DIR$/../../LTHDT/.metadata/version.ini" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../baitaptrenlop/remake/FIleUDPClient1.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../NLCS_ChatApp - Copy/app/asset/css/style.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../NLCS_ChatApp - Copy/app/asset/js/jquery-3.7.1.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../NLCS_ChatApp - Copy/app/asset/js/main.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../NLCS_ChatApp - Copy/app/chat.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../NLCS_ChatApp - Copy/app/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../NLCS_ChatApp - Copy/app/register.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../NLCS_ChatApp - Copy/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../NLCS_ChatApp - Copy/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../NLCS_ChatApp - Copy/node_modules/.package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../NLCS_ChatApp - Copy/node_modules/.package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../NLCS_ChatApp - Copy/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../NLCS_ChatApp - Copy/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../NLCS_ChatApp - Copy/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../NLCS_ChatApp - Copy/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../NLCS_ChatApp - Copy/readme.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../../NLCS_ChatApp - Copy/readme.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../NLCS_ChatApp/Báo Cáo Niên Luận Cơ Sở - Phạm Minh Sáng - B2110976.docx" beforeDir="false" afterPath="$PROJECT_DIR$/../../NLCS_ChatApp/Báo Cáo Niên Luận Cơ Sở - Phạm Minh Sáng - B2110976.docx" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+  </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "pmss0168"
+  }
+}]]></component>
+  <component name="GitToolBoxStore">
+    <option name="projectConfigVersion" value="5" />
+  </component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/pmss0168/WorkSpace.git",
+    "accountId": "daecc9b1-93cc-46a1-b01a-0bf84988bf1b"
+  }
+}]]></component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 5
+}]]></component>
+  <component name="ProjectId" id="2fbD03vkEfdhH4lqpCzXtsIZyll" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "master",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "D:/Workspace/SourceCode/LTM/buoi2",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9f38398b9061-18abd8497189-intellij.indexing.shared.core-IU-241.14494.240" />
+        <option value="bundled-js-predefined-1d06a55b98c1-74d2a5396914-JavaScript-IU-241.14494.240" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="2df47d39-0a22-472b-9b2b-8b28825f3c0f" name="Changes" comment="" />
+      <created>1714060658076</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1714060658076</updated>
+      <workItem from="1714060659072" duration="33000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>
