@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Contact</title>
+    <style>
+        input[type="file"]::-webkit-file-upload-button{
+            float: right;
+            margin-left: 0;
+            border: 1px solid #aaaaaa;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Customer service - Contact us</h1>
+        <p>For questions about an order or for more information about our products</p>
+        <h3>send a message</h3>
+        <form action="#" method="get">
+            <div>
+                <p>Subject Heading</p>
+                <select name="subject" id="subject">
+                    <option value="">--Choose--</option>
+                    <option value="customer_service">Customer service</option>
+                    <option value="webmaster">Webmaster</option>
+                </select>
+            </div>
+            <div>
+                <p>Email address</p>
+                <input type="email" id="email">
+            </div>
+            <div>
+                <p>Order reference</p>
+                <input type="text" name="" id="order">
+            </div>
+            <div>
+                <p>Attach file</p>
+                <input type="file">
+            </div>
+            <div>
+                <p>Message</p>
+                <textarea name="" id="message" cols="50" rows="10" style="resize: none;"></textarea>
+            </div>
+            <button type="submit">Send</button>
+        </form>
+    </div>
+</body>
+</html>

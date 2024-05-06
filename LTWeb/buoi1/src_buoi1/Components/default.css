@@ -1,0 +1,62 @@
+/* CSS Document */
+@import url(TopMenu.css);
+@import url(Header.css);
+@import url(LeftMenu.css);
+@import url(Content.css);
+@import url(Footer.css);
+@import url(imageGalary.css);
+@import url(../font-awesome-4.0.3/css/font-awesome.css);
+
+*{
+	padding:0;
+	margin:0;
+	border:0;
+	outline:0;
+	font-size:100%;
+	/*outline:1px solid #00FFFF;*/
+}
+body{
+	background-image:url(../Images/tail-bg-top.gif);
+	background-repeat:repeat-x;
+	line-height:18px;	
+}
+#wrap,#link_footer,#bottom_footer_container{
+	position:relative;
+	min-width:921px;
+	max-width:1175px;
+	margin-left:auto;
+	margin-right:auto;
+	margin: 0 10rem;
+}
+
+#header_wrapper{
+	overflow:hidden;
+	height:194px;
+}
+
+#left_menu{
+	position:relative;
+	float:left;
+	width:23%;
+	padding-bottom:20px;
+}
+#content{
+	position:relative;
+	float:right;
+	width:74.3%;
+}
+
+#footer{
+	background:url(../Images/bottomBackground.svg);	
+}
+#link_footer,#bottom_footer_container{
+	overflow:hidden;
+}
+#bottom_footer{
+	padding:12px 0px 18px;
+	background:#e4e4e4;
+}
+.float_left{
+	float:left;	
+}
+

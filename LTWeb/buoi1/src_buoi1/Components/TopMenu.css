@@ -1,0 +1,60 @@
+/* CSS Document */
+*{
+	padding:0;
+	margin:0;
+	border:0;
+	outline:0;
+	font-size:100%;
+}
+body{
+	background-image:url(../Images/tail-bg-top.gif);
+	background-repeat:repeat-x;
+	line-height:18px;	
+}
+#top_menu{
+	margin-top:12px;
+	overflow:hidden;
+	min-height: 35px;
+	margin: 1rem 10rem;
+}
+#header_link{
+	float:left;
+}
+.link_menu{
+	list-style:none;	
+}
+.link_menu li{
+	float:left;
+	margin-right:15px;
+}
+.link_menu a{
+	color:white;
+	font-size:1.05em;
+	text-decoration:none;
+	font-weight:bold;
+	font-family:Arial, Helvetica, sans-serif;
+}
+
+#header_option_login{
+	float:right;
+	width:200px;
+}
+#header_option_login li{
+	float:right;
+	margin-right:0;
+	margin-left:20px;
+}
+#login{
+	width:16px;
+	height:16px;
+	display:block;	
+	background-image:url(../Images/lock_white.svg)
+}
+
+.en_money_menu{
+	display:block;
+	width:40px;
+	background-image:url(../Images/Bullet_down.svg);
+	background-repeat:no-repeat;
+	background-position:right 6px;
+}

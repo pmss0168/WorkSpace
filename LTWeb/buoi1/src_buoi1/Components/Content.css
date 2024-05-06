@@ -1,0 +1,110 @@
+/* CSS Document */
+/*Search box ==============================================*/
+*{
+	padding:0;
+	margin:0;
+	border:0;
+	outline:0;
+	font-size:100%;
+	/*outline:1px solid #00FFFF;*/
+}
+#content{
+	position:relative;
+	float:right;
+	width:64%;
+}
+
+#fr_search{
+	padding: 11px 0px 11px 11px;
+	background-color:#F9F9F9;
+	border-radius:10px;
+	box-shadow:3px 6px 3px #CCC;
+}
+#fr_search input{
+	min-width:85%;
+	height:37px;
+	border-radius:5px 0px 0px 5px;
+	border-top:1px solid #CCCCCC;
+	overflow:hidden;
+}
+#fr_search button{	
+	position:absolute;
+	top:10px;
+	right:10px;	
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:1.15em;
+	min-width:12%;
+	height:38px;
+	background-color:#559900;
+	color:#FFFFFF;
+	margin-left:5px;
+	border-radius:0px 5px 5px 0px;
+}
+
+/*===========================================================*/
+.slider{
+	position:relative;
+	border: 1px solid #d8d8d8;
+	border-radius: 6px;	
+	margin-top:20px;
+}
+.slider img, a img{
+	vertical-align:middle;
+	max-width:100%;
+	height:auto;
+	/*display:block;*/	
+}
+.nivo-caption {
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 45%;
+	z-index: 8;
+	padding: 0 0 0 70px;
+	opacity: 0.8;
+	overflow: hidden;
+}
+.nivo-caption h3 {
+font-size: 53px;
+line-height: 1em;
+color: #000;
+font-weight: normal;
+margin: 57px 0 20px;
+font-family: "Trebuchet MS",Arial,Helvetica,sans-serif;
+}
+.nivo-caption h3 span {
+font-size: 41px;
+line-height: 38px;
+color: #5dab01;
+display: block;
+padding-top: 2px;
+}
+.nivo-caption p {
+margin: 0 0 10px;
+color: #7b7979;
+font-size: 15px;
+line-height: 21px;
+}
+.nivo-caption .price {
+font-size: 35px;
+line-height: 38px;
+color: #8a8a8a;
+font-weight: normal;
+margin-bottom: 50px;
+}
+.nivo-caption a{
+	display: inline-block;
+	text-align: center;
+	font-family: "Trebuchet MS",Arial,Helvetica,sans-serif;
+	font-size: 22px;
+	line-height: 24px;
+	padding: 9px 30px 11px;
+	border-bottom: 1px solid #3a6a01;
+	text-shadow: 0 1px #2f5601;
+	background: #5ead01;
+	background: linear-gradient(to bottom,#5ead01 0,#4c8d01 100%);
+	border-radius: 6px;
+	margin-left: 3px;
+	text-decoration:none;
+	color:#ffffff;
+	}

@@ -1,0 +1,80 @@
+/* CSS Document */
+.list-footer, .delivery, .contact_us{
+	list-style:none;
+	width:23%;
+	float:left;
+	margin-right:2.6666%;
+}
+.list-footer li{
+	padding: 6px 0 8px;
+	border-top: 1px solid #c4c4c4;
+	position: relative;	
+	line-height: 20px;
+	}
+.list-footer a{
+	text-decoration:none;
+	font-size: 13px;
+	font-weight: bold;
+	word-wrap: break-word;
+	color: #303030;
+	font-family: Arial,Helvetica,sans-serif;	
+}
+.list-footer a:hover {
+color: #4d8f01;
+}
+.list-footer li:before{
+	font-family: FontAwesome;
+	color: #c8c8c8;
+	content: "\f0da";
+	margin-right: 9px;
+	font-size: 17px;
+	position: relative;
+	top: 1px;	
+}
+.first_item{
+	border:none !important;	
+}
+.toggle_content{
+	list-style:none;	
+}
+#footer h4{
+	color: #4D8F01;
+	font-size: 23px;
+	font-weight: normal;
+	line-height: 26px;
+	margin: 0;
+	padding: 10px 0;	
+}
+.phone-info, .mail-info{
+	color: #676666;
+	font-size: 18px;
+	font-weight: bold;
+	line-height: 20px;
+	font-family: "Trebuchet MS",Arial,Helvetica,sans-serif;
+	background: url(../images/img-phone-footer.png) no-repeat 0 50%;
+	padding: 12px 0px 17px 56px;
+	margin: 10px 0 0;
+	position: relative;
+	}
+.mail-info{
+	background-image:none;
+	margin: 5px 0 0;
+}
+.mail-info a{
+	text-decoration:none;
+	color:#7a7a7a;
+}
+li.mail-info:before {
+	content: "\f0e0";
+	font-family: FontAwesome;
+	font-size: 36px;
+	line-height: 40px;
+	color: #c4c4c4;
+	position: absolute;
+	left: 6px;
+	top: 50%;
+	margin-top: -22px;
+}
+#bottom_footer_container{
+	color:#666666;	
+}
