@@ -420,6 +420,19 @@
     transition: step-start all 0.3s;
 }
 /* ---------- Login ------------ */
+#notify {
+    width: 450px;
+    height: 50px;
+    background-color: rgb(253, 108, 108);
+    border: 1px solid red;
+    border-radius: 10px;
+    margin: 10px auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 20px;
+    text-align: center;
+}
 #login {
     overflow-y: scroll;
     scroll-behavior: smooth;

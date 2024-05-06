@@ -20,7 +20,7 @@ const db = mysql.createConnection({
     database: 'chatapp',
 });
 
-const util = require('./modules/util');
+const util = require('./controllers/util');
 const chatNamespace = io.of('/chat');
 
 //De nguoi dung co the su dung toan bo nhung hinh anh, file, thu muc co trong ./public
@@ -41,70 +41,9 @@ app.use(flash());
 app.set('view engine', 'ejs');
 app.set('views', './views');
 
-//------------------------------Route--------------------------------------------
+//------------------------------Use route--------------------------------------------
+app.use(require('./routes'));
 
-//Hien thi trang web chinh khi truy cap
-app.get('/', function (req, res) {
-    const notify = req.flash('error');
-    res.render('index', { notify: notify });
-});
-app.get('/chat', util.checkSession, function (req, res) {
-    let user = req.session.username;
-    res.render('chat', { user: user });
-});
-app.get('/register', function (req, res) {
-    const notify = req.flash('error');
-    res.render('register', { notify: notify });
-});
-app.post('/', function (req, res) {
-    let user = req.body.user;
-    let pass = req.body.pass;
-    let sql = `select username, password from users where username=?`;
-    db.query(sql, user, function (err, data) {
-        if (err) throw err;
-        if (data.length == 0) {
-            req.flash('error', 'Tài khoản hoặc mật khẩu không chính xác');
-            res.redirect('/');
-        } else if (data.length > 0) {
-            let hashPassword = util.hash(pass);
-            if (hashPassword == data[0].password) {
-                req.session.username = user;
-                res.redirect('/chat');
-            } else {
-                req.flash('error', 'Tài khoản hoặc mật khẩu không chính xác');
-                res.redirect('/');
-            }
-        }
-    });
-});
-app.post('/register', function (req, res) {
-    let username = req.body.username;
-    let password = req.body.password;
-    let passwordCheck = req.body.passwordCheck;
-    // console.log(username, password, passwordCheck);
-    if (password !== passwordCheck) {
-        req.flash('error', 'Mật khẩu không trùng khớp');
-        res.redirect('/register');
-    } else {
-        let sql = `select username, password from users where username=?`;
-        db.query(sql, username, function (err, data) {
-            if (err) throw err;
-            if (data.length == 0) {
-                let hashPassword = util.hash(password);
-                util.addUser(username, hashPassword);
-                res.redirect('/');
-            } else if (data.length > 0) {
-                req.flash('error', 'Tài khoản đã tồn tại');
-                res.redirect('/register');
-            }
-        });
-    }
-});
-app.get('/logout', function (req, res) {
-    let user = req.session.username;
-    req.session.destroy();
-    res.redirect('/');
-});
 //------------------------------Socket main--------------------------------------------
 
 chatNamespace.on('connection', function (socket) {
