@@ -14,12 +14,6 @@ function hash(data) {
     let hash = crypto.createHash('sha512').update(data).digest('hex');
     return hash;
 }
-function changeStatus(user, status) {
-    let sql = `UPDATE users SET isOnline = '?' WHERE (username = ?);`;
-    db.query(sql, [status, user], function (error, result) {
-        if (error) throw error;
-    });
-}
 function addUser(username, hashPassword) {
     let sqlInsertUser = `insert into users(username, password) values(?, ?)`;
     db.query(sqlInsertUser, [username, hashPassword], function (error, result) {
@@ -38,7 +32,6 @@ function checkSession(req, res, next) {
 
 module.exports = {
     hash,
-    changeStatus,
     addUser,
     checkSession,
 };
