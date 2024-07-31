@@ -1,0 +1,23 @@
+server:
+  port: 8080
+  servlet:
+    encoding:
+      charset: utf-8
+      enabled: true
+      force: true
+    context-path: /identity
+
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/identity?useUnicode=yes&characterEncoding=UTF-8
+    username: springstudent
+    password: springstudent
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+  sql:
+    init:
+      encoding: UTF-8
+jwt:
+  signer-key: EYD0Gyt8ZFgz0CnC1MlGqCQ0Bkx0BGEkwNfWRtL4l653ogJY7ZKpI/XyXgRCtCZq
